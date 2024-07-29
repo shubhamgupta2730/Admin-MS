@@ -1,0 +1,16 @@
+2024-07-29 15:31:06 info: Server is running on http://localhost:3002
+2024-07-29 15:31:31 info: Server is running on http://localhost:3002
+2024-07-29 15:32:35 info: Server is running on http://localhost:3002
+2024-07-29 15:32:56 info: Server is running on http://localhost:3002
+2024-07-29 15:32:58 info: MongoDB connected
+2024-07-29 15:33:50 info: ::1 - - [29/Jul/2024:10:03:50 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:34:26 info: ::1 - - [29/Jul/2024:10:04:26 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:34:44 info: ::1 - - [29/Jul/2024:10:04:44 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories HTTP/1.1" 200 469 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:56:55 info: Server is running on http://localhost:3002
+2024-07-29 15:56:57 info: MongoDB connected
+2024-07-29 15:57:03 info: Incoming request: POST /api/v1/admin/authRoute/signup - Body: {"email":"shubhgupta2730@gmail.com","password":"12345","phone":"7610991341","role":"admin"}
+2024-07-29 15:57:03 info: ::1 - - [29/Jul/2024:10:27:03 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:57:03 info: Response status: 400 - Response time: 93.30ms
+2024-07-29 15:57:38 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-07-29 15:57:38 info: ::1 - - [29/Jul/2024:10:27:38 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:57:38 info: Response status: 200 - Response time: 172.46ms
