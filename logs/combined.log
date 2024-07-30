@@ -14,3 +14,6 @@
 2024-07-29 15:57:38 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
 2024-07-29 15:57:38 info: ::1 - - [29/Jul/2024:10:27:38 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
 2024-07-29 15:57:38 info: Response status: 200 - Response time: 172.46ms
+2024-07-30 14:46:25 info: Server is running on http://localhost:3002
+2024-07-30 14:46:27 info: Server is running on http://localhost:3002
+2024-07-30 14:46:30 info: MongoDB connected
