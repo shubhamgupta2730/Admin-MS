@@ -12,7 +12,7 @@ import {
   authorizeAdmin,
 } from '../../../middlewares/authMiddleware';
 
-router.post('/createBundle', authenticateAdmin, authorizeAdmin, createBundle);
+router.post('/create-bundle', authenticateAdmin, authorizeAdmin, createBundle);
 router.get('/get-bundle', authenticateAdmin, authorizeAdmin, getBundle);
 router.get(
   '/get-all-bundles',

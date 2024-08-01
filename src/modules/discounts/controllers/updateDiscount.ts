@@ -3,12 +3,12 @@ import Discount from '../../..//models/discountModel';
 
 export const updateDiscount = async (req: Request, res: Response) => {
   const { discountId } = req.query;
-  const { startDate, endDate, discountPercentage, code, isActive } = req.body;
+  const { startDate, endDate, discount, code, isActive } = req.body;
 
   try {
     const updatedDiscount = await Discount.findByIdAndUpdate(
       discountId,
-      { startDate, endDate, discountPercentage, code, isActive },
+      { startDate, endDate, discount, code, isActive },
       { new: true }
     );
 

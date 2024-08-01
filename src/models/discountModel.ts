@@ -3,7 +3,7 @@ import { Schema, Document, model } from 'mongoose';
 export interface IDiscount extends Document {
   startDate: Date;
   endDate: Date;
-  discountPercentage: number;
+  discount: number;
   code: string;
   isActive: boolean;
 }
@@ -12,7 +12,7 @@ const discountSchema = new Schema<IDiscount>(
   {
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
-    discountPercentage: { type: Number, required: true, min: 0, max: 100 },
+    discount: { type: Number, required: true, min: 0, max: 100 },
     code: { type: String, required: true, unique: true },
     isActive: { type: Boolean, default: true },
   },

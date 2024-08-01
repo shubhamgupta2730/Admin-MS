@@ -1,16 +1,55 @@
 import { Request, Response } from 'express';
-import AdminBundle from '../../../models/adminBundleModel';
+import mongoose from 'mongoose';
+import { BundleProduct } from '../../../models/index';
 
-export const getBundle = async (req: Request, res: Response) => {
-  const { bundleId } = req.query;
+interface CustomRequest extends Request {
+  user?: {
+    userId: string;
+    role?: string;
+  };
+}
+
+export const getAdminBundle = async (req: CustomRequest, res: Response) => {
+  const userId = req.user?.userId;
+  const userRole = req.user?.role;
+  const { bundleId } = req.body;
+
+  if (!userId || !userRole) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  if (userRole !== 'Admin') {
+    return res
+      .status(403)
+      .json({ message: 'Forbidden: Access is allowed only for Admins' });
+  }
+
+  if (!bundleId) {
+    return res.status(400).json({ message: 'Bundle ID is required' });
+  }
+
+  if (!mongoose.Types.ObjectId.isValid(bundleId)) {
+    return res.status(400).json({ message: 'Invalid bundle ID' });
+  }
 
   try {
-    const bundle = await AdminBundle.findById(bundleId);
+    const bundle = await BundleProduct.findById(bundleId)
+      .select(
+        'name description MRP sellingPrice discount products createdBy createdByRole isActive createdAt updatedAt'
+      )
+      .exec();
+
     if (!bundle) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
-    res.status(200).json({ bundle });
+
+    return res.status(200).json({
+      message: 'Bundle retrieved successfully',
+      bundle,
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Bundle not found' });
+    return res
+      .status(500)
+      .json({ message: 'Failed to retrieve bundle', error });
   }
 };

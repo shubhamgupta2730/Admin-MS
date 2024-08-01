@@ -1,54 +1,91 @@
 import { Request, Response } from 'express';
-import AdminBundle from '../../../models/adminBundleModel';
+import mongoose from 'mongoose';
+import { BundleProduct } from '../../../models/index';
 
-export const getAllBundles = async (req: Request, res: Response) => {
+interface CustomRequest extends Request {
+  user?: {
+    userId: string;
+    role?: string;
+  };
+}
+
+export const getAdminBundles = async (req: CustomRequest, res: Response) => {
+  const userId = req.user?.userId;
+  const userRole = req.user?.role;
+  const {
+    page = 1,
+    limit = 10,
+    search = '',
+    sortField = 'createdAt',
+    sortOrder = 'desc',
+  } = req.query;
+
+  if (!userId || !userRole) {
+    return res.status(401).json({ message: 'Unauthorized' });
+  }
+
+  if (userRole !== 'Admin') {
+    return res
+      .status(403)
+      .json({ message: 'Forbidden: Access is allowed only for Admins' });
+  }
+
+  const pageNumber = parseInt(page as string, 10);
+  const limitNumber = parseInt(limit as string, 10);
+  const sortOptions: { [key: string]: 1 | -1 } = {
+    [sortField as string]: sortOrder === 'asc' ? 1 : -1,
+  };
+
   try {
-    // Destructure query parameters
-    const {
-      search,
-      sortBy,
-      sortOrder = 'asc',
-      page = 1,
-      limit = 10,
-    } = req.query;
+    const matchStage = {
+      $match: {
+        $or: [
+          { name: { $regex: search, $options: 'i' } },
+          { description: { $regex: search, $options: 'i' } },
+        ],
+      },
+    };
 
-    // Build the search filter
-    const searchFilter = search
-      ? {
-          $or: [
-            { name: { $regex: search, $options: 'i' } },
-            { description: { $regex: search, $options: 'i' } },
-          ],
-        }
-      : {};
+    const sortStage = {
+      $sort: sortOptions,
+    };
 
-    // Calculate pagination values
-    const pageNumber = parseInt(page as string, 10);
-    const pageSize = parseInt(limit as string, 10);
-    const skip = (pageNumber - 1) * pageSize;
+    const skipStage = {
+      $skip: (pageNumber - 1) * limitNumber,
+    };
 
-    // Build the sort options
-    const sortOptions: { [key: string]: 1 | -1 } = {};
-    if (sortBy) {
-      sortOptions[sortBy as string] = sortOrder === 'asc' ? 1 : -1;
-    }
+    const limitStage = {
+      $limit: limitNumber,
+    };
 
-    // Fetch the bundles with the applied filters, sorting, and pagination
-    const bundles = await AdminBundle.find(searchFilter)
-      .sort(sortOptions)
-      .skip(skip)
-      .limit(pageSize);
+    const facetStage = {
+      $facet: {
+        metadata: [{ $count: 'total' }],
+        bundles: [matchStage, sortStage, skipStage, limitStage],
+      },
+    };
 
-    // Get the total count of bundles for pagination purposes
-    const totalBundles = await AdminBundle.countDocuments(searchFilter);
+    const bundlesAggregation = await BundleProduct.aggregate([
+      matchStage,
+      sortStage,
+      skipStage,
+      limitStage,
+      facetStage,
+    ]);
 
-    res.status(200).json({
+    const metadata = bundlesAggregation[0]?.metadata[0] || { total: 0 };
+    const bundles = bundlesAggregation[0]?.bundles || [];
+
+    return res.status(200).json({
+      message: 'Bundles retrieved successfully',
       bundles,
-      totalBundles,
-      totalPages: Math.ceil(totalBundles / pageSize),
+      totalBundles: metadata.total,
+      totalPages: Math.ceil(metadata.total / limitNumber),
       currentPage: pageNumber,
     });
   } catch (error) {
-    res.status(500).json({ message: 'Bundles not found' });
+    return res
+      .status(500)
+      .json({ message: 'Failed to retrieve bundles', error });
   }
 };

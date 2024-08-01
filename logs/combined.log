@@ -25,10 +25,10 @@
 2024-07-31 09:55:23 info: MongoDB connected
 2024-07-31 09:59:41 info: Server is running on http://localhost:3002
 2024-07-31 09:59:44 info: MongoDB connected
-2024-07-31 10:02:42 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:02:42 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
 2024-07-31 10:02:42 info: ::1 - - [31/Jul/2024:04:32:42 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 404 178 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:02:42 info: Response status: 404 - Response time: 24.16ms
-2024-07-31 10:03:21 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:03:21 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
 2024-07-31 10:03:21 info: ::1 - - [31/Jul/2024:04:33:21 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 401 27 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:03:21 info: Response status: 401 - Response time: 10.10ms
 2024-07-31 10:03:28 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhamgupta2730@gmail.com","password":"12345"}
@@ -37,14 +37,60 @@
 2024-07-31 10:03:37 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
 2024-07-31 10:03:37 info: ::1 - - [31/Jul/2024:04:33:37 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:03:37 info: Response status: 200 - Response time: 335.44ms
-2024-07-31 10:03:42 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:03:42 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
 2024-07-31 10:03:43 info: ::1 - - [31/Jul/2024:04:33:43 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 500 34 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:03:43 info: Response status: 500 - Response time: 67.39ms
 2024-07-31 10:04:57 info: Server is running on http://localhost:3002
 2024-07-31 10:05:00 info: MongoDB connected
-2024-07-31 10:05:03 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:05:03 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
 2024-07-31 10:05:03 info: ::1 - - [31/Jul/2024:04:35:03 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 500 34 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:05:03 info: Response status: 500 - Response time: 138.03ms
-2024-07-31 10:07:47 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2},{"productId":"66a923eaded391a76f1f8cce","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:07:47 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2},{"productId":"66a923eaded391a76f1f8cce","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
 2024-07-31 10:07:47 info: ::1 - - [31/Jul/2024:04:37:47 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 201 511 "-" "PostmanRuntime/7.40.0"
 2024-07-31 10:07:47 info: Response status: 201 - Response time: 196.46ms
+2024-07-31 10:17:55 info: Server is running on http://localhost:3002
+2024-07-31 10:17:57 info: MongoDB connected
+2024-07-31 10:17:59 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15,"MRP":150,"sellingPrice":127.5,"isActive":true}
+2024-07-31 10:17:59 info: ::1 - - [31/Jul/2024:04:47:59 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 425 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:17:59 info: Response status: 200 - Response time: 190.95ms
+2024-07-31 10:18:39 info: Incoming request: GET /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:39 info: ::1 - - [31/Jul/2024:04:48:39 +0000] "GET /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 404 177 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:39 info: Response status: 404 - Response time: 9.25ms
+2024-07-31 10:18:44 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:44 info: ::1 - - [31/Jul/2024:04:48:44 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:44 info: Response status: 401 - Response time: 3.76ms
+2024-07-31 10:18:51 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:51 info: ::1 - - [31/Jul/2024:04:48:51 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 378 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:51 info: Response status: 200 - Response time: 125.03ms
+2024-07-31 10:19:26 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles - Body: {}
+2024-07-31 10:19:26 info: ::1 - - [31/Jul/2024:04:49:26 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles HTTP/1.1" 200 429 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:19:26 info: Response status: 200 - Response time: 371.36ms
+2024-07-31 10:20:47 info: Incoming request: DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:20:47 info: ::1 - - [31/Jul/2024:04:50:47 +0000] "DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 433 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:20:47 info: Response status: 200 - Response time: 121.35ms
+2024-07-31 10:20:55 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:20:55 info: ::1 - - [31/Jul/2024:04:50:55 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 379 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:20:55 info: Response status: 200 - Response time: 108.94ms
+2024-07-31 10:22:55 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL","isActive":true}
+2024-07-31 10:22:55 info: ::1 - - [31/Jul/2024:04:52:55 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 311 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:22:55 info: Response status: 201 - Response time: 280.63ms
+2024-07-31 10:23:24 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL"}
+2024-07-31 10:23:25 info: ::1 - - [31/Jul/2024:04:53:25 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 33 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:23:25 info: Response status: 500 - Response time: 189.84ms
+2024-07-31 10:24:03 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL"}
+2024-07-31 10:24:03 info: ::1 - - [31/Jul/2024:04:54:03 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 33 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:24:03 info: Response status: 500 - Response time: 146.26ms
+2024-07-31 10:24:31 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-07-31 10:24:32 info: ::1 - - [31/Jul/2024:04:54:32 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 310 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:24:32 info: Response status: 201 - Response time: 134.67ms
+2024-07-31 10:25:53 info: Incoming request: PUT /api/v1/admin/discountRoute/update-discount?discountId=66a9c3873e8b189274046b4d - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-07-31 10:25:53 info: ::1 - - [31/Jul/2024:04:55:53 +0000] "PUT /api/v1/admin/discountRoute/update-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 200 319 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:25:53 info: Response status: 200 - Response time: 120.35ms
+2024-07-31 10:26:12 info: Incoming request: DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d - Body: {}
+2024-07-31 10:26:12 info: ::1 - - [31/Jul/2024:04:56:12 +0000] "DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:26:12 info: Response status: 401 - Response time: 3.58ms
+2024-07-31 10:26:20 info: Incoming request: DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d - Body: {}
+2024-07-31 10:26:20 info: ::1 - - [31/Jul/2024:04:56:20 +0000] "DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 200 326 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:26:20 info: Response status: 200 - Response time: 108.44ms
+2024-07-31 17:39:49 info: Server is running on http://localhost:3002
+2024-07-31 17:39:52 info: MongoDB connected
