@@ -7,7 +7,6 @@ import connectDB from './config/db';
 import adminRoutes from './routes/adminRoutes';
 dotenv.config();
 
-// Define the stream object with the expected write function
 const stream = {
   write: (message: string) => {
     logger.info(message.trim());

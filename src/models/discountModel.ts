@@ -24,7 +24,7 @@ const discountSchema = new Schema<IDiscount>(
 // Middleware to set isActive based on current date
 discountSchema.pre('save', function (next) {
   const now = new Date();
-  this.isActive = this.startDate <= now && this.endDate >= now;
+  this.isActive = this.startDate <= now && this.endDate > now && this.startDate < this.endDate;
   next();
 });
 
