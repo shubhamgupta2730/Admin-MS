@@ -1,7 +1,7 @@
 import {
   createCategory,
   getAllCategories,
-  getCategoryById,
+  getCategory,
   updateCategory,
   deleteCategory,
 } from '../controllers/index';
@@ -25,7 +25,7 @@ router.get(
   authorizeAdmin,
   getAllCategories
 );
-router.get('/get-category', authenticateAdmin, authorizeAdmin, getCategoryById);
+router.get('/get-category', authenticateAdmin, authorizeAdmin, getCategory);
 router.put(
   '/update-category',
   authenticateAdmin,

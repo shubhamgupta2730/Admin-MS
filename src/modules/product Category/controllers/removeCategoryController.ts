@@ -2,27 +2,40 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Category from '../../../models/productCategoryModel';
 
-export const deleteCategory = async (req: Request, res: Response) => {
-  const { id } = req.query;
+interface CustomRequest extends Request {
+  user?: {
+    userId: string;
+    role: 'admin';
+  };
+}
 
-  if (!id) {
+export const deleteCategory = async (req: CustomRequest, res: Response) => {
+  const id = req.query.id as string;
+  const userId = req.user?.userId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
-      message: 'Category ID is required',
+      message: 'Invalid category ID',
     });
   }
 
-  if (!mongoose.Types.ObjectId.isValid(id.toString())) {
+  if (!userId) {
     return res.status(400).json({
-      message: 'Invalid Category ID format',
+      message: 'User ID is required',
     });
   }
 
   try {
     const category = await Category.findById(id);
-
     if (!category) {
       return res.status(404).json({
         message: 'Category not found',
+      });
+    }
+
+    if (category.createdBy.toString() !== userId) {
+      return res.status(403).json({
+        message: 'You do not have permission to delete this category',
       });
     }
 
@@ -30,11 +43,12 @@ export const deleteCategory = async (req: Request, res: Response) => {
     await category.save();
 
     res.status(200).json({
-      message: 'Category marked as inactive successfully',
+      message: 'Category removed successfully',
     });
   } catch (error) {
+    console.error('Error removing category:', error);
     res.status(500).json({
-      message: 'An error occurred while marking the category as inactive',
+      message: 'An error occurred while removing the category',
     });
   }
 };

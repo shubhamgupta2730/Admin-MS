@@ -1,42 +1,67 @@
 import { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import Category from '../../../models/productCategoryModel';
+import mongoose, { Document } from 'mongoose';
+import Category, { ICategory } from '../../../models/productCategoryModel';
 
-export const updateCategory = async (req: Request, res: Response) => {
-  const { id } = req.query;
-  const { name, description, isActive } = req.body;
+interface CustomRequest extends Request {
+  user?: {
+    userId: string;
+    role: 'admin';
+  };
+}
 
-  if (!id) {
+interface CategoryDocument extends Document, ICategory {
+  _id: mongoose.Types.ObjectId;
+}
+
+export const updateCategory = async (req: CustomRequest, res: Response) => {
+  const id = req.query.id as string;
+  const { name, description } = req.body;
+  const userId = req.user?.userId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({
-      message: 'Category ID is required',
+      message: 'Invalid category ID',
     });
   }
 
-  if (!mongoose.Types.ObjectId.isValid(id.toString())) {
+  if (!name && !description) {
     return res.status(400).json({
-      message: 'Invalid Category ID format',
+      message: 'At least one of name or description is required to update',
     });
   }
 
-  if (!name && !description && isActive === undefined) {
+  if (!userId) {
     return res.status(400).json({
-      message:
-        'At least one field (name, description, or isActive) is required for update',
+      message: 'User ID is required',
     });
   }
 
   try {
     const category = await Category.findById(id);
-
     if (!category) {
       return res.status(404).json({
         message: 'Category not found',
       });
     }
 
+    if (category.createdBy.toString() !== userId) {
+      return res.status(403).json({
+        message: 'You do not have permission to update this category',
+      });
+    }
+
+    const existingCategory = (await Category.findOne({
+      name,
+    })) as CategoryDocument | null;
+    if (existingCategory && existingCategory._id.toString() !== id) {
+      return res.status(400).json({
+        message:
+          'Category with this name already exists. Please choose another name.',
+      });
+    }
+
     if (name) category.name = name;
     if (description) category.description = description;
-    if (isActive !== undefined) category.isActive = isActive;
 
     await category.save();
 
@@ -45,6 +70,7 @@ export const updateCategory = async (req: Request, res: Response) => {
       category,
     });
   } catch (error) {
+    console.error('Error updating category:', error);
     res.status(500).json({
       message: 'An error occurred while updating the category',
     });

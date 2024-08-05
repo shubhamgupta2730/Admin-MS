@@ -4,6 +4,7 @@ import {
   removeBundle,
   getBundle,
   getAllBundles,
+  toggleBlockBundle,
 } from '../controllers/index';
 import { Router } from 'express';
 const router = Router();
@@ -26,6 +27,13 @@ router.delete(
   authenticateAdmin,
   authorizeAdmin,
   removeBundle
+);
+
+router.put(
+  '/toggle-block-unblock',
+  authenticateAdmin,
+  authorizeAdmin,
+  toggleBlockBundle
 );
 
 export default router;

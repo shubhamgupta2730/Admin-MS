@@ -1,4 +1,4 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
 
 export interface IAddress {
   addressLine1: string;
@@ -20,6 +20,8 @@ export interface IUser extends Document {
   dob: Date | null;
   gender: string;
   isActive: boolean;
+  isBlocked: boolean;
+  blockedBy: Types.ObjectId | null;
   isEmailVerified?: boolean;
   isPhoneVerified?: boolean;
   twoFactorEnabled?: boolean;
@@ -99,6 +101,11 @@ const UserSchema: Schema<IUser> = new Schema(
       type: Boolean,
       default: true,
     },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    blockedBy: { type: Schema.Types.ObjectId, ref: 'Admin', default: null },
     isEmailVerified: {
       type: Boolean,
       default: false,

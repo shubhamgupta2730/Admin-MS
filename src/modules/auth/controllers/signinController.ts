@@ -30,7 +30,7 @@ export const singIn = async (req: Request, res: Response) => {
     }
 
     const payload = {
-      id: admin._id,
+      userId: admin._id,
       role: admin.role,
     };
 

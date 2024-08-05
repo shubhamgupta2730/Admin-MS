@@ -1,8 +1,8 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface IProductInfo {
-  productId: mongoose.Types.ObjectId;
-  quantity: number;
+interface CreatedBy {
+  id: mongoose.Types.ObjectId;
+  role: 'seller' | 'admin';
 }
 
 interface IBundleProduct extends Document {
@@ -10,10 +10,15 @@ interface IBundleProduct extends Document {
   description: string;
   MRP: number;
   sellingPrice: number;
+  discount: number;
   products: { productId: mongoose.Types.ObjectId; quantity: number }[];
-  createdBy: mongoose.Types.ObjectId;
-  createdByRole: string;
+  sellerId?: Schema.Types.ObjectId;
+  adminId?: Schema.Types.ObjectId;
+  createdBy: CreatedBy;
   isActive: boolean;
+  isDeleted: boolean;
+  isBlocked: boolean;
+  blockedBy?: Schema.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -34,18 +39,18 @@ const bundleProductSchema = new Schema<IBundleProduct>({
       quantity: { type: Number, required: true },
     },
   ],
+  sellerId: { type: Schema.Types.ObjectId, ref: 'User' },
+  adminId: { type: Schema.Types.ObjectId, ref: 'Admin' },
   createdBy: {
-    type: mongoose.Types.ObjectId,
-    refPath: 'createdByRole',
-    required: true,
+    id: { type: mongoose.Types.ObjectId, required: true },
+    role: { type: String, enum: ['seller', 'admin'], required: true },
   },
-  createdByRole: { type: String, enum: ['User', 'Admin'], required: true },
   isActive: { type: Boolean, default: true },
+  isDeleted: { type: Boolean, default: false },
+  isBlocked: { type: Boolean, default: false },
+  blockedBy: { type: Schema.Types.ObjectId, ref: 'Admin' },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model<IBundleProduct>(
-  'BundleProduct',
-  bundleProductSchema
-);
+export default mongoose.model<IBundleProduct>('Bundle', bundleProductSchema);

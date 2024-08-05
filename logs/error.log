@@ -1,0 +1,4 @@
+2024-08-02 09:37:38 error: MongoNetworkTimeoutError: connection 1 to 43.205.152.252:27017 timed out
+    at Timeout._onTimeout (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connection.ts:300:20)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)

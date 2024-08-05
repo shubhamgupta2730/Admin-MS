@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { BundleProduct, Product } from '../../../models/index';
+import Bundle from '../../../models/adminBundleModel';
+import Product from '../../../models/productModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -9,8 +10,8 @@ interface CustomRequest extends Request {
   };
 }
 
-export const deleteAdminBundle = async (req: CustomRequest, res: Response) => {
-  const { bundleId }: { bundleId: string } = req.body;
+export const removeBundle = async (req: CustomRequest, res: Response) => {
+  const bundleId = req.query.bundleId as string;
 
   const userId = req.user?.userId;
   const userRole = req.user?.role;
@@ -19,7 +20,7 @@ export const deleteAdminBundle = async (req: CustomRequest, res: Response) => {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (userRole !== 'Admin') {
+  if (userRole !== 'admin') {
     return res
       .status(403)
       .json({ message: 'Forbidden: Access is allowed only for Admins' });
@@ -30,16 +31,16 @@ export const deleteAdminBundle = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const existingBundle = await BundleProduct.findById(bundleId).exec();
+    const existingBundle = await Bundle.findById(bundleId).exec();
     if (!existingBundle) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
 
-    // Check if the admin who created the bundle is the one trying to delete it
-    if (existingBundle.createdBy.toString() !== userId) {
-      return res
-        .status(403)
-        .json({ message: 'You do not have permission to delete this bundle' });
+    // Check if the bundle was created by an admin
+    if (existingBundle.createdBy.role !== 'admin') {
+      return res.status(403).json({
+        message: 'You do not have permission to delete this bundle',
+      });
     }
 
     // Remove bundleId from products that are part of the bundle
@@ -50,8 +51,10 @@ export const deleteAdminBundle = async (req: CustomRequest, res: Response) => {
       { $unset: { bundleId: '' } }
     );
 
-    // Delete the bundle
-    await BundleProduct.findByIdAndDelete(bundleId).exec();
+    // Soft delete the bundle
+    existingBundle.isDeleted = true;
+    existingBundle.isActive = false;
+    await existingBundle.save();
 
     return res.status(200).json({ message: 'Bundle deleted successfully' });
   } catch (error) {

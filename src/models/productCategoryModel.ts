@@ -4,6 +4,7 @@ export interface ICategory extends Document {
   name: string;
   description: string;
   isActive: boolean;
+  createdBy: Schema.Types.ObjectId;
 }
 
 const categorySchema: Schema<ICategory> = new Schema(
@@ -20,6 +21,10 @@ const categorySchema: Schema<ICategory> = new Schema(
     isActive: {
       type: Boolean,
       default: true,
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'Admin',
     },
   },
   { timestamps: true }

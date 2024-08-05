@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { BundleProduct } from '../../../models/index';
+import Bundle from '../../../models/adminBundleModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -9,16 +9,16 @@ interface CustomRequest extends Request {
   };
 }
 
-export const getAdminBundle = async (req: CustomRequest, res: Response) => {
+export const getBundle = async (req: CustomRequest, res: Response) => {
   const userId = req.user?.userId;
   const userRole = req.user?.role;
-  const { bundleId } = req.body;
+  const bundleId = req.query.bundleId as string;
 
   if (!userId || !userRole) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (userRole !== 'Admin') {
+  if (userRole !== 'admin') {
     return res
       .status(403)
       .json({ message: 'Forbidden: Access is allowed only for Admins' });
@@ -33,7 +33,7 @@ export const getAdminBundle = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const bundle = await BundleProduct.findById(bundleId)
+    const bundle = await Bundle.findById(bundleId)
       .select(
         'name description MRP sellingPrice discount products createdBy createdByRole isActive createdAt updatedAt'
       )

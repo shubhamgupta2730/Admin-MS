@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { BundleProduct, Product } from '../../../models/index';
+import Bundle from '../../../models/adminBundleModel';
+import Product from '../../../models/productModel';
 
 interface ProductInfo {
   productId: string;
@@ -14,20 +15,20 @@ interface CustomRequest extends Request {
   };
 }
 
-export const updateAdminBundle = async (req: CustomRequest, res: Response) => {
+export const updateBundle = async (req: CustomRequest, res: Response) => {
   const {
-    bundleId,
     name,
     description,
     products,
     discount,
   }: {
-    bundleId: string;
     name: string;
     description: string;
     products: ProductInfo[];
     discount: number;
   } = req.body;
+
+  const bundleId = req.query.bundleId as string;
 
   const userId = req.user?.userId;
   const userRole = req.user?.role;
@@ -36,7 +37,7 @@ export const updateAdminBundle = async (req: CustomRequest, res: Response) => {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (userRole !== 'Admin') {
+  if (userRole !== 'admin') {
     return res
       .status(403)
       .json({ message: 'Forbidden: Access is allowed only for Admins' });
@@ -76,16 +77,16 @@ export const updateAdminBundle = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const existingBundle = await BundleProduct.findById(bundleId).exec();
+    const existingBundle = await Bundle.findById(bundleId).exec();
     if (!existingBundle) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
 
-    // Check if the admin who created the bundle is the one trying to update it
-    if (existingBundle.createdBy.toString() !== userId) {
-      return res
-        .status(403)
-        .json({ message: 'You do not have permission to update this bundle' });
+    // Check if the bundle was created by an admin
+    if (existingBundle.createdBy.role !== 'admin') {
+      return res.status(403).json({
+        message: 'You do not have permission to update this bundle',
+      });
     }
 
     const activeProducts = await Product.find({

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import mongoose from 'mongoose';
-import { BundleProduct } from '../../../models/index';
+import Bundle from '../../../models/adminBundleModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -9,7 +8,7 @@ interface CustomRequest extends Request {
   };
 }
 
-export const getAdminBundles = async (req: CustomRequest, res: Response) => {
+export const getAllBundles = async (req: CustomRequest, res: Response) => {
   const userId = req.user?.userId;
   const userRole = req.user?.role;
   const {
@@ -18,13 +17,15 @@ export const getAdminBundles = async (req: CustomRequest, res: Response) => {
     search = '',
     sortField = 'createdAt',
     sortOrder = 'desc',
+    showBlocked = false,
+    showAll = false,
   } = req.query;
 
   if (!userId || !userRole) {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (userRole !== 'Admin') {
+  if (userRole !== 'admin') {
     return res
       .status(403)
       .json({ message: 'Forbidden: Access is allowed only for Admins' });
@@ -37,7 +38,7 @@ export const getAdminBundles = async (req: CustomRequest, res: Response) => {
   };
 
   try {
-    const matchStage = {
+    const matchStage: any = {
       $match: {
         $or: [
           { name: { $regex: search, $options: 'i' } },
@@ -45,6 +46,14 @@ export const getAdminBundles = async (req: CustomRequest, res: Response) => {
         ],
       },
     };
+
+    if (!showAll) {
+      matchStage.$match.isActive = true;
+    }
+
+    if (showBlocked) {
+      matchStage.$match.isBlocked = true;
+    }
 
     const sortStage = {
       $sort: sortOptions,
@@ -65,7 +74,7 @@ export const getAdminBundles = async (req: CustomRequest, res: Response) => {
       },
     };
 
-    const bundlesAggregation = await BundleProduct.aggregate([
+    const bundlesAggregation = await Bundle.aggregate([
       matchStage,
       sortStage,
       skipStage,

@@ -1,53 +1,51 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 interface CustomRequest extends Request {
-  user?: JwtPayload;
+  user?: {
+    userId: string;
+    role: 'admin';
+  };
 }
 
-// Authentication Middleware
+// Middleware to authenticate the seller
 export const authenticateAdmin = (
   req: CustomRequest,
   res: Response,
   next: NextFunction
 ) => {
-  const authHeader = req.headers['authorization'];
-  if (!authHeader) {
+  const token = req.headers['authorization']?.split(' ')[1];
+
+  if (!token) {
     return res.status(401).json({ message: 'No token provided' });
   }
 
-  const token = authHeader.split(' ')[1];
-  if (!token) {
-    return res.status(401).json({ message: 'Token format invalid' });
-  }
-
   try {
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET as Secret
-    ) as JwtPayload;
-    req.user = decoded; // Attach the decoded token to the request object
+    const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as {
+      userId: string;
+      role: 'admin';
+    };
+
+    req.user = {
+      userId: decoded.userId,
+      role: decoded.role,
+    };
+
     next();
   } catch (error) {
     return res.status(401).json({ message: 'Invalid token' });
   }
 };
 
-// Authorization Middleware
+// Middleware to authorize the admin
 export const authorizeAdmin = (
   req: CustomRequest,
   res: Response,
   next: NextFunction
 ) => {
-  if (!req.user) {
-    return res.status(403).json({ message: 'No user authenticated' });
-  }
-
-  const { role } = req.user;
-  if (role !== 'admin') {
-    return res
-      .status(403)
-      .json({ message: 'You are not authorized to perform this action' });
+  if (req.user?.role !== 'admin') {
+    console.error('[Auth Middleware] Access denied: User is not a admin');
+    return res.status(403).json({ message: 'Access denied' });
   }
 
   next();

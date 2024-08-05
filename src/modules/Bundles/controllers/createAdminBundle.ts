@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
-import { BundleProduct, Product } from '../../../models/index';
+import Bundle from '../../../models/adminBundleModel';
+import Product from '../../../models/productModel';
 
 interface ProductInfo {
   productId: string;
@@ -14,7 +15,7 @@ interface CustomRequest extends Request {
   };
 }
 
-export const createAdminBundle = async (req: CustomRequest, res: Response) => {
+export const createBundle = async (req: CustomRequest, res: Response) => {
   const {
     name,
     description,
@@ -67,11 +68,13 @@ export const createAdminBundle = async (req: CustomRequest, res: Response) => {
     const activeProducts = await Product.find({
       _id: { $in: productIds },
       isActive: true,
+      isBlocked: { $ne: true },
+      isDeleted: { $ne: true },
     }).exec();
 
     if (activeProducts.length !== productIds.length) {
       return res.status(403).json({
-        message: 'One or more products are not active or do not exist',
+        message: 'One or more products are not active, blocked, or deleted',
       });
     }
 
@@ -108,7 +111,7 @@ export const createAdminBundle = async (req: CustomRequest, res: Response) => {
       sellingPrice = totalMRP - totalMRP * (discount / 100);
     }
 
-    const newBundle = new BundleProduct({
+    const newBundle = new Bundle({
       name,
       description,
       MRP: totalMRP,
@@ -118,8 +121,10 @@ export const createAdminBundle = async (req: CustomRequest, res: Response) => {
         productId: new mongoose.Types.ObjectId(p.productId),
         quantity: p.quantity,
       })),
-      createdBy: new mongoose.Types.ObjectId(userId),
-      createdByRole: userRole,
+      createdBy: {
+        id: new mongoose.Types.ObjectId(userId),
+        role: userRole,
+      },
       isActive: true,
     });
 

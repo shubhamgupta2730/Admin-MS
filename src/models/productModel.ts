@@ -11,6 +11,10 @@ interface IProduct extends Document {
   sellerId: Types.ObjectId;
   bundleId: Types.ObjectId;
   isActive: boolean;
+  isBlocked: boolean;
+  isDeleted: boolean;
+  blockedBy: Types.ObjectId | null;
+  createdBy: Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -23,13 +27,13 @@ const productSchema = new Schema<IProduct>({
   quantity: { type: Number, required: true },
   discount: { type: Number, default: 0 },
   categoryId: { type: Schema.Types.ObjectId, ref: 'Category', default: null },
-  sellerId: { type: Schema.Types.ObjectId, ref: 'Auth', required: true },
-  bundleId: {
-    type: Schema.Types.ObjectId,
-    ref: 'BundleProduct',
-    default: null,
-  },
+  sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+  bundleId: { type: Schema.Types.ObjectId, ref: 'Bundle', default: null },
   isActive: { type: Boolean, default: true },
+  isBlocked: { type: Boolean, default: false },
+  isDeleted: { type: Boolean, default: false },
+  blockedBy: { type: Schema.Types.ObjectId, ref: 'Admin', default: null },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

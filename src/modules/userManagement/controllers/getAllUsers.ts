@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import Product from '../../../models/productModel';
-import Category from '../../../models/productCategoryModel';
+import User from '../../../models/userModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -9,49 +8,37 @@ interface CustomRequest extends Request {
   };
 }
 
-export const getAllProducts = async (req: CustomRequest, res: Response) => {
+export const getAllUsers = async (req: CustomRequest, res: Response) => {
   try {
     if (!req.user || req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
-    const {
-      search,
-      sort,
-      page = 1,
-      limit = 10,
-      status,
-      categoryName,
-    } = req.query;
+    const { search, sort, page = 1, limit = 10, status, role } = req.query;
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
 
-    const match: any = { isDeleted: false };
+    const match: any = {};
 
-    // Filter by status
+    // Filter by block status
     if (status === 'blocked') {
       match.isBlocked = true;
     } else if (status === 'unblocked') {
       match.isBlocked = false;
     }
 
-    // Filter by category name
-    if (categoryName) {
-      const category = await Category.findOne({
-        name: new RegExp(categoryName as string, 'i'),
-      });
-      if (category) {
-        match.categoryId = category._id;
-      } else {
-        match.categoryId = null;
-      }
+    // Filter by role
+    if (role === 'user' || role === 'seller') {
+      match.role = role;
     }
 
-    // Search by name or description
+    // Search by email, name, or phone
     if (search) {
       match.$or = [
-        { name: new RegExp(search as string, 'i') },
-        { description: new RegExp(search as string, 'i') },
+        { email: new RegExp(search as string, 'i') },
+        { firstName: new RegExp(search as string, 'i') },
+        { lastName: new RegExp(search as string, 'i') },
+        { phone: new RegExp(search as string, 'i') },
       ];
     }
 
@@ -61,7 +48,7 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
       sortOptions[sortField] = sortOrder === 'desc' ? -1 : 1;
     }
 
-    const products = await Product.aggregate([
+    const users = await User.aggregate([
       { $match: match },
       {
         $project: {
@@ -84,13 +71,13 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
       },
     ]);
 
-    const result = products[0];
-    const totalProducts = result.metadata.length ? result.metadata[0].total : 0;
-    const totalPages = Math.ceil(totalProducts / pageSize);
+    const result = users[0];
+    const totalUsers = result.metadata.length ? result.metadata[0].total : 0;
+    const totalPages = Math.ceil(totalUsers / pageSize);
 
     res.status(200).json({
       data: result.data,
-      totalProducts,
+      totalUsers,
       totalPages,
       currentPage: pageNumber,
       pageSize,
