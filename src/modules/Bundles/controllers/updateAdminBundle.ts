@@ -59,15 +59,19 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
       .json({ message: 'Products array is required and should not be empty' });
   }
 
-  if (discount < 0 || discount > 100) {
-    return res
-      .status(400)
-      .json({ message: 'Discount percentage must be between 0 and 100' });
+  if (typeof discount !== 'number' || discount < 0 || discount > 100) {
+    return res.status(400).json({
+      message: 'Discount percentage must be a number between 0 and 100',
+    });
   }
 
   const productIds: mongoose.Types.ObjectId[] = [];
   for (const product of products) {
-    if (!product.productId || product.quantity <= 0) {
+    if (
+      !product.productId ||
+      typeof product.quantity !== 'number' ||
+      product.quantity <= 0
+    ) {
       return res.status(400).json({
         message:
           'Each product must have a valid productId and a quantity greater than zero',
@@ -92,11 +96,13 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     const activeProducts = await Product.find({
       _id: { $in: productIds },
       isActive: true,
+      isBlocked: { $ne: true },
+      isDeleted: { $ne: true },
     }).exec();
 
     if (activeProducts.length !== productIds.length) {
       return res.status(403).json({
-        message: 'One or more products are not active or do not exist',
+        message: 'One or more products are not active, blocked, or deleted',
       });
     }
 
@@ -112,7 +118,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
 
     activeProducts.forEach((product) => {
       const productId = (product._id as mongoose.Types.ObjectId).toString();
-      productPriceMap[productId] = product.MRP;
+      productPriceMap[productId] = product.sellingPrice;
     });
 
     for (const productInfo of products) {
@@ -132,6 +138,11 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     if (discount) {
       sellingPrice = totalMRP - totalMRP * (discount / 100);
     }
+
+    // Keep old product IDs for comparison
+    const oldProductIds = existingBundle.products.map((p) =>
+      p.productId.toString()
+    );
 
     existingBundle.name = name;
     existingBundle.description = description;
@@ -153,9 +164,9 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     );
 
     // Remove bundleId from products that are no longer in the bundle
-    const removedProductIds = existingBundle.products
-      .filter((p) => !productIds.includes(p.productId))
-      .map((p) => p.productId);
+    const removedProductIds = oldProductIds.filter(
+      (id) => !productIds.includes(new mongoose.Types.ObjectId(id))
+    );
 
     await Product.updateMany(
       { _id: { $in: removedProductIds } },

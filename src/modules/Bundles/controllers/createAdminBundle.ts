@@ -36,27 +36,35 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
   }
 
   try {
+    // Validation for name and description
     if (!name || !description) {
       return res.status(400).json({
         message: 'Name and description are required',
       });
     }
 
+    // Validation for products array
     if (!Array.isArray(products) || products.length === 0) {
       return res.status(400).json({
         message: 'Products array is required and should not be empty',
       });
     }
 
-    if (discount < 0 || discount > 100) {
+    // Validation for discount percentage
+    if (typeof discount !== 'number' || discount < 0 || discount > 100) {
       return res.status(400).json({
-        message: 'Discount percentage must be between 0 and 100',
+        message: 'Discount percentage must be a number between 0 and 100',
       });
     }
 
+    // Validate product details and gather product IDs
     const productIds: mongoose.Types.ObjectId[] = [];
     for (const product of products) {
-      if (!product.productId || product.quantity <= 0) {
+      if (
+        !product.productId ||
+        typeof product.quantity !== 'number' ||
+        product.quantity <= 0
+      ) {
         return res.status(400).json({
           message:
             'Each product must have a valid productId and a quantity greater than zero',
@@ -65,6 +73,7 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       productIds.push(new mongoose.Types.ObjectId(product.productId));
     }
 
+    // Validate active, non-blocked, and non-deleted products
     const activeProducts = await Product.find({
       _id: { $in: productIds },
       isActive: true,
@@ -78,6 +87,7 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Ensure no duplicate products
     const uniqueProductIds = new Set(productIds.map((id) => id.toString()));
     if (uniqueProductIds.size !== productIds.length) {
       return res.status(400).json({
@@ -85,12 +95,12 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Calculate total MRP and validate product prices
     let totalMRP = 0;
     const productPriceMap: { [key: string]: number } = {};
-
     activeProducts.forEach((product) => {
       const productId = (product._id as mongoose.Types.ObjectId).toString();
-      productPriceMap[productId] = product.MRP;
+      productPriceMap[productId] = product.sellingPrice;
     });
 
     for (const productInfo of products) {
@@ -106,11 +116,13 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       totalMRP += productPriceMap[productId] * quantity;
     }
 
+    // Calculate selling price based on discount
     let sellingPrice = totalMRP;
     if (discount) {
       sellingPrice = totalMRP - totalMRP * (discount / 100);
     }
 
+    // Create and save the new bundle
     const newBundle = new Bundle({
       name,
       description,
@@ -130,6 +142,7 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
 
     const savedBundle = await newBundle.save();
 
+    // Update products with the bundle ID
     await Product.updateMany(
       { _id: { $in: productIds } },
       { $set: { bundleId: savedBundle._id } }

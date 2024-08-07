@@ -35,7 +35,7 @@ export const getBundle = async (req: CustomRequest, res: Response) => {
   try {
     const bundle = await Bundle.findById(bundleId)
       .select(
-        'name description MRP sellingPrice discount products createdBy createdByRole isActive createdAt updatedAt'
+        'name description MRP discount adminDiscount sellingPrice   products createdBy createdByRole isActive createdAt updatedAt'
       )
       .exec();
 
