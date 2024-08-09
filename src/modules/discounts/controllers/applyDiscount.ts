@@ -9,7 +9,6 @@ export const applyDiscount = async (req: Request, res: Response) => {
 
   console.log('Received request to apply discount:', req.body);
 
-  // Either productIds or bundleIds must be provided
   if (
     (!productIds || productIds.length === 0) &&
     (!bundleIds || bundleIds.length === 0)
@@ -36,7 +35,6 @@ export const applyDiscount = async (req: Request, res: Response) => {
   }
 
   try {
-    // Validate discount ID
     console.log('Validating discount ID:', discountId);
     const discount = await Discount.findOne({
       _id: discountId,
@@ -52,14 +50,14 @@ export const applyDiscount = async (req: Request, res: Response) => {
     const results: any[] = [];
     const errors: any[] = [];
 
-    // Process products
     if (productIds && productIds.length > 0) {
       console.log('Processing product IDs:', productIds);
       for (const productId of productIds) {
         try {
           const product = await validateAndFetchEntity(Product, productId);
           if (product) {
-            await applyDiscountToEntity(product, discount, type, 'product');
+            await applyDiscountToProduct(product, discount, type);
+            discount.productIds.push(productId);
             results.push({ id: productId, status: 'success' });
           }
         } catch (error) {
@@ -77,7 +75,8 @@ export const applyDiscount = async (req: Request, res: Response) => {
         try {
           const bundle = await validateAndFetchEntity(Bundle, bundleId);
           if (bundle) {
-            await applyDiscountToEntity(bundle, discount, type, 'bundle');
+            await applyDiscountToBundle(bundle, discount, type);
+            discount.bundleIds.push(bundleId);
             results.push({ id: bundleId, status: 'success' });
           }
         } catch (error) {
@@ -87,6 +86,8 @@ export const applyDiscount = async (req: Request, res: Response) => {
         }
       }
     }
+
+    await discount.save();
 
     console.log('Discount application complete');
     res.status(200).json({
@@ -117,40 +118,71 @@ const validateAndFetchEntity = async (Model: any, entityId: string) => {
   }
 
   console.log('Valid entity found:', entityId);
+  console.log('Fetched entity:', entity);
   return entity;
 };
 
-const applyDiscountToEntity = async (
-  entity: any,
+const applyDiscountToProduct = async (
+  product: any,
   discount: any,
-  type: 'sellingPrice' | 'MRP',
-  entityType: 'product' | 'bundle'
+  type: 'sellingPrice' | 'MRP'
 ) => {
-  console.log(`Applying discount to ${entityType}:`, entity._id);
+  console.log(`Applying discount to product:`, product._id);
 
-  if (entity.adminDiscount) {
-    throw new Error(`Discount already applied to this ${entityType}`);
+  if (product.adminDiscount) {
+    throw new Error('Discount already applied to this product');
   }
 
-  // Store the admin discount
-  entity.adminDiscount = discount.discount;
-
+  product.adminDiscount = discount.discount;
   if (type === 'MRP') {
-    entity.mrp = calculateDiscountedPrice(entity.mrp, discount.discount);
-    entity.sellingPrice = calculateDiscountedPrice(entity.mrp, entity.discount);
+    if (typeof product.MRP === 'undefined') {
+      throw new Error(`Invalid MRP value for product ID ${product._id}`);
+    }
+    const newMRP = product.MRP - (product.MRP * discount.discount) / 100;
+    product.sellingPrice = newMRP;
   } else {
-    entity.sellingPrice = calculateDiscountedPrice(entity.sellingPrice, discount.discount);
+    if (typeof product.sellingPrice === 'undefined') {
+      throw new Error(
+        `Invalid sellingPrice value for product ID ${product._id}`
+      );
+    }
+
+    // Apply admin discount to selling price directly
+    product.sellingPrice -= (product.sellingPrice * discount.discount) / 100;
   }
 
-  await entity.save();
-  console.log(`Discount applied to ${entityType}:`, entity._id);
+  await product.save();
+  console.log(`Discount applied to product:`, product._id);
 };
 
-const calculateDiscountedPrice = (
-  price: number,
-  discountPercentage: number
+const applyDiscountToBundle = async (
+  bundle: any,
+  discount: any,
+  type: 'sellingPrice' | 'MRP'
 ) => {
-  const discountedPrice = price - (price * discountPercentage) / 100;
-  console.log(`Calculated discounted price: ${discountedPrice}`);
-  return discountedPrice;
+  console.log(`Applying discount to bundle:`, bundle._id);
+
+  if (bundle.adminDiscount) {
+    throw new Error('Discount already applied to this bundle');
+  }
+
+  bundle.adminDiscount = discount.discount;
+  if (type === 'MRP') {
+    if (typeof bundle.MRP === 'undefined') {
+      throw new Error(`Invalid MRP value for bundle ID ${bundle._id}`);
+    }
+
+    // Apply admin discount to MRP only
+    const newMRP = bundle.MRP - (bundle.MRP * discount.discount) / 100;
+    bundle.sellingPrice = newMRP;
+  } else {
+    if (typeof bundle.sellingPrice === 'undefined') {
+      throw new Error(`Invalid sellingPrice value for bundle ID ${bundle._id}`);
+    }
+
+    bundle.sellingPrice -= (bundle.sellingPrice * discount.discount) / 100;
+  }
+
+  await bundle.save();
+  console.log(`Discount applied to bundle:`, bundle._id);
 };

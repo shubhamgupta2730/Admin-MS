@@ -24,7 +24,6 @@ const discountSchema = new Schema<IDiscount>(
     createdBy: { type: Schema.Types.ObjectId, ref: 'Admin', required: true },
     type: {
       type: String,
-      required: true,
       enum: ['sellingPrice', 'MRP'],
     },
     productIds: [{ type: Schema.Types.ObjectId, ref: 'Product' }],

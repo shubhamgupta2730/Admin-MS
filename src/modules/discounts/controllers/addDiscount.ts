@@ -1,9 +1,18 @@
 import { Response } from 'express';
 import Discount from '../../../models/discountModel';
+import Product from '../../../models/productModel';
+import Bundle from '../../../models/adminBundleModel';
 import { Types } from 'mongoose';
 
 interface Request {
-  body: { startDate: string; endDate: string; discount: number; code: string };
+  body: {
+    startDate: string;
+    endDate: string;
+    discount: number;
+    code: string;
+    productIds?: Types.ObjectId[];
+    bundleIds?: Types.ObjectId[];
+  };
   user?: {
     userId: Types.ObjectId;
   };
@@ -15,11 +24,15 @@ export const addDiscount = async (req: Request, res: Response) => {
     endDate,
     discount,
     code,
+    productIds = [],
+    bundleIds = [],
   }: {
     startDate: string;
     endDate: string;
     discount: number;
     code: string;
+    productIds?: Types.ObjectId[];
+    bundleIds?: Types.ObjectId[];
   } = req.body;
 
   try {
@@ -63,10 +76,36 @@ export const addDiscount = async (req: Request, res: Response) => {
       });
     }
 
+    // Validate user ID
     if (!req.user?.userId) {
-      return;
+      return res.status(400).json({
+        message: 'User ID is required',
+      });
     }
     const adminId = req.user.userId;
+
+    // Validate product and bundle IDs
+    const validProductIds = [];
+    for (const productId of productIds) {
+      const product = await Product.findOne({
+        _id: productId,
+        isBlocked: false,
+        isActive: true,
+        isDeleted: false,
+      });
+      if (product) validProductIds.push(productId);
+    }
+
+    const validBundleIds = [];
+    for (const bundleId of bundleIds) {
+      const bundle = await Bundle.findOne({
+        _id: bundleId,
+        isBlocked: false,
+        isActive: true,
+        isDeleted: false,
+      });
+      if (bundle) validBundleIds.push(bundleId);
+    }
 
     const newDiscount = new Discount({
       startDate: start.toISOString(),
@@ -75,6 +114,8 @@ export const addDiscount = async (req: Request, res: Response) => {
       code,
       isActive: new Date() >= start && new Date() <= end,
       createdBy: new Types.ObjectId(adminId),
+      productIds: validProductIds,
+      bundleIds: validBundleIds,
     });
 
     await newDiscount.save();

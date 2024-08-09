@@ -30,6 +30,8 @@ export const getDiscountById = async (req: Request, res: Response) => {
       discount: discount.discount,
       code: discount.code,
       isActive: discount.isActive,
+      products: discount.productIds,
+      bundles: discount.bundleIds,
       createdBy: discount.createdBy,
     };
 

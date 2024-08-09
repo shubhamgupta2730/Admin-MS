@@ -11,7 +11,6 @@ export const getAllDiscounts = async (req: Request, res: Response) => {
   } = req.query;
 
   try {
-    // Create query object for filtering
     const query: any = {};
     if (code) {
       query.code = { $regex: code, $options: 'i' }; // Case-insensitive search
@@ -28,7 +27,7 @@ export const getAllDiscounts = async (req: Request, res: Response) => {
 
     // Fetch discounts with filtering, sorting, and pagination
     const discounts = await Discount.find(query)
-      .select('startDate endDate discount code isActive createdBy') // Select only necessary fields
+      .select('startDate endDate discount code isActive productIds bundleIds createdBy') 
       .sort(sortCriteria)
       .skip(skip)
       .limit(pageSize);

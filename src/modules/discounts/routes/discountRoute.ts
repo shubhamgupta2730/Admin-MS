@@ -11,9 +11,11 @@ import {
   applyDiscount,
   getDiscountById,
   getAllDiscounts,
+  removeDiscountFromProductsBundles,
 } from '../controllers/index';
 
 router.post('/add-discount', authenticateAdmin, authorizeAdmin, addDiscount);
+
 router.put(
   '/update-discount',
   authenticateAdmin,
@@ -22,6 +24,7 @@ router.put(
 );
 
 router.get('/get-discount', authenticateAdmin, authorizeAdmin, getDiscountById);
+
 router.get(
   '/get-all-discounts',
   authenticateAdmin,
@@ -40,6 +43,13 @@ router.delete(
   authenticateAdmin,
   authorizeAdmin,
   removeDiscount
+);
+
+router.post(
+  '/remove-discounts-from-products-bundles',
+  authenticateAdmin,
+  authorizeAdmin,
+  removeDiscountFromProductsBundles
 );
 
 export default router;
