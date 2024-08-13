@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import Product from '../../../models/productModel';
 import { Types } from 'mongoose';
+import User from '../../../models/userModel';
+import Category from '../../../models/productCategoryModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -21,13 +23,50 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
       return res.status(400).json({ message: 'Invalid product ID' });
     }
 
-    const product = await Product.findById(productId).select('-__v');
-    if (!product) {
+    const product = await Product.aggregate([
+      { $match: { _id: new Types.ObjectId(productId) } },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'createdBy', 
+          foreignField: '_id',
+          as: 'sellerDetails',
+        },
+      },
+      { $unwind: { path: '$sellerDetails', preserveNullAndEmptyArrays: true } },
+      {
+        $lookup: {
+          from: 'categories',
+          localField: 'categoryId', 
+          foreignField: '_id',
+          as: 'categoryDetails',
+        },
+      },
+      { $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true } },
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          description: 1,
+          price: 1,
+          categoryId: 1,
+          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
+          isBlocked: 1,
+          isDeleted: 1,
+          isActive: 1,
+          sellerId: 1,
+          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] }, 
+        },
+      },
+    ]);
+
+    if (!product.length) {
       return res.status(404).json({ message: 'Product not found' });
     }
 
-    res.status(200).json({ data: product });
+    res.status(200).json({ data: product[0] });
   } catch (error) {
+    console.error('Failed to retrieve product info', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };

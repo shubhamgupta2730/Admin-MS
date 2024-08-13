@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Product from '../../../models/productModel';
 import Category from '../../../models/productCategoryModel';
+import User from '../../../models/userModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -18,17 +19,22 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
     const {
       search,
       sort,
-      page = 1,
-      limit = 10,
+      page = '1',
+      limit = '10',
       status,
       categoryName,
     } = req.query;
     const pageNumber = parseInt(page as string, 10);
     const pageSize = parseInt(limit as string, 10);
 
+    if (pageNumber <= 0 || pageSize <= 0) {
+      return res.status(400).json({
+        message: 'Page number and limit must be greater than 0',
+      });
+    }
+
     const match: any = { isDeleted: false };
 
-    // Filter by status
     if (status === 'blocked') {
       match.isBlocked = true;
     } else if (status === 'unblocked') {
@@ -47,7 +53,6 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
       }
     }
 
-    // Search by name or description
     if (search) {
       match.$or = [
         { name: new RegExp(search as string, 'i') },
@@ -64,9 +69,36 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
     const products = await Product.aggregate([
       { $match: match },
       {
+        $lookup: {
+          from: 'users', 
+          localField: 'createdBy',
+          foreignField: '_id',
+          as: 'sellerDetails',
+        },
+      },
+      { $unwind: { path: '$sellerDetails', preserveNullAndEmptyArrays: true } },
+      {
+        $lookup: {
+          from: 'categories', 
+          localField: 'categoryId', 
+          foreignField: '_id',
+          as: 'categoryDetails',
+        },
+      },
+      { $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true } },
+      {
         $project: {
-          password: 0,
-          __v: 0,
+          _id: 1,
+          name: 1,
+          description: 1,
+          price: 1,
+          categoryId: 1,
+          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
+          isBlocked: 1,
+          isDeleted: 1,
+          isActive: 1,
+          sellerId: 1,
+          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] },
         },
       },
       {
@@ -89,13 +121,17 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
     const totalPages = Math.ceil(totalProducts / pageSize);
 
     res.status(200).json({
+      message: 'Products retrieved successfully',
       data: result.data,
-      totalProducts,
-      totalPages,
-      currentPage: pageNumber,
-      pageSize,
+      pagination: {
+        total: totalProducts,
+        page: pageNumber,
+        limit: pageSize,
+        totalPages,
+      },
     });
   } catch (error) {
+    console.error('Failed to retrieve products', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };

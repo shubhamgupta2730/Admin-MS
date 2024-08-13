@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Category from '../../../models/productCategoryModel';
+import Admin from '../../../models/authModel';
 
 interface CustomRequest extends Request {
   query: {
@@ -25,9 +26,21 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    const createdBy=category.createdBy;
+
+        // Fetch admin details
+        const admin = await Admin.findById(createdBy).select('name');
+        if (!admin) {
+          return res.status(400).json({
+            message: 'Admin not found',
+          });
+        }
+    
+
     res.status(200).json({
       message: 'Category retrieved successfully',
       category,
+      createdBy: admin.name
     });
   } catch (error) {
     console.error('Error retrieving category:', error);

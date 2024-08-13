@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Category from '../../../models/productCategoryModel';
+import Admin from '../../../models/authModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -26,11 +27,11 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const existingCategory = await Category.findOne({ name });
+
+    const existingCategory = await Category.findOne({ name, isActive: true });
     if (existingCategory) {
       return res.status(400).json({
-        message:
-          'Category with this name already exists. Please add another category.',
+        message: 'Category with this name already exists. Please add another category.',
       });
     }
 
@@ -42,12 +43,23 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
 
     await category.save();
 
+    // Fetch admin details
+    const admin = await Admin.findById(createdBy).select('name');
+    if (!admin) {
+      return res.status(400).json({
+        message: 'Admin not found',
+      });
+    }
+
+    const categoryObject = category.toObject();
+    delete categoryObject.__v;
+
     res.status(201).json({
       message: 'Category created successfully',
-      category,
+      category: categoryObject,
+      CreatedBy: admin.name,
     });
   } catch (error) {
-    console.error('Error creating category:', error);
     res.status(500).json({
       message: 'An error occurred while creating the category',
     });

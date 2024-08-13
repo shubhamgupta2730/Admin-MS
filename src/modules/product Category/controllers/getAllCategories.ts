@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Category from '../../../models/productCategoryModel';
+import Admin from '../../../models/authModel';
 
 interface QueryParams {
   search?: string;
@@ -49,6 +50,24 @@ export const getAllCategories = async (
   try {
     const aggregationPipeline = [
       { $match: filter },
+      {
+        $lookup: {
+          from: 'admins',
+          localField: 'createdBy',
+          foreignField: '_id',
+          as: 'adminDetails',
+        },
+      },
+      { $unwind: { path: '$adminDetails', preserveNullAndEmptyArrays: false } }, 
+      {
+        $project: {
+          _id: 1,
+          name: 1,
+          description: 1,
+          createdBy: 1,
+          CreatedBy: '$adminDetails.name',
+        },
+      },
       { $sort: sortCriteria },
       { $skip: (pageNum - 1) * limitNum },
       { $limit: limitNum },

@@ -117,8 +117,6 @@ const validateAndFetchEntity = async (Model: any, entityId: string) => {
     );
   }
 
-  console.log('Valid entity found:', entityId);
-  console.log('Fetched entity:', entity);
   return entity;
 };
 

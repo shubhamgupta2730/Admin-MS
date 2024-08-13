@@ -27,7 +27,9 @@ export const getAllDiscounts = async (req: Request, res: Response) => {
 
     // Fetch discounts with filtering, sorting, and pagination
     const discounts = await Discount.find(query)
-      .select('startDate endDate discount code isActive productIds bundleIds createdBy') 
+      .select(
+        'startDate endDate discount code isActive productIds bundleIds createdBy'
+      )
       .sort(sortCriteria)
       .skip(skip)
       .limit(pageSize);

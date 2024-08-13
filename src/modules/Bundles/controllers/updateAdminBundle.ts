@@ -118,7 +118,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
 
     activeProducts.forEach((product) => {
       const productId = (product._id as mongoose.Types.ObjectId).toString();
-      productPriceMap[productId] = product.sellingPrice;
+      productPriceMap[productId] = product.MRP;
     });
 
     for (const productInfo of products) {
