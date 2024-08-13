@@ -3,6 +3,7 @@ import Product from '../../../models/productModel';
 import { Types } from 'mongoose';
 import User from '../../../models/userModel';
 import Category from '../../../models/productCategoryModel';
+import Discount from '../../../models/discountModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -48,7 +49,10 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
           _id: 1,
           name: 1,
           description: 1,
-          price: 1,
+          MRP:1,
+          sellingPrice: 1,
+          discount: 1,
+          adminDiscount: 1,
           categoryId: 1,
           categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
           isBlocked: 1,

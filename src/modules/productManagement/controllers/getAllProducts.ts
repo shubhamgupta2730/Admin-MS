@@ -91,7 +91,6 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
           _id: 1,
           name: 1,
           description: 1,
-          price: 1,
           categoryId: 1,
           categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
           isBlocked: 1,
