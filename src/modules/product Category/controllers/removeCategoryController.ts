@@ -39,6 +39,14 @@ export const deleteCategory = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Check if the category contains products
+    if (category.productIds.length > 0) {
+      return res.status(400).json({
+        message: 'This category contains products and cannot be deleted',
+      });
+    }
+
+    // Set the category as inactive
     category.isActive = false;
     await category.save();
 

@@ -5,6 +5,7 @@ import {
   getBundle,
   getAllBundles,
   toggleBlockBundle,
+  removeProductFromBundle,
 } from '../controllers/index';
 import { Router } from 'express';
 const router = Router();
@@ -34,6 +35,13 @@ router.put(
   authenticateAdmin,
   authorizeAdmin,
   toggleBlockBundle
+);
+
+router.patch(
+  '/remove-product',
+  authenticateAdmin,
+  authorizeAdmin,
+  removeProductFromBundle
 );
 
 export default router;

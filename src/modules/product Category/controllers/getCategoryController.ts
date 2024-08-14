@@ -26,21 +26,35 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    const createdBy=category.createdBy;
+    const createdBy = category.createdBy;
 
-        // Fetch admin details
-        const admin = await Admin.findById(createdBy).select('name');
-        if (!admin) {
-          return res.status(400).json({
-            message: 'Admin not found',
-          });
-        }
-    
+    // Fetch admin details
+    const admin = await Admin.findById(createdBy).select('name');
+    if (!admin) {
+      return res.status(400).json({
+        message: 'Admin not found',
+      });
+    }
+
+    // Format dates
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+
+    const categoryObject = {
+      id: category._id,
+      name: category.name,
+      description: category.description,
+      createdAt: formatDate(category.createdAt),
+      updatedAt: formatDate(category.updatedAt),
+      createdBy: {
+        id: admin._id,
+        name: admin.name,
+      },
+      products: category.productIds, 
+    };
 
     res.status(200).json({
       message: 'Category retrieved successfully',
-      category,
-      createdBy: admin.name
+      category: categoryObject,
     });
   } catch (error) {
     console.error('Error retrieving category:', error);

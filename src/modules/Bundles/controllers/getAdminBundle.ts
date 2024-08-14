@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Bundle from '../../../models/adminBundleModel';
+import Product from '../../../models/productModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -33,19 +34,56 @@ export const getBundle = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const bundle = await Bundle.findById(bundleId)
-      .select(
-        'name description MRP discount adminDiscount sellingPrice   products createdBy createdByRole isActive createdAt updatedAt'
-      )
-      .exec();
+    // Fetch the bundle
+    const bundle = await Bundle.findOne({
+      _id: bundleId,
+      isDeleted: false,
+    }).exec();
 
     if (!bundle) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
 
+    // Fetch product details
+    const productIds = bundle.products.map((p) => p.productId);
+    const products = await Product.find({ _id: { $in: productIds } }).exec();
+
+    // Create a map for product details
+    const productMap = products.reduce(
+      (map, product) => {
+        const productId = (product._id as mongoose.Types.ObjectId).toString();
+        map[productId] = {
+          productId,
+          name: product.name,
+          MRP: product.MRP,
+          sellingPrice: product.sellingPrice,
+        };
+        return map;
+      },
+      {} as {
+        [key: string]: {
+          productId: string;
+          name: string;
+          MRP: number;
+          sellingPrice: number;
+        };
+      }
+    );
+
+    // Construct the response
+    const responseBundle = {
+      _id: (bundle._id as mongoose.Types.ObjectId).toString(),
+      name: bundle.name,
+      description: bundle.description,
+      MRP: bundle.MRP,
+      sellingPrice: bundle.sellingPrice,
+      discount: bundle.discount,
+      products: bundle.products.map((p) => productMap[p.productId.toString()]),
+    };
+
     return res.status(200).json({
       message: 'Bundle retrieved successfully',
-      bundle,
+      bundle: responseBundle,
     });
   } catch (error) {
     return res

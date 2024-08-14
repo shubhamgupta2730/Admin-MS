@@ -993,3 +993,145 @@
 2024-08-13 14:02:44 info: MongoDB connected
 2024-08-13 14:02:47 info: Server is running on http://localhost:3002
 2024-08-13 14:02:50 info: MongoDB connected
+2024-08-13 21:14:26 info: Server is running on http://localhost:3002
+2024-08-13 21:14:27 info: MongoDB connected
+2024-08-13 21:27:43 info: Server is running on http://localhost:3002
+2024-08-13 21:27:45 info: MongoDB connected
+2024-08-13 21:35:14 info: Server is running on http://localhost:3002
+2024-08-13 21:35:16 info: MongoDB connected
+2024-08-13 21:41:59 info: Server is running on http://localhost:3002
+2024-08-13 21:42:01 info: MongoDB connected
+2024-08-13 21:45:30 info: Server is running on http://localhost:3002
+2024-08-13 21:45:33 info: MongoDB connected
+2024-08-13 21:45:45 info: Server is running on http://localhost:3002
+2024-08-13 21:45:46 info: MongoDB connected
+2024-08-13 21:50:00 info: Server is running on http://localhost:3002
+2024-08-13 21:50:02 info: MongoDB connected
+2024-08-13 21:55:06 info: Server is running on http://localhost:3002
+2024-08-13 21:55:08 info: MongoDB connected
+2024-08-13 21:55:27 info: Server is running on http://localhost:3002
+2024-08-13 21:55:29 info: MongoDB connected
+2024-08-13 21:55:31 info: Server is running on http://localhost:3002
+2024-08-13 21:55:34 info: Server is running on http://localhost:3002
+2024-08-13 21:55:36 info: MongoDB connected
+2024-08-13 21:55:40 info: Server is running on http://localhost:3002
+2024-08-13 21:55:42 info: MongoDB connected
+2024-08-13 21:56:58 info: Server is running on http://localhost:3002
+2024-08-13 21:57:00 info: MongoDB connected
+2024-08-13 22:09:47 info: Server is running on http://localhost:3002
+2024-08-13 22:09:49 info: MongoDB connected
+2024-08-13 22:11:29 info: Server is running on http://localhost:3002
+2024-08-13 22:11:31 info: MongoDB connected
+2024-08-13 22:13:44 info: Server is running on http://localhost:3002
+2024-08-13 22:13:46 info: MongoDB connected
+2024-08-13 22:13:48 info: Server is running on http://localhost:3002
+2024-08-13 22:13:49 info: MongoDB connected
+2024-08-13 22:19:28 info: Server is running on http://localhost:3002
+2024-08-13 22:19:30 info: MongoDB connected
+2024-08-13 22:22:30 info: Server is running on http://localhost:3002
+2024-08-13 22:22:32 info: MongoDB connected
+2024-08-13 22:59:30 info: Server is running on http://localhost:3002
+2024-08-13 22:59:32 info: MongoDB connected
+2024-08-13 23:00:55 info: Server is running on http://localhost:3002
+2024-08-13 23:00:57 info: MongoDB connected
+2024-08-13 23:01:01 info: Server is running on http://localhost:3002
+2024-08-13 23:01:03 info: MongoDB connected
+2024-08-13 23:01:10 info: Server is running on http://localhost:3002
+2024-08-13 23:01:12 info: MongoDB connected
+2024-08-14 01:11:06 info: Server is running on http://localhost:3002
+2024-08-14 01:11:14 info: MongoDB connected
+2024-08-14 01:18:47 info: Server is running on http://localhost:3002
+2024-08-14 01:18:53 info: MongoDB connected
+2024-08-14 01:21:44 info: Server is running on http://localhost:3002
+2024-08-14 01:22:06 info: MongoDB connected
+2024-08-14 01:22:35 info: Server is running on http://localhost:3002
+2024-08-14 01:22:51 info: MongoDB connected
+2024-08-14 01:23:47 info: Server is running on http://localhost:3002
+2024-08-14 01:23:51 info: MongoDB connected
+2024-08-14 01:26:24 info: Server is running on http://localhost:3002
+2024-08-14 01:26:51 info: MongoDB connected
+2024-08-14 09:07:25 info: Server is running on http://localhost:3002
+2024-08-14 09:07:56 error: Error: queryTxt ETIMEOUT cluster0.dbrhuj4.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+2024-08-14 09:11:19 info: Server is running on http://localhost:3002
+2024-08-14 09:11:22 info: MongoDB connected
+2024-08-14 09:15:02 info: Server is running on http://localhost:3002
+2024-08-14 09:15:06 info: Server is running on http://localhost:3002
+2024-08-14 09:15:08 info: MongoDB connected
+2024-08-14 09:15:12 info: Server is running on http://localhost:3002
+2024-08-14 09:15:14 info: MongoDB connected
+2024-08-14 09:15:16 info: Server is running on http://localhost:3002
+2024-08-14 09:15:18 info: MongoDB connected
+2024-08-14 09:15:23 info: Server is running on http://localhost:3002
+2024-08-14 09:15:25 info: MongoDB connected
+2024-08-14 09:15:27 info: Server is running on http://localhost:3002
+2024-08-14 09:15:28 info: MongoDB connected
+2024-08-14 09:15:31 info: Server is running on http://localhost:3002
+2024-08-14 09:15:32 info: MongoDB connected
+2024-08-14 09:15:36 info: Server is running on http://localhost:3002
+2024-08-14 09:16:18 info: Server is running on http://localhost:3002
+2024-08-14 09:16:21 info: MongoDB connected
+2024-08-14 09:16:36 info: Server is running on http://localhost:3002
+2024-08-14 09:16:38 info: MongoDB connected
+2024-08-14 09:16:54 info: Server is running on http://localhost:3002
+2024-08-14 09:16:56 info: MongoDB connected
+2024-08-14 09:17:05 info: Server is running on http://localhost:3002
+2024-08-14 09:17:07 info: Server is running on http://localhost:3002
+2024-08-14 09:17:08 info: MongoDB connected
+2024-08-14 09:19:03 info: Server is running on http://localhost:3002
+2024-08-14 09:19:06 info: MongoDB connected
+2024-08-14 09:20:08 info: Server is running on http://localhost:3002
+2024-08-14 09:20:11 info: MongoDB connected
+2024-08-14 09:20:32 info: Server is running on http://localhost:3002
+2024-08-14 09:20:35 info: MongoDB connected
+2024-08-14 09:20:55 info: Server is running on http://localhost:3002
+2024-08-14 09:20:57 info: MongoDB connected
+2024-08-14 09:21:00 info: Server is running on http://localhost:3002
+2024-08-14 09:21:02 info: MongoDB connected
+2024-08-14 09:22:35 info: Server is running on http://localhost:3002
+2024-08-14 09:22:38 info: MongoDB connected
+2024-08-14 09:22:53 info: Server is running on http://localhost:3002
+2024-08-14 09:22:56 info: MongoDB connected
+2024-08-14 09:23:05 info: Server is running on http://localhost:3002
+2024-08-14 09:23:07 info: MongoDB connected
+2024-08-14 09:23:27 info: Server is running on http://localhost:3002
+2024-08-14 09:23:28 info: MongoDB connected
+2024-08-14 09:25:15 info: Server is running on http://localhost:3002
+2024-08-14 09:25:16 info: MongoDB connected
+2024-08-14 09:25:42 info: Server is running on http://localhost:3002
+2024-08-14 09:25:44 info: MongoDB connected
+2024-08-14 09:25:48 info: Server is running on http://localhost:3002
+2024-08-14 09:25:50 info: MongoDB connected
+2024-08-14 09:25:55 info: Server is running on http://localhost:3002
+2024-08-14 09:25:57 info: MongoDB connected
+2024-08-14 09:26:00 info: Server is running on http://localhost:3002
+2024-08-14 09:26:02 info: MongoDB connected
+2024-08-14 09:26:14 info: Server is running on http://localhost:3002
+2024-08-14 09:26:17 info: MongoDB connected
+2024-08-14 09:26:19 info: Server is running on http://localhost:3002
+2024-08-14 09:26:21 info: MongoDB connected
+2024-08-14 09:26:23 info: Server is running on http://localhost:3002
+2024-08-14 09:26:24 info: MongoDB connected
+2024-08-14 09:26:26 info: Server is running on http://localhost:3002
+2024-08-14 09:26:28 info: MongoDB connected
+2024-08-14 09:37:07 info: Server is running on http://localhost:3002
+2024-08-14 09:37:10 info: MongoDB connected
+2024-08-14 09:47:41 info: Server is running on http://localhost:3002
+2024-08-14 09:47:46 info: Server is running on http://localhost:3002
+2024-08-14 09:47:48 info: MongoDB connected
+2024-08-14 09:47:52 info: Server is running on http://localhost:3002
+2024-08-14 09:47:54 info: MongoDB connected
+2024-08-14 09:48:29 info: Server is running on http://localhost:3002
+2024-08-14 09:48:30 info: MongoDB connected
+2024-08-14 09:48:35 info: Server is running on http://localhost:3002
+2024-08-14 09:48:37 info: MongoDB connected
+2024-08-14 09:53:47 info: Server is running on http://localhost:3002
+2024-08-14 09:53:48 info: MongoDB connected
+2024-08-14 09:54:06 info: Server is running on http://localhost:3002
+2024-08-14 09:54:08 info: MongoDB connected
+2024-08-14 09:55:49 info: Server is running on http://localhost:3002
+2024-08-14 09:55:51 info: MongoDB connected
+2024-08-14 10:01:34 info: Server is running on http://localhost:3002
+2024-08-14 10:01:37 info: MongoDB connected
+2024-08-14 10:02:33 info: Server is running on http://localhost:3002
+2024-08-14 10:02:36 info: MongoDB connected

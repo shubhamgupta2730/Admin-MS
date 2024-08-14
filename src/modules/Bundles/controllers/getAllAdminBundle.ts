@@ -47,12 +47,27 @@ export const getAllBundles = async (req: CustomRequest, res: Response) => {
       },
     };
 
-    if (!showAll) {
+    // Adjust the match conditions based on showAll and showBlocked
+    if (!showAll || showAll==="false") {
       matchStage.$match.isActive = true;
+      matchStage.$match.isBlocked = false;
+      matchStage.$match.isDeleted = false;
+      
+    }else if(showAll==='true'){
+      matchStage.$match.isActive = true;
+      matchStage.$match.isDeleted = false;
+      
+     
     }
 
-    if (showBlocked) {
+    if (showBlocked==='false') {
+      // If showBlocked is true, override isActive to include both active and blocked
+      matchStage.$match.isActive = true;
+      matchStage.$match.isBlocked = false;
+      matchStage.$match.isDeleted = false;
+    }else if(showBlocked === 'true'){
       matchStage.$match.isBlocked = true;
+      matchStage.$match.isDeleted = false;
     }
 
     const sortStage = {
@@ -67,10 +82,22 @@ export const getAllBundles = async (req: CustomRequest, res: Response) => {
       $limit: limitNumber,
     };
 
+    const projectStage = {
+      $project: {
+        _id: 1,
+        name: 1,
+        description: 1,
+        MRP: 1,
+        sellingPrice: 1,
+        discount: 1,
+        isBlocked: 1,
+      },
+    };
+
     const facetStage = {
       $facet: {
         metadata: [{ $count: 'total' }],
-        bundles: [matchStage, sortStage, skipStage, limitStage],
+        bundles: [matchStage, sortStage, skipStage, limitStage, projectStage],
       },
     };
 

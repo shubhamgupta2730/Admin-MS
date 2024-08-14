@@ -48,12 +48,11 @@ export const removeBundle = async (req: CustomRequest, res: Response) => {
 
     await Product.updateMany(
       { _id: { $in: productIds } },
-      { $unset: { bundleId: '' } }
+      { $unset: { bundleIds: '' } }
     );
 
     // Soft delete the bundle
     existingBundle.isDeleted = true;
-    existingBundle.isActive = false;
     await existingBundle.save();
 
     return res.status(200).json({ message: 'Bundle deleted successfully' });

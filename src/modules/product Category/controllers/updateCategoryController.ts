@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
-import mongoose, { Document } from 'mongoose';
+import mongoose from 'mongoose';
 import Category, { ICategory } from '../../../models/productCategoryModel';
+import Admin from '../../../models/authModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -52,11 +53,11 @@ export const updateCategory = async (req: CustomRequest, res: Response) => {
 
     const existingCategory = (await Category.findOne({
       name,
+      isActive: true,
     })) as CategoryDocument | null;
     if (existingCategory && existingCategory._id.toString() !== id) {
       return res.status(400).json({
-        message:
-          'Category with this name already exists. Please choose another name.',
+        message: 'Category with this name already exists. Please choose another name.',
       });
     }
 
@@ -65,9 +66,32 @@ export const updateCategory = async (req: CustomRequest, res: Response) => {
 
     await category.save();
 
+    // Fetch admin details
+    const admin = await Admin.findById(category.createdBy).select('name').exec();
+    if (!admin) {
+      return res.status(400).json({
+        message: 'Admin not found',
+      });
+    }
+
+    // Format dates
+    const formatDate = (date: Date) => date.toISOString().split('T')[0];
+
+    const categoryObject = {
+      id: category._id,
+      name: category.name,
+      description: category.description,
+      createdAt: formatDate(category.createdAt),
+      updatedAt: formatDate(category.updatedAt),
+      createdBy: {
+        id: admin._id,
+        name: admin.name,
+      },
+    };
+
     res.status(200).json({
       message: 'Category updated successfully',
-      category,
+      category: categoryObject,
     });
   } catch (error) {
     console.error('Error updating category:', error);

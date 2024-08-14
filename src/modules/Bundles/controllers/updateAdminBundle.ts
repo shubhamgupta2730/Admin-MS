@@ -5,7 +5,6 @@ import Product from '../../../models/productModel';
 
 interface ProductInfo {
   productId: string;
-  quantity: number;
 }
 
 interface CustomRequest extends Request {
@@ -29,7 +28,6 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
   } = req.body;
 
   const bundleId = req.query.bundleId as string;
-
   const userId = req.user?.userId;
   const userRole = req.user?.role;
 
@@ -38,9 +36,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
   }
 
   if (userRole !== 'admin') {
-    return res
-      .status(403)
-      .json({ message: 'Forbidden: Access is allowed only for Admins' });
+    return res.status(403).json({ message: 'Forbidden: Access is allowed only for Admins' });
   }
 
   if (!bundleId || !mongoose.Types.ObjectId.isValid(bundleId)) {
@@ -48,15 +44,11 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
   }
 
   if (!name || !description) {
-    return res
-      .status(400)
-      .json({ message: 'Name and description are required' });
+    return res.status(400).json({ message: 'Name and description are required' });
   }
 
   if (!Array.isArray(products) || products.length === 0) {
-    return res
-      .status(400)
-      .json({ message: 'Products array is required and should not be empty' });
+    return res.status(400).json({ message: 'Products array is required and should not be empty' });
   }
 
   if (typeof discount !== 'number' || discount < 0 || discount > 100) {
@@ -67,14 +59,9 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
 
   const productIds: mongoose.Types.ObjectId[] = [];
   for (const product of products) {
-    if (
-      !product.productId ||
-      typeof product.quantity !== 'number' ||
-      product.quantity <= 0
-    ) {
+    if (!product.productId) {
       return res.status(400).json({
-        message:
-          'Each product must have a valid productId and a quantity greater than zero',
+        message: 'Each product must have a valid productId',
       });
     }
     productIds.push(new mongoose.Types.ObjectId(product.productId));
@@ -113,46 +100,32 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    let totalMRP = 0;
-    const productPriceMap: { [key: string]: number } = {};
-
+    // Calculate the new total MRP by adding the new products' MRP to the existing MRP
+    let totalMRP = existingBundle.MRP;
     activeProducts.forEach((product) => {
-      const productId = (product._id as mongoose.Types.ObjectId).toString();
-      productPriceMap[productId] = product.MRP;
+      totalMRP += product.MRP;
     });
 
-    for (const productInfo of products) {
-      const productId = productInfo.productId;
-      const quantity = productInfo.quantity;
-
-      if (!productPriceMap[productId]) {
-        return res
-          .status(404)
-          .json({ message: `Product with ID ${productId} not found` });
-      }
-
-      totalMRP += productPriceMap[productId] * quantity;
-    }
-
+    // Calculate the new selling price based on the discount
     let sellingPrice = totalMRP;
     if (discount) {
       sellingPrice = totalMRP - totalMRP * (discount / 100);
     }
 
-    // Keep old product IDs for comparison
-    const oldProductIds = existingBundle.products.map((p) =>
-      p.productId.toString()
-    );
+    // Merge existing products with new products
+    const existingProducts = existingBundle.products.map((p) => p.productId.toString());
+    const newProducts = products.filter(
+      (p) => !existingProducts.includes(p.productId)
+    ).map((p) => ({
+      productId: new mongoose.Types.ObjectId(p.productId),
+    }));
 
     existingBundle.name = name;
     existingBundle.description = description;
     existingBundle.MRP = totalMRP;
     existingBundle.sellingPrice = sellingPrice;
     existingBundle.discount = discount;
-    existingBundle.products = products.map((p) => ({
-      productId: new mongoose.Types.ObjectId(p.productId),
-      quantity: p.quantity,
-    }));
+    existingBundle.products.push(...newProducts);
     existingBundle.updatedAt = new Date();
 
     const updatedBundle = await existingBundle.save();
@@ -160,17 +133,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     // Update products to reflect the bundle they are part of
     await Product.updateMany(
       { _id: { $in: productIds } },
-      { $set: { bundleId: updatedBundle._id } }
-    );
-
-    // Remove bundleId from products that are no longer in the bundle
-    const removedProductIds = oldProductIds.filter(
-      (id) => !productIds.includes(new mongoose.Types.ObjectId(id))
-    );
-
-    await Product.updateMany(
-      { _id: { $in: removedProductIds } },
-      { $unset: { bundleId: '' } }
+      { $set: { bundleIds : updatedBundle._id } }
     );
 
     return res.status(200).json({

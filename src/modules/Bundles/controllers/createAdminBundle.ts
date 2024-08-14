@@ -5,7 +5,6 @@ import Product from '../../../models/productModel';
 
 interface ProductInfo {
   productId: string;
-  quantity: number;
 }
 
 interface CustomRequest extends Request {
@@ -60,14 +59,9 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
     // Validate product details and gather product IDs
     const productIds: mongoose.Types.ObjectId[] = [];
     for (const product of products) {
-      if (
-        !product.productId ||
-        typeof product.quantity !== 'number' ||
-        product.quantity <= 0
-      ) {
+      if (!product.productId) {
         return res.status(400).json({
-          message:
-            'Each product must have a valid productId and a quantity greater than zero',
+          message: 'Each product must have a valid productId',
         });
       }
       productIds.push(new mongoose.Types.ObjectId(product.productId));
@@ -95,7 +89,7 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    // Calculate total MRP and validate product prices
+    // Calculate total MRP without considering quantity
     let totalMRP = 0;
     const productPriceMap: { [key: string]: number } = {};
     activeProducts.forEach((product) => {
@@ -103,17 +97,13 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       productPriceMap[productId] = product.MRP;
     });
 
-    for (const productInfo of products) {
-      const productId = productInfo.productId;
-      const quantity = productInfo.quantity;
-
-      if (!productPriceMap[productId]) {
+    for (const productId of productIds) {
+      if (!productPriceMap[productId.toString()]) {
         return res
           .status(404)
           .json({ message: `Product with ID ${productId} not found` });
       }
-
-      totalMRP += productPriceMap[productId] * quantity;
+      totalMRP += productPriceMap[productId.toString()];
     }
 
     // Calculate selling price based on discount
@@ -131,7 +121,6 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
       discount,
       products: products.map((p) => ({
         productId: new mongoose.Types.ObjectId(p.productId),
-        quantity: p.quantity,
       })),
       createdBy: {
         id: new mongoose.Types.ObjectId(userId),
@@ -145,7 +134,7 @@ export const createBundle = async (req: CustomRequest, res: Response) => {
     // Update products with the bundle ID
     await Product.updateMany(
       { _id: { $in: productIds } },
-      { $set: { bundleId: savedBundle._id } }
+      { $push: { bundleIds: savedBundle._id } }
     );
 
     res.status(201).json({

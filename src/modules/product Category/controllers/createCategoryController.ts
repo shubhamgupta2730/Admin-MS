@@ -27,7 +27,6 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-
     const existingCategory = await Category.findOne({ name, isActive: true });
     if (existingCategory) {
       return res.status(400).json({
@@ -51,15 +50,23 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
       });
     }
 
-    const categoryObject = category.toObject();
-    delete categoryObject.__v;
+    // Prepare the response object
+    const categoryObject = {
+      id: category._id,
+      name: category.name,
+      description: category.description,
+      createdBy: {
+        id: admin._id,
+        name: admin.name
+      }
+    };
 
     res.status(201).json({
       message: 'Category created successfully',
       category: categoryObject,
-      CreatedBy: admin.name,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       message: 'An error occurred while creating the category',
     });

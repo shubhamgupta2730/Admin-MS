@@ -10,3 +10,5 @@
     at TLSSocket.Socket._onTimeout (node:net:590:8)
     at listOnTimeout (node:internal/timers:573:17)
     at processTimers (node:internal/timers:514:7)
+2024-08-14 09:07:56 error: Error: queryTxt ETIMEOUT cluster0.dbrhuj4.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)

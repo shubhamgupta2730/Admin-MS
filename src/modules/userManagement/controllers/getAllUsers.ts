@@ -52,8 +52,13 @@ export const getAllUsers = async (req: CustomRequest, res: Response) => {
       { $match: match },
       {
         $project: {
-          password: 0,
-          __v: 0,
+          _id: 1,
+          email: 1,
+          firstName: 1,
+          lastName: 1, 
+          phone: 1,
+          role: 1, 
+          isBlocked: 1
         },
       },
       {
@@ -83,6 +88,7 @@ export const getAllUsers = async (req: CustomRequest, res: Response) => {
       pageSize,
     });
   } catch (error) {
+    console.error('Server error:', error);
     res.status(500).json({ message: 'Server error', error });
   }
 };

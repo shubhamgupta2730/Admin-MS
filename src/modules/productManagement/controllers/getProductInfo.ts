@@ -1,9 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../../../models/productModel';
 import { Types } from 'mongoose';
-import User from '../../../models/userModel';
-import Category from '../../../models/productCategoryModel';
-import Discount from '../../../models/discountModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -29,7 +26,7 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
       {
         $lookup: {
           from: 'users',
-          localField: 'createdBy', 
+          localField: 'createdBy',
           foreignField: '_id',
           as: 'sellerDetails',
         },
@@ -38,28 +35,44 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
       {
         $lookup: {
           from: 'categories',
-          localField: 'categoryId', 
+          localField: 'categoryId',
           foreignField: '_id',
           as: 'categoryDetails',
         },
       },
       { $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true } },
       {
+        $lookup: {
+          from: 'bundles',
+          localField: 'bundleIds',  // Changed to bundleIds (array of bundle IDs)
+          foreignField: '_id',
+          as: 'bundleDetails',
+        },
+      },
+      {
         $project: {
           _id: 1,
           name: 1,
           description: 1,
-          MRP:1,
+          MRP: 1,
           sellingPrice: 1,
           discount: 1,
           adminDiscount: 1,
           categoryId: 1,
-          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
+          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] },
           isBlocked: 1,
           isDeleted: 1,
           isActive: 1,
           sellerId: 1,
-          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] }, 
+          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] },
+          bundleIds: 1,
+          bundleNames: {
+            $cond: {
+              if: { $gt: [{ $size: '$bundleDetails' }, 0] },
+              then: '$bundleDetails.name',
+              else: [],
+            },
+          },
         },
       },
     ]);

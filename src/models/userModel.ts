@@ -1,5 +1,6 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
+// Define the address schema
 export interface IAddress {
   addressLine1: string;
   addressLine2: string;
@@ -10,6 +11,7 @@ export interface IAddress {
   country: string;
 }
 
+// Define the user schema interface
 export interface IUser extends Document {
   email: string;
   phone: string;
@@ -28,8 +30,10 @@ export interface IUser extends Document {
   twoFactorMethod?: 'email' | 'phone' | 'authenticator';
   role: 'user' | 'seller';
   address: IAddress;
+  createdAt: Date; 
+  updatedAt: Date; 
 }
-
+// Define the address schema
 const AddressSchema: Schema<IAddress> = new Schema({
   addressLine1: {
     type: String,
