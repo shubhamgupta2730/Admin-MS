@@ -57,7 +57,8 @@ export const updateCategory = async (req: CustomRequest, res: Response) => {
     })) as CategoryDocument | null;
     if (existingCategory && existingCategory._id.toString() !== id) {
       return res.status(400).json({
-        message: 'Category with this name already exists. Please choose another name.',
+        message:
+          'Category with this name already exists. Please choose another name.',
       });
     }
 
@@ -67,7 +68,9 @@ export const updateCategory = async (req: CustomRequest, res: Response) => {
     await category.save();
 
     // Fetch admin details
-    const admin = await Admin.findById(category.createdBy).select('name').exec();
+    const admin = await Admin.findById(category.createdBy)
+      .select('name')
+      .exec();
     if (!admin) {
       return res.status(400).json({
         message: 'Admin not found',

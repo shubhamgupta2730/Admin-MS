@@ -13,12 +13,16 @@ export const signUp = async (req: Request, res: Response) => {
 
     const existingAdmin = await Admin.findOne({ $or: [{ email }, { phone }] });
     if (existingAdmin) {
-      return res.status(400).json({ message: 'Email or Phone already in use by another admin.' });
+      return res
+        .status(400)
+        .json({ message: 'Email or Phone already in use by another admin.' });
     }
 
     const existingUser = await User.findOne({ $or: [{ email }, { phone }] });
     if (existingUser) {
-      return res.status(400).json({ message: 'Email or Phone already in use by a user.' });
+      return res
+        .status(400)
+        .json({ message: 'Email or Phone already in use by a user.' });
     }
 
     if (!['admin', 'superAdmin'].includes(role)) {

@@ -13,5 +13,5 @@ export {
   getAllBundles,
   getBundle,
   toggleBlockBundle,
-  removeProductFromBundle
+  removeProductFromBundle,
 };

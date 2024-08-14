@@ -30,7 +30,8 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
     const existingCategory = await Category.findOne({ name, isActive: true });
     if (existingCategory) {
       return res.status(400).json({
-        message: 'Category with this name already exists. Please add another category.',
+        message:
+          'Category with this name already exists. Please add another category.',
       });
     }
 
@@ -57,8 +58,8 @@ export const createCategory = async (req: CustomRequest, res: Response) => {
       description: category.description,
       createdBy: {
         id: admin._id,
-        name: admin.name
-      }
+        name: admin.name,
+      },
     };
 
     res.status(201).json({

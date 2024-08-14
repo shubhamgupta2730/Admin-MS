@@ -10,7 +10,7 @@ interface IProduct extends Document {
   adminDiscount: number;
   categoryId: Types.ObjectId | null;
   sellerId: Types.ObjectId;
-  bundleIds: Types.ObjectId[]; 
+  bundleIds: Types.ObjectId[];
   isActive: boolean;
   isBlocked: boolean;
   isDeleted: boolean;
@@ -30,7 +30,7 @@ const productSchema = new Schema<IProduct>({
   adminDiscount: { type: Number, default: 0 },
   categoryId: { type: Schema.Types.ObjectId, ref: 'Category', default: null },
   sellerId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  bundleIds: [{ type: Schema.Types.ObjectId, ref: 'Bundle' }], 
+  bundleIds: [{ type: Schema.Types.ObjectId, ref: 'Bundle' }],
   isActive: { type: Boolean, default: true },
   isBlocked: { type: Boolean, default: false },
   isDeleted: { type: Boolean, default: false },

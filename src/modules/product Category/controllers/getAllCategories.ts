@@ -58,7 +58,7 @@ export const getAllCategories = async (
           as: 'adminDetails',
         },
       },
-      { $unwind: { path: '$adminDetails', preserveNullAndEmptyArrays: false } }, 
+      { $unwind: { path: '$adminDetails', preserveNullAndEmptyArrays: false } },
       {
         $project: {
           _id: 1,

@@ -48,24 +48,21 @@ export const getAllBundles = async (req: CustomRequest, res: Response) => {
     };
 
     // Adjust the match conditions based on showAll and showBlocked
-    if (!showAll || showAll==="false") {
+    if (!showAll || showAll === 'false') {
       matchStage.$match.isActive = true;
       matchStage.$match.isBlocked = false;
       matchStage.$match.isDeleted = false;
-      
-    }else if(showAll==='true'){
+    } else if (showAll === 'true') {
       matchStage.$match.isActive = true;
       matchStage.$match.isDeleted = false;
-      
-     
     }
 
-    if (showBlocked==='false') {
+    if (showBlocked === 'false') {
       // If showBlocked is true, override isActive to include both active and blocked
       matchStage.$match.isActive = true;
       matchStage.$match.isBlocked = false;
       matchStage.$match.isDeleted = false;
-    }else if(showBlocked === 'true'){
+    } else if (showBlocked === 'true') {
       matchStage.$match.isBlocked = true;
       matchStage.$match.isDeleted = false;
     }

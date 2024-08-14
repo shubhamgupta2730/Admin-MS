@@ -49,7 +49,7 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
         id: admin._id,
         name: admin.name,
       },
-      products: category.productIds, 
+      products: category.productIds,
     };
 
     res.status(200).json({

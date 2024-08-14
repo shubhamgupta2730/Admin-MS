@@ -1,7 +1,5 @@
 import { Response } from 'express';
 import Discount from '../../../models/discountModel';
-import Product from '../../../models/productModel';
-import Bundle from '../../../models/adminBundleModel';
 import { Types } from 'mongoose';
 
 interface Request {
@@ -10,8 +8,6 @@ interface Request {
     endDate: string;
     discount: number;
     code: string;
-    productIds?: Types.ObjectId[];
-    bundleIds?: Types.ObjectId[];
   };
   user?: {
     userId: Types.ObjectId;
@@ -19,33 +15,29 @@ interface Request {
 }
 
 export const addDiscount = async (req: Request, res: Response) => {
-  const {
-    startDate,
-    endDate,
-    discount,
-    code,
-    productIds = [],
-    bundleIds = [],
-  }: {
-    startDate: string;
-    endDate: string;
-    discount: number;
-    code: string;
-    productIds?: Types.ObjectId[];
-    bundleIds?: Types.ObjectId[];
-  } = req.body;
+  const { startDate, endDate, discount, code } = req.body;
 
   try {
-    // Check if required fields are present
     if (!startDate || !endDate || typeof discount !== 'number' || !code) {
       return res.status(400).json({
         message: 'Start date, end date, discount, and code are required',
       });
     }
 
-    // Convert user-friendly date format to ISO 8601
-    const start = new Date(`${startDate}T00:00:00Z`);
-    const end = new Date(`${endDate}T23:59:59Z`);
+    // Check for unique code
+    const existingDiscount = await Discount.findOne({
+      code: code.trim(),
+    });
+
+    if (existingDiscount) {
+      return res.status(400).json({ message: 'Discount code already exists' });
+    }
+
+    const start = new Date(startDate);
+    const end = new Date(endDate);
+
+    start.setHours(0, 0, 0, 0);
+    end.setHours(23, 59, 59, 999);
 
     // Validate date formats
     if (isNaN(start.getTime()) || isNaN(end.getTime())) {
@@ -55,57 +47,39 @@ export const addDiscount = async (req: Request, res: Response) => {
       });
     }
 
-    // Check if start date is before end date
     if (start >= end) {
       return res.status(400).json({
         message: 'Start date must be before end date',
       });
     }
 
-    // Validate discount value
+    // Check that startDate is not in the past
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Normalize to start of day
+    if (start < today) {
+      return res
+        .status(400)
+        .json({ message: 'Start date cannot be in the past' });
+    }
+
     if (discount < 0 || discount > 100) {
       return res.status(400).json({
         message: 'Discount must be a number between 0 and 100',
       });
     }
 
-    // Check if code is a string and not empty
     if (typeof code !== 'string' || code.trim() === '') {
       return res.status(400).json({
         message: 'Discount code must be a non-empty string',
       });
     }
 
-    // Validate user ID
     if (!req.user?.userId) {
       return res.status(400).json({
         message: 'User ID is required',
       });
     }
     const adminId = req.user.userId;
-
-    // Validate product and bundle IDs
-    const validProductIds = [];
-    for (const productId of productIds) {
-      const product = await Product.findOne({
-        _id: productId,
-        isBlocked: false,
-        isActive: true,
-        isDeleted: false,
-      });
-      if (product) validProductIds.push(productId);
-    }
-
-    const validBundleIds = [];
-    for (const bundleId of bundleIds) {
-      const bundle = await Bundle.findOne({
-        _id: bundleId,
-        isBlocked: false,
-        isActive: true,
-        isDeleted: false,
-      });
-      if (bundle) validBundleIds.push(bundleId);
-    }
 
     const newDiscount = new Discount({
       startDate: start.toISOString(),
@@ -114,8 +88,6 @@ export const addDiscount = async (req: Request, res: Response) => {
       code,
       isActive: new Date() >= start && new Date() <= end,
       createdBy: new Types.ObjectId(adminId),
-      productIds: validProductIds,
-      bundleIds: validBundleIds,
     });
 
     await newDiscount.save();

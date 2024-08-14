@@ -10,8 +10,14 @@ interface CustomRequest extends Request {
   };
 }
 
-export const removeProductFromBundle = async (req: CustomRequest, res: Response) => {
-  const { bundleId, productId } = req.query as { bundleId: string; productId: string };
+export const removeProductFromBundle = async (
+  req: CustomRequest,
+  res: Response
+) => {
+  const { bundleId, productId } = req.query as {
+    bundleId: string;
+    productId: string;
+  };
 
   // const productIdUpdated = productId as unknown as mongoose.Types.ObjectId;
 
@@ -23,7 +29,9 @@ export const removeProductFromBundle = async (req: CustomRequest, res: Response)
   }
 
   if (userRole !== 'admin') {
-    return res.status(403).json({ message: 'Forbidden: Access is allowed only for Admins' });
+    return res
+      .status(403)
+      .json({ message: 'Forbidden: Access is allowed only for Admins' });
   }
 
   if (!bundleId || !mongoose.Types.ObjectId.isValid(bundleId)) {
@@ -35,7 +43,11 @@ export const removeProductFromBundle = async (req: CustomRequest, res: Response)
   }
 
   try {
-    const existingBundle = await Bundle.findOne({_id: bundleId, isBlocked:false, isDeleted:false}).exec();
+    const existingBundle = await Bundle.findOne({
+      _id: bundleId,
+      isBlocked: false,
+      isDeleted: false,
+    }).exec();
     if (!existingBundle) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
@@ -46,7 +58,9 @@ export const removeProductFromBundle = async (req: CustomRequest, res: Response)
     );
 
     if (productIndex === -1) {
-      return res.status(404).json({ message: 'Product not found in the bundle' });
+      return res
+        .status(404)
+        .json({ message: 'Product not found in the bundle' });
     }
 
     // Get the product to be removed
@@ -62,7 +76,9 @@ export const removeProductFromBundle = async (req: CustomRequest, res: Response)
     // Recalculate the selling price
     let sellingPrice = existingBundle.MRP;
     if (existingBundle.discount) {
-      sellingPrice = existingBundle.MRP - existingBundle.MRP * (existingBundle.discount / 100);
+      sellingPrice =
+        existingBundle.MRP -
+        existingBundle.MRP * (existingBundle.discount / 100);
     }
 
     // Remove the product from the bundle
@@ -73,13 +89,17 @@ export const removeProductFromBundle = async (req: CustomRequest, res: Response)
     const updatedBundle = await existingBundle.save();
 
     // Remove the bundleId from the product
-    await Product.findByIdAndUpdate(productId, { $pull: { bundleIds: updatedBundle._id } });
+    await Product.findByIdAndUpdate(productId, {
+      $pull: { bundleIds: updatedBundle._id },
+    });
 
     return res.status(200).json({
       message: 'Product removed from bundle successfully',
       bundle: updatedBundle,
     });
   } catch (error) {
-    return res.status(500).json({ message: 'Failed to remove product from bundle', error });
+    return res
+      .status(500)
+      .json({ message: 'Failed to remove product from bundle', error });
   }
 };

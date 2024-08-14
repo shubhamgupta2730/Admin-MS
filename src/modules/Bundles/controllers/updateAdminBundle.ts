@@ -36,7 +36,9 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
   }
 
   if (userRole !== 'admin') {
-    return res.status(403).json({ message: 'Forbidden: Access is allowed only for Admins' });
+    return res
+      .status(403)
+      .json({ message: 'Forbidden: Access is allowed only for Admins' });
   }
 
   if (!bundleId || !mongoose.Types.ObjectId.isValid(bundleId)) {
@@ -44,11 +46,15 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
   }
 
   if (!name || !description) {
-    return res.status(400).json({ message: 'Name and description are required' });
+    return res
+      .status(400)
+      .json({ message: 'Name and description are required' });
   }
 
   if (!Array.isArray(products) || products.length === 0) {
-    return res.status(400).json({ message: 'Products array is required and should not be empty' });
+    return res
+      .status(400)
+      .json({ message: 'Products array is required and should not be empty' });
   }
 
   if (typeof discount !== 'number' || discount < 0 || discount > 100) {
@@ -113,12 +119,14 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     }
 
     // Merge existing products with new products
-    const existingProducts = existingBundle.products.map((p) => p.productId.toString());
-    const newProducts = products.filter(
-      (p) => !existingProducts.includes(p.productId)
-    ).map((p) => ({
-      productId: new mongoose.Types.ObjectId(p.productId),
-    }));
+    const existingProducts = existingBundle.products.map((p) =>
+      p.productId.toString()
+    );
+    const newProducts = products
+      .filter((p) => !existingProducts.includes(p.productId))
+      .map((p) => ({
+        productId: new mongoose.Types.ObjectId(p.productId),
+      }));
 
     existingBundle.name = name;
     existingBundle.description = description;
@@ -133,7 +141,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     // Update products to reflect the bundle they are part of
     await Product.updateMany(
       { _id: { $in: productIds } },
-      { $set: { bundleIds : updatedBundle._id } }
+      { $set: { bundleIds: updatedBundle._id } }
     );
 
     return res.status(200).json({

@@ -16,7 +16,13 @@ export const createSale = async (req: CustomRequest, res: Response) => {
     return res.status(401).json({ message: 'Unauthorized' });
   }
 
-  if (!name || !description || !startDate || !endDate || (!products && !bundles)) {
+  if (
+    !name ||
+    !description ||
+    !startDate ||
+    !endDate ||
+    (!products && !bundles)
+  ) {
     return res.status(400).json({ message: 'All fields are required.' });
   }
 

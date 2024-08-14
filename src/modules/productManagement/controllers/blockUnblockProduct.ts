@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../../../models/productModel';
-import Admin from '../../../models/authModel'; 
+import Admin from '../../../models/authModel';
 import mongoose, { Types } from 'mongoose';
 
 interface CustomRequest extends Request {

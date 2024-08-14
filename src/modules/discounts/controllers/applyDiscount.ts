@@ -40,11 +40,23 @@ export const applyDiscount = async (req: Request, res: Response) => {
       _id: discountId,
       isActive: true,
     });
+
     if (!discount) {
       console.log('Invalid or inactive discount ID:', discountId);
       return res
         .status(400)
         .json({ message: 'Invalid or inactive discount ID' });
+    }
+
+    // Check if the discount is within the valid date range
+    const now = new Date();
+    if (discount.startDate && new Date(discount.startDate) > now) {
+      console.log('Discount is not yet active.');
+      return res.status(400).json({ message: 'Discount is not yet active.' });
+    }
+    if (discount.endDate && new Date(discount.endDate) < now) {
+      console.log('Discount has expired.');
+      return res.status(400).json({ message: 'Discount has expired.' });
     }
 
     const results: any[] = [];
@@ -68,7 +80,6 @@ export const applyDiscount = async (req: Request, res: Response) => {
       }
     }
 
-    // Process bundles
     if (bundleIds && bundleIds.length > 0) {
       console.log('Processing bundle IDs:', bundleIds);
       for (const bundleId of bundleIds) {
@@ -133,20 +144,34 @@ const applyDiscountToProduct = async (
 
   product.adminDiscount = discount.discount;
   if (type === 'MRP') {
-    if (typeof product.MRP === 'undefined') {
+    if (typeof product.MRP === 'undefined' || product.MRP === null) {
       throw new Error(`Invalid MRP value for product ID ${product._id}`);
     }
     const newMRP = product.MRP - (product.MRP * discount.discount) / 100;
+    if (newMRP < 0) {
+      throw new Error(
+        `Discounted MRP cannot be less than zero for product ID ${product._id}`
+      );
+    }
     product.sellingPrice = newMRP;
   } else {
-    if (typeof product.sellingPrice === 'undefined') {
+    if (
+      typeof product.sellingPrice === 'undefined' ||
+      product.sellingPrice === null
+    ) {
       throw new Error(
         `Invalid sellingPrice value for product ID ${product._id}`
       );
     }
 
-    // Apply admin discount to selling price directly
-    product.sellingPrice -= (product.sellingPrice * discount.discount) / 100;
+    const newSellingPrice =
+      product.sellingPrice - (product.sellingPrice * discount.discount) / 100;
+    if (newSellingPrice < 0) {
+      throw new Error(
+        `Discounted selling price cannot be less than zero for product ID ${product._id}`
+      );
+    }
+    product.sellingPrice = newSellingPrice;
   }
 
   await product.save();
@@ -166,19 +191,33 @@ const applyDiscountToBundle = async (
 
   bundle.adminDiscount = discount.discount;
   if (type === 'MRP') {
-    if (typeof bundle.MRP === 'undefined') {
+    if (typeof bundle.MRP === 'undefined' || bundle.MRP === null) {
       throw new Error(`Invalid MRP value for bundle ID ${bundle._id}`);
     }
 
-    // Apply admin discount to MRP only
     const newMRP = bundle.MRP - (bundle.MRP * discount.discount) / 100;
+    if (newMRP < 0) {
+      throw new Error(
+        `Discounted MRP cannot be less than zero for bundle ID ${bundle._id}`
+      );
+    }
     bundle.sellingPrice = newMRP;
   } else {
-    if (typeof bundle.sellingPrice === 'undefined') {
+    if (
+      typeof bundle.sellingPrice === 'undefined' ||
+      bundle.sellingPrice === null
+    ) {
       throw new Error(`Invalid sellingPrice value for bundle ID ${bundle._id}`);
     }
 
-    bundle.sellingPrice -= (bundle.sellingPrice * discount.discount) / 100;
+    const newSellingPrice =
+      bundle.sellingPrice - (bundle.sellingPrice * discount.discount) / 100;
+    if (newSellingPrice < 0) {
+      throw new Error(
+        `Discounted selling price cannot be less than zero for bundle ID ${bundle._id}`
+      );
+    }
+    bundle.sellingPrice = newSellingPrice;
   }
 
   await bundle.save();

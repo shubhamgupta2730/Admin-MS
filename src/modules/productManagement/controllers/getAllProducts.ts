@@ -70,7 +70,7 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
       { $match: match },
       {
         $lookup: {
-          from: 'users', 
+          from: 'users',
           localField: 'createdBy',
           foreignField: '_id',
           as: 'sellerDetails',
@@ -79,25 +79,33 @@ export const getAllProducts = async (req: CustomRequest, res: Response) => {
       { $unwind: { path: '$sellerDetails', preserveNullAndEmptyArrays: true } },
       {
         $lookup: {
-          from: 'categories', 
-          localField: 'categoryId', 
+          from: 'categories',
+          localField: 'categoryId',
           foreignField: '_id',
           as: 'categoryDetails',
         },
       },
-      { $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true } },
+      {
+        $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true },
+      },
       {
         $project: {
           _id: 1,
           name: 1,
           description: 1,
           categoryId: 1,
-          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] }, 
+          categoryName: { $ifNull: ['$categoryDetails.name', 'Unknown'] },
           isBlocked: 1,
           isDeleted: 1,
           isActive: 1,
           sellerId: 1,
-          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] },
+          sellerName: {
+            $concat: [
+              '$sellerDetails.firstName',
+              ' ',
+              '$sellerDetails.lastName',
+            ],
+          },
         },
       },
       {

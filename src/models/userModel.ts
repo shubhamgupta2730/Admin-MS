@@ -30,8 +30,8 @@ export interface IUser extends Document {
   twoFactorMethod?: 'email' | 'phone' | 'authenticator';
   role: 'user' | 'seller';
   address: IAddress;
-  createdAt: Date; 
-  updatedAt: Date; 
+  createdAt: Date;
+  updatedAt: Date;
 }
 // Define the address schema
 const AddressSchema: Schema<IAddress> = new Schema({

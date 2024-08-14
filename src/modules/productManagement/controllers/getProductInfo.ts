@@ -40,11 +40,13 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
           as: 'categoryDetails',
         },
       },
-      { $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true } },
+      {
+        $unwind: { path: '$categoryDetails', preserveNullAndEmptyArrays: true },
+      },
       {
         $lookup: {
           from: 'bundles',
-          localField: 'bundleIds',  // Changed to bundleIds (array of bundle IDs)
+          localField: 'bundleIds', // Changed to bundleIds (array of bundle IDs)
           foreignField: '_id',
           as: 'bundleDetails',
         },
@@ -64,7 +66,13 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
           isDeleted: 1,
           isActive: 1,
           sellerId: 1,
-          sellerName: { $concat: ['$sellerDetails.firstName', ' ', '$sellerDetails.lastName'] },
+          sellerName: {
+            $concat: [
+              '$sellerDetails.firstName',
+              ' ',
+              '$sellerDetails.lastName',
+            ],
+          },
           bundleIds: 1,
           bundleNames: {
             $cond: {

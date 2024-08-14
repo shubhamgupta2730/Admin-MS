@@ -55,10 +55,10 @@ export const getAllUsers = async (req: CustomRequest, res: Response) => {
           _id: 1,
           email: 1,
           firstName: 1,
-          lastName: 1, 
+          lastName: 1,
           phone: 1,
-          role: 1, 
-          isBlocked: 1
+          role: 1,
+          isBlocked: 1,
         },
       },
       {

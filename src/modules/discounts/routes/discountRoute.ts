@@ -16,7 +16,7 @@ import {
 
 router.post('/add-discount', authenticateAdmin, authorizeAdmin, addDiscount);
 
-router.put(
+router.patch(
   '/update-discount',
   authenticateAdmin,
   authorizeAdmin,
