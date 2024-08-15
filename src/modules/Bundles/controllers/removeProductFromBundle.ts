@@ -19,8 +19,6 @@ export const removeProductFromBundle = async (
     productId: string;
   };
 
-  // const productIdUpdated = productId as unknown as mongoose.Types.ObjectId;
-
   const userId = req.user?.userId;
   const userRole = req.user?.role;
 
@@ -73,17 +71,23 @@ export const removeProductFromBundle = async (
     const removedProductMRP = productToRemove.MRP;
     existingBundle.MRP -= removedProductMRP;
 
-    // Recalculate the selling price
-    let sellingPrice = existingBundle.MRP;
-    if (existingBundle.discount) {
-      sellingPrice =
-        existingBundle.MRP -
-        existingBundle.MRP * (existingBundle.discount / 100);
-    }
-
     // Remove the product from the bundle
     existingBundle.products.splice(productIndex, 1);
-    existingBundle.sellingPrice = sellingPrice;
+
+    // Check if this was the last product in the bundle
+    if (existingBundle.products.length === 0) {
+      existingBundle.isActive = false; // Set isActive to false if no products left
+    } else {
+      // Recalculate the selling price if there are still products left
+      let sellingPrice = existingBundle.MRP;
+      if (existingBundle.discount) {
+        sellingPrice =
+          existingBundle.MRP -
+          existingBundle.MRP * (existingBundle.discount / 100);
+      }
+      existingBundle.sellingPrice = sellingPrice;
+    }
+
     existingBundle.updatedAt = new Date();
 
     const updatedBundle = await existingBundle.save();

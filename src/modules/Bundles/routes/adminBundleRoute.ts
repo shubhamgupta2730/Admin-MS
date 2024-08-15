@@ -22,7 +22,7 @@ router.get(
   authorizeAdmin,
   getAllBundles
 );
-router.put('/update-bundle', authenticateAdmin, authorizeAdmin, updateBundle);
+router.patch('/update-bundle', authenticateAdmin, authorizeAdmin, updateBundle);
 router.delete(
   '/remove-bundle',
   authenticateAdmin,

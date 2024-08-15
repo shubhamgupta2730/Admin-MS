@@ -26,25 +26,33 @@ export const updateDiscount = async (req: Request, res: Response) => {
 
   // Validate discountId
   if (!discountId || !mongoose.Types.ObjectId.isValid(discountId)) {
+    console.log('Invalid discount ID:', discountId);
     return res.status(400).json({ message: 'Invalid discount ID' });
   }
 
   // Validate at least one field is present
   if (!startDate && !endDate && discount === undefined && !code) {
+    console.log('No fields provided for update.');
     return res.status(400).json({
       message:
         'At least one field (startDate, endDate, discount, or code) must be provided',
     });
   }
 
-  // Retrieve the existing discount to validate date changes
-  let existingDiscount: any;
+  // Retrieve the existing discount
+  let existingDiscount;
   try {
-    existingDiscount = await Discount.findById(discountId);
+    existingDiscount = await Discount.findOne({
+      _id: discountId,
+      isDeleted: false,
+    });
     if (!existingDiscount) {
+      console.log('Discount not found for ID:', discountId);
       return res.status(404).json({ message: 'Discount not found' });
     }
+    console.log('Existing discount:', existingDiscount);
   } catch (error) {
+    console.error('Failed to retrieve existing discount:', error);
     return res
       .status(500)
       .json({ message: 'Failed to retrieve existing discount', error });
@@ -56,12 +64,13 @@ export const updateDiscount = async (req: Request, res: Response) => {
   if (startDate) {
     start = new Date(`${startDate}T00:00:00Z`);
     if (isNaN(start.getTime())) {
+      console.log('Invalid start date format:', startDate);
       return res.status(400).json({ message: 'Invalid start date format' });
     }
-    // Check that startDate is not in the past
     const today = new Date();
     today.setHours(0, 0, 0, 0); // Normalize to start of day
     if (start < today) {
+      console.log('Start date is in the past:', startDate);
       return res
         .status(400)
         .json({ message: 'Start date cannot be in the past' });
@@ -70,18 +79,20 @@ export const updateDiscount = async (req: Request, res: Response) => {
   if (endDate) {
     end = new Date(`${endDate}T23:59:59Z`);
     if (isNaN(end.getTime())) {
+      console.log('Invalid end date format:', endDate);
       return res.status(400).json({ message: 'Invalid end date format' });
     }
     if (start && end <= start) {
+      console.log('End date is before start date:', { startDate, endDate });
       return res
         .status(400)
         .json({ message: 'End date must be after start date' });
     }
-    // Ensure endDate is not less than the existing startDate
     if (
       existingDiscount.startDate &&
       end < new Date(existingDiscount.startDate)
     ) {
+      console.log('End date is less than the existing start date:', endDate);
       return res.status(400).json({
         message: 'End date cannot be less than the current start date',
       });
@@ -91,6 +102,7 @@ export const updateDiscount = async (req: Request, res: Response) => {
   // Discount validation
   if (discount !== undefined) {
     if (typeof discount !== 'number' || discount < 0 || discount > 100) {
+      console.log('Invalid discount value:', discount);
       return res
         .status(400)
         .json({ message: 'Discount must be a number between 0 and 100' });
@@ -100,24 +112,26 @@ export const updateDiscount = async (req: Request, res: Response) => {
   // Code validation and uniqueness check
   if (code !== undefined) {
     if (typeof code !== 'string' || code.trim() === '') {
+      console.log('Invalid discount code:', code);
       return res
         .status(400)
         .json({ message: 'Discount code must be a non-empty string' });
     }
 
-    // Check for unique code
-    const existingDiscountWithCode = await Discount.findOne({
-      code: code.trim(),
-      _id: { $ne: discountId },
-    });
+    // const existingDiscountWithCode = await Discount.findOne({
+    //   code: code.trim(),
+    //   _id: { $ne: discountId },
+    // });
 
-    if (existingDiscountWithCode) {
-      return res.status(400).json({ message: 'Discount code already exists' });
-    }
+    // if (existingDiscountWithCode) {
+    //   console.log('Discount code already exists:', code);
+    //   return res.status(400).json({ message: 'Discount code already exists' });
+    // }
   }
 
   try {
     // Update the discount
+    console.log('Updating discount with ID:', discountId);
     const updatedDiscount = await Discount.findByIdAndUpdate(
       discountId,
       {
@@ -130,8 +144,11 @@ export const updateDiscount = async (req: Request, res: Response) => {
     );
 
     if (!updatedDiscount) {
+      console.log('Discount not found after update:', discountId);
       return res.status(404).json({ message: 'Discount not found' });
     }
+
+    console.log('Discount updated:', updatedDiscount);
 
     // Update associated products and bundles
     const { productIds, bundleIds } = updatedDiscount;
@@ -139,25 +156,24 @@ export const updateDiscount = async (req: Request, res: Response) => {
     const results: any[] = [];
     const errors: any[] = [];
 
-    if (productIds && productIds.length > 0) {
+    if (productIds) {
       console.log('Processing product IDs:', productIds);
       for (const productId of productIds) {
         try {
+          console.log('Validating and fetching product with ID:', productId);
           const product = await validateAndFetchEntity(
             Product,
             productId.toString()
           );
           if (product) {
-            await applyDiscountToProduct(
-              product,
-              updatedDiscount,
-              'sellingPrice'
-            );
+            console.log('Applying discount to product:', product._id);
+            await applyDiscountToProduct(product, updatedDiscount);
             results.push({ id: productId.toString(), status: 'success' });
           }
         } catch (error) {
           const err = error as Error;
           console.log('Error processing product ID:', productId);
+          console.log('Error details:', err.message);
           errors.push({ id: productId.toString(), message: err.message });
         }
       }
@@ -167,39 +183,24 @@ export const updateDiscount = async (req: Request, res: Response) => {
       console.log('Processing bundle IDs:', bundleIds);
       for (const bundleId of bundleIds) {
         try {
+          console.log('Validating and fetching bundle with ID:', bundleId);
           const bundle = await validateAndFetchEntity(
             Bundle,
             bundleId.toString()
           );
           if (bundle) {
-            await applyDiscountToBundle(
-              bundle,
-              updatedDiscount,
-              'sellingPrice'
-            );
+            console.log('Applying discount to bundle:', bundle._id);
+            await applyDiscountToBundle(bundle, updatedDiscount);
             results.push({ id: bundleId.toString(), status: 'success' });
           }
         } catch (error) {
           const err = error as Error;
           console.log('Error processing bundle ID:', bundleId);
+          console.log('Error details:', err.message);
           errors.push({ id: bundleId.toString(), message: err.message });
         }
       }
     }
-
-    // Save updated entities
-    await Promise.all([
-      ...productIds.map((id) =>
-        Product.findByIdAndUpdate(id.toString(), {
-          $set: { adminDiscount: updatedDiscount.discount },
-        })
-      ),
-      ...bundleIds.map((id) =>
-        Bundle.findByIdAndUpdate(id.toString(), {
-          $set: { adminDiscount: updatedDiscount.discount },
-        })
-      ),
-    ]);
 
     console.log('Discount application complete');
     res.status(200).json({
@@ -219,10 +220,12 @@ export const updateDiscount = async (req: Request, res: Response) => {
       errors,
     });
   } catch (error) {
+    console.error('Failed to update discount:', error);
     res.status(500).json({ message: 'Failed to update discount', error });
   }
 };
 
+// Helper function to validate and fetch an entity
 const validateAndFetchEntity = async (Model: any, entityId: string) => {
   console.log('Validating and fetching entity:', entityId);
   const entity = await Model.findOne({
@@ -230,7 +233,7 @@ const validateAndFetchEntity = async (Model: any, entityId: string) => {
     isBlocked: false,
     isActive: true,
     isDeleted: false,
-  });
+  }).exec();
 
   if (!entity) {
     console.log('Invalid entity:', entityId);
@@ -242,94 +245,116 @@ const validateAndFetchEntity = async (Model: any, entityId: string) => {
   return entity;
 };
 
-const applyDiscountToProduct = async (
-  product: any,
-  discount: any,
-  type: 'sellingPrice' | 'MRP'
-) => {
+// Function to apply discount to a product
+// Function to apply discount to a product
+const applyDiscountToProduct = async (product: ProductDoc, discount: any) => {
   console.log(`Applying discount to product:`, product._id);
 
-  if (product.adminDiscount) {
-    throw new Error('Discount already applied to this product');
+  const newDiscountPercent = discount.discount;
+  const discountType = discount.type; // Assuming 'type' is passed in the discount object
+
+  if (product.sellingPrice === undefined || product.sellingPrice === null) {
+    throw new Error(`Invalid sellingPrice value for product ID ${product._id}`);
   }
 
-  product.adminDiscount = discount.discount;
-  if (type === 'MRP') {
-    if (typeof product.MRP === 'undefined' || product.MRP === null) {
-      throw new Error(`Invalid MRP value for product ID ${product._id}`);
+  if (discountType === 'MRP') {
+    // Apply discount based on MRP
+    if (product.MRP === undefined || product.MRP === null) {
+      throw new Error(`MRP not available for product ID ${product._id}`);
     }
-    const newMRP = product.MRP - (product.MRP * discount.discount) / 100;
-    if (newMRP < 0) {
-      throw new Error(
-        `Discounted MRP cannot be less than zero for product ID ${product._id}`
-      );
-    }
-    product.sellingPrice = newMRP;
-  } else {
-    if (
-      typeof product.sellingPrice === 'undefined' ||
-      product.sellingPrice === null
-    ) {
-      throw new Error(
-        `Invalid sellingPrice value for product ID ${product._id}`
-      );
-    }
+
     const newSellingPrice =
-      product.sellingPrice - (product.sellingPrice * discount.discount) / 100;
+      product.MRP - (product.MRP * newDiscountPercent) / 100;
+
     if (newSellingPrice < 0) {
-      throw new Error(
-        `Discounted selling price cannot be less than zero for product ID ${product._id}`
-      );
+      throw new Error('New selling price cannot be negative');
     }
+
     product.sellingPrice = newSellingPrice;
+  } else if (discountType === 'sellingPrice') {
+    // Apply discount based on selling price
+    if (product.adminDiscount) {
+      // Remove the old discount first
+      const priceBeforeOldDiscount =
+        product.sellingPrice / (1 - product.adminDiscount / 100);
+
+      // Apply the new discount
+      product.sellingPrice =
+        priceBeforeOldDiscount -
+        (priceBeforeOldDiscount * newDiscountPercent) / 100;
+    } else {
+      const newSellingPrice =
+        product.sellingPrice -
+        (product.sellingPrice * newDiscountPercent) / 100;
+
+      if (newSellingPrice < 0) {
+        throw new Error('New selling price cannot be negative');
+      }
+
+      product.sellingPrice = newSellingPrice;
+    }
+  } else {
+    throw new Error(`Unknown discount type: ${discountType}`);
   }
 
+  product.adminDiscount = newDiscountPercent;
+
+  console.log('Updated product selling price:', product.sellingPrice);
   await product.save();
-  console.log(`Discount applied to product:`, product._id);
 };
 
-const applyDiscountToBundle = async (
-  bundle: any,
-  discount: any,
-  type: 'sellingPrice' | 'MRP'
-) => {
+// Function to apply discount to a bundle
+const applyDiscountToBundle = async (bundle: BundleDoc, discount: any) => {
   console.log(`Applying discount to bundle:`, bundle._id);
 
-  if (bundle.adminDiscount) {
-    throw new Error('Discount already applied to this bundle');
+  const newDiscountPercent = discount.discount;
+  const discountType = discount.type; // Assuming 'type' is passed in the discount object
+
+  if (bundle.sellingPrice === undefined || bundle.sellingPrice === null) {
+    throw new Error(`Invalid sellingPrice value for bundle ID ${bundle._id}`);
   }
 
-  bundle.adminDiscount = discount.discount;
-  if (type === 'MRP') {
-    if (typeof bundle.MRP === 'undefined' || bundle.MRP === null) {
-      throw new Error(`Invalid MRP value for bundle ID ${bundle._id}`);
-    }
-
-    const newMRP = bundle.MRP - (bundle.MRP * discount.discount) / 100;
-    if (newMRP < 0) {
-      throw new Error(
-        `Discounted MRP cannot be less than zero for bundle ID ${bundle._id}`
-      );
-    }
-    bundle.sellingPrice = newMRP;
-  } else {
-    if (
-      typeof bundle.sellingPrice === 'undefined' ||
-      bundle.sellingPrice === null
-    ) {
-      throw new Error(`Invalid sellingPrice value for bundle ID ${bundle._id}`);
+  if (discountType === 'MRP') {
+    // Apply discount based on MRP
+    if (bundle.MRP === undefined || bundle.MRP === null) {
+      throw new Error(`MRP not available for bundle ID ${bundle._id}`);
     }
 
     const newSellingPrice =
-      bundle.sellingPrice - (bundle.sellingPrice * discount.discount) / 100;
+      bundle.MRP - (bundle.MRP * newDiscountPercent) / 100;
+
     if (newSellingPrice < 0) {
-      throw new Error(
-        `Discounted selling price cannot be less than zero for bundle ID ${bundle._id}`
-      );
+      throw new Error('New selling price cannot be negative');
     }
+
     bundle.sellingPrice = newSellingPrice;
+  } else if (discountType === 'sellingPrice') {
+    // Apply discount based on selling price
+    if (bundle.adminDiscount) {
+      // Remove the old discount first
+      const priceBeforeOldDiscount =
+        bundle.sellingPrice / (1 - bundle.adminDiscount / 100);
+
+      // Apply the new discount
+      bundle.sellingPrice =
+        priceBeforeOldDiscount -
+        (priceBeforeOldDiscount * newDiscountPercent) / 100;
+    } else {
+      const newSellingPrice =
+        bundle.sellingPrice - (bundle.sellingPrice * newDiscountPercent) / 100;
+
+      if (newSellingPrice < 0) {
+        throw new Error('New selling price cannot be negative');
+      }
+
+      bundle.sellingPrice = newSellingPrice;
+    }
+  } else {
+    throw new Error(`Unknown discount type: ${discountType}`);
   }
 
+  bundle.adminDiscount = newDiscountPercent;
+
+  console.log('Updated bundle selling price:', bundle.sellingPrice);
   await bundle.save();
-  console.log(`Discount applied to bundle:`, bundle._id);
 };

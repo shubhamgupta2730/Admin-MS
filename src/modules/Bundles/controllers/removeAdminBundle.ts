@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Bundle from '../../../models/adminBundleModel';
 import Product from '../../../models/productModel';
+import Discount from '../../../models/discountModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -32,7 +33,7 @@ export const removeBundle = async (req: CustomRequest, res: Response) => {
 
   try {
     const existingBundle = await Bundle.findById(bundleId).exec();
-    if (!existingBundle) {
+    if (!existingBundle || existingBundle.isDeleted) {
       return res.status(404).json({ message: 'Bundle not found' });
     }
 
@@ -51,12 +52,19 @@ export const removeBundle = async (req: CustomRequest, res: Response) => {
       { $unset: { bundleIds: '' } }
     );
 
+    // Remove the bundleId from the Discount model
+    await Discount.updateMany(
+      { bundleIds: bundleId },
+      { $pull: { bundleIds: bundleId } }
+    );
+
     // Soft delete the bundle
     existingBundle.isDeleted = true;
     await existingBundle.save();
 
     return res.status(200).json({ message: 'Bundle deleted successfully' });
   } catch (error) {
+    console.error('Error while deleting bundle:', error);
     return res.status(500).json({ message: 'Failed to delete bundle', error });
   }
 };

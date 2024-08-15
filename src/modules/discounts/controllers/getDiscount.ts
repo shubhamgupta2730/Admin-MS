@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import Discount from '../../../models/discountModel';
 import Admin from '../../../models/adminBundleModel';
+import mongoose, { Schema, Types } from 'mongoose';
 
 export const getDiscountById = async (req: Request, res: Response) => {
   const { id } = req.query;
@@ -14,7 +15,8 @@ export const getDiscountById = async (req: Request, res: Response) => {
     }
 
     // Fetch the discount from the database
-    const discount = await Discount.findById(id);
+    const discount = await Discount.findOne({ _id: id, isDeleted: false });
+    console.log(discount);
 
     // Check if discount exists
     if (!discount) {
@@ -24,7 +26,14 @@ export const getDiscountById = async (req: Request, res: Response) => {
     }
 
     // Fetch the admin details
-    const admin = await Admin.findById(discount.createdBy);
+    const admin = await Admin.findOne({
+      // _id: new mongoose.Types.ObjectId(discount.createdBy),
+      _id: discount.createdBy,
+    }).exec();
+
+    console.log(admin);
+
+    console.log(admin);
     const adminName = admin ? `${admin.name}` : 'Unknown';
     const adminId = discount.createdBy;
 
@@ -55,11 +64,12 @@ export const getDiscountById = async (req: Request, res: Response) => {
       endDate: formattedEndDate,
       discount: discount.discount,
       code: discount.code,
+      type: discount.type,
       isActive: discount.isActive,
       products: discount.productIds,
       bundles: discount.bundleIds,
       createdBy: {
-        name: adminName,
+        // name: adminName,
         id: adminId,
       },
     };

@@ -12,3 +12,7 @@
     at processTimers (node:internal/timers:514:7)
 2024-08-14 09:07:56 error: Error: queryTxt ETIMEOUT cluster0.dbrhuj4.mongodb.net
     at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+2024-08-15 01:09:50 error: MongoNetworkTimeoutError: connection 1 to 3.109.196.137:27017 timed out
+    at Timeout._onTimeout (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connection.ts:300:20)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)

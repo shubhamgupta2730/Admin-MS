@@ -4,10 +4,8 @@ import Discount from '../../../models/discountModel';
 import Bundle from '../../../models/adminBundleModel';
 
 export const applyDiscount = async (req: Request, res: Response) => {
-  const { productIds, bundleIds, type } = req.body;
+  const { productIds, bundleIds } = req.body;
   const { discountId } = req.query;
-
-  console.log('Received request to apply discount:', req.body);
 
   if (
     (!productIds || productIds.length === 0) &&
@@ -39,6 +37,7 @@ export const applyDiscount = async (req: Request, res: Response) => {
     const discount = await Discount.findOne({
       _id: discountId,
       isActive: true,
+      isDeleted: false,
     });
 
     if (!discount) {
@@ -47,6 +46,9 @@ export const applyDiscount = async (req: Request, res: Response) => {
         .status(400)
         .json({ message: 'Invalid or inactive discount ID' });
     }
+
+    // Retrieve the type from the discount
+    const { type } = discount;
 
     // Check if the discount is within the valid date range
     const now = new Date();
@@ -68,7 +70,7 @@ export const applyDiscount = async (req: Request, res: Response) => {
         try {
           const product = await validateAndFetchEntity(Product, productId);
           if (product) {
-            await applyDiscountToProduct(product, discount, type);
+            await applyDiscountToProduct(product, discount, type); // Use type from discount
             discount.productIds.push(productId);
             results.push({ id: productId, status: 'success' });
           }
@@ -86,7 +88,7 @@ export const applyDiscount = async (req: Request, res: Response) => {
         try {
           const bundle = await validateAndFetchEntity(Bundle, bundleId);
           if (bundle) {
-            await applyDiscountToBundle(bundle, discount, type);
+            await applyDiscountToBundle(bundle, discount, type); // Use type from discount
             discount.bundleIds.push(bundleId);
             results.push({ id: bundleId, status: 'success' });
           }
@@ -130,7 +132,6 @@ const validateAndFetchEntity = async (Model: any, entityId: string) => {
 
   return entity;
 };
-
 const applyDiscountToProduct = async (
   product: any,
   discount: any,
@@ -143,17 +144,20 @@ const applyDiscountToProduct = async (
   }
 
   product.adminDiscount = discount.discount;
+  product.discountId = discount._id; // Store the discount ID in the product
+
   if (type === 'MRP') {
     if (typeof product.MRP === 'undefined' || product.MRP === null) {
       throw new Error(`Invalid MRP value for product ID ${product._id}`);
     }
+
     const newMRP = product.MRP - (product.MRP * discount.discount) / 100;
     if (newMRP < 0) {
       throw new Error(
         `Discounted MRP cannot be less than zero for product ID ${product._id}`
       );
     }
-    product.sellingPrice = newMRP;
+    product.sellingPrice = newMRP; // Set the new selling price based on MRP
   } else {
     if (
       typeof product.sellingPrice === 'undefined' ||
@@ -171,7 +175,7 @@ const applyDiscountToProduct = async (
         `Discounted selling price cannot be less than zero for product ID ${product._id}`
       );
     }
-    product.sellingPrice = newSellingPrice;
+    product.sellingPrice = newSellingPrice; // Set the new selling price
   }
 
   await product.save();
@@ -190,6 +194,8 @@ const applyDiscountToBundle = async (
   }
 
   bundle.adminDiscount = discount.discount;
+  bundle.discountId = discount._id; // Store the discount ID in the bundle
+
   if (type === 'MRP') {
     if (typeof bundle.MRP === 'undefined' || bundle.MRP === null) {
       throw new Error(`Invalid MRP value for bundle ID ${bundle._id}`);
@@ -201,7 +207,7 @@ const applyDiscountToBundle = async (
         `Discounted MRP cannot be less than zero for bundle ID ${bundle._id}`
       );
     }
-    bundle.sellingPrice = newMRP;
+    bundle.sellingPrice = newMRP; // Set the new selling price based on MRP
   } else {
     if (
       typeof bundle.sellingPrice === 'undefined' ||
@@ -217,7 +223,7 @@ const applyDiscountToBundle = async (
         `Discounted selling price cannot be less than zero for bundle ID ${bundle._id}`
       );
     }
-    bundle.sellingPrice = newSellingPrice;
+    bundle.sellingPrice = newSellingPrice; // Set the new selling price
   }
 
   await bundle.save();

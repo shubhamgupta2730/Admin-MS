@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Bundle from '../../../models/adminBundleModel';
 import Product from '../../../models/productModel';
+import Discount from '../../../models/discountModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -38,6 +39,8 @@ export const getBundle = async (req: CustomRequest, res: Response) => {
     const bundle = await Bundle.findOne({
       _id: bundleId,
       isDeleted: false,
+      isActive: true,
+      isBlocked: false,
     }).exec();
 
     if (!bundle) {
@@ -78,6 +81,8 @@ export const getBundle = async (req: CustomRequest, res: Response) => {
       MRP: bundle.MRP,
       sellingPrice: bundle.sellingPrice,
       discount: bundle.discount,
+      adminDiscount: bundle.adminDiscount,
+      discountId: bundle.discountId,
       products: bundle.products.map((p) => productMap[p.productId.toString()]),
     };
 

@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Category from '../../../models/productCategoryModel';
 import Admin from '../../../models/authModel';
+import Product from '../../../models/productModel'; // Assuming you have a Product model
 
 interface CustomRequest extends Request {
   query: {
@@ -19,6 +20,7 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
   }
 
   try {
+    // Fetch the category by ID
     const category = await Category.findOne({ _id: id, isActive: true });
     if (!category) {
       return res.status(404).json({
@@ -36,9 +38,16 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Fetch product details (IDs and names)
+    const products = await Product.find({
+      _id: { $in: category.productIds },
+      isActive: true,
+    }).select('_id name');
+
     // Format dates
     const formatDate = (date: Date) => date.toISOString().split('T')[0];
 
+    // Prepare the category object with product details
     const categoryObject = {
       id: category._id,
       name: category.name,
@@ -49,7 +58,10 @@ export const getCategory = async (req: CustomRequest, res: Response) => {
         id: admin._id,
         name: admin.name,
       },
-      products: category.productIds,
+      products: products.map((product) => ({
+        id: product._id,
+        name: product.name,
+      })),
     };
 
     res.status(200).json({

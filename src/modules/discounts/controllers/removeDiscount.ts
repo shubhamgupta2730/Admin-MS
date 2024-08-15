@@ -29,25 +29,54 @@ export const removeDiscount = async (req: Request, res: Response) => {
     discount.isDeleted = true;
     await discount.save();
 
-    // Update associated products
+    // Remove discount and recalculate prices for products
     if (discount.productIds && discount.productIds.length > 0) {
-      await Product.updateMany(
-        { _id: { $in: discount.productIds } },
-        { $set: { adminDiscount: null } }
-      );
+      for (const productId of discount.productIds) {
+        const product = await Product.findById(productId);
+        if (product) {
+          if (discount.type === 'MRP' && product.MRP) {
+            // Reapply seller discount to MRP
+            const sellerDiscountedPrice =
+              product.MRP - (product.MRP * product.discount) / 100;
+            product.sellingPrice =
+              sellerDiscountedPrice > 0 ? sellerDiscountedPrice : product.MRP;
+          } else if (discount.type === 'sellingPrice' && product.sellingPrice) {
+            // Just remove the admin discount, seller discount remains applied
+            const originalPrice =
+              product.sellingPrice / (1 - discount.discount / 100);
+            product.sellingPrice = originalPrice;
+          }
+          product.adminDiscount = null;
+          await product.save();
+        }
+      }
     }
 
-    // Update associated bundles
+    // Remove discount and recalculate prices for bundles
     if (discount.bundleIds && discount.bundleIds.length > 0) {
-      await Bundle.updateMany(
-        { _id: { $in: discount.bundleIds } },
-        { $set: { adminDiscount: null } }
-      );
+      for (const bundleId of discount.bundleIds) {
+        const bundle = await Bundle.findById(bundleId);
+        if (bundle) {
+          if (discount.type === 'MRP' && bundle.MRP) {
+            // Reapply seller discount to MRP
+            const sellerDiscountedPrice =
+              bundle.MRP - (bundle.MRP * bundle.discount) / 100;
+            bundle.sellingPrice =
+              sellerDiscountedPrice > 0 ? sellerDiscountedPrice : bundle.MRP;
+          } else if (discount.type === 'sellingPrice' && bundle.sellingPrice) {
+            // Just remove the admin discount, seller discount remains applied
+            const originalPrice =
+              bundle.sellingPrice / (1 - discount.discount / 100);
+            bundle.sellingPrice = originalPrice;
+          }
+          bundle.adminDiscount = undefined;
+          await bundle.save();
+        }
+      }
     }
 
     res.status(200).json({
-      message: 'Discount removed successfully',
-      discount,
+      message: 'Discount removed and prices recalculated successfully',
     });
   } catch (error) {
     res.status(500).json({ message: 'Failed to remove discount', error });
