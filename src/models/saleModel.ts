@@ -1,14 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
-interface ISaleProduct {
-  productId: mongoose.Types.ObjectId;
-  quantity: number;
-  discount: number;
-}
-
-interface ISaleBundle {
-  bundleId: mongoose.Types.ObjectId;
-  quantity: number;
+interface ISaleCategory {
+  categoryId: mongoose.Types.ObjectId;
   discount: number;
 }
 
@@ -17,31 +10,20 @@ interface ISale extends Document {
   description: string;
   startDate: Date;
   endDate: Date;
-  products: ISaleProduct[];
-  bundles: ISaleBundle[];
+  categories: ISaleCategory[];
   isActive: boolean;
+  isDeleted: boolean;
   createdBy: mongoose.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
 }
 
-const saleProductSchema = new Schema<ISaleProduct>({
-  productId: {
+const saleCategorySchema = new Schema<ISaleCategory>({
+  categoryId: {
     type: Schema.Types.ObjectId,
-    ref: 'Product',
+    ref: 'Category',
     required: true,
   },
-  quantity: { type: Number, required: true },
-  discount: { type: Number, required: true },
-});
-
-const saleBundleSchema = new Schema<ISaleBundle>({
-  bundleId: {
-    type: Schema.Types.ObjectId,
-    ref: 'Bundle',
-    required: true,
-  },
-  quantity: { type: Number, required: true },
   discount: { type: Number, required: true },
 });
 
@@ -50,9 +32,9 @@ const saleSchema = new Schema<ISale>({
   description: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
-  products: [saleProductSchema],
-  bundles: [saleBundleSchema],
+  categories: [saleCategorySchema],
   isActive: { type: Boolean, default: true },
+  isDeleted: { type: Boolean, default: false },
   createdBy: { type: Schema.Types.ObjectId, ref: 'Admin', required: true },
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
