@@ -160,7 +160,7 @@ const removeDiscountFromProduct = async (product: any, discount: any) => {
     // Directly remove the discount percentage from the selling price
     const discountAmount = (product.sellingPrice * discount.discount) / 100;
     sellingPrice += discountAmount;
-    console.log(sellingPrice)
+    console.log(sellingPrice);
   }
 
   // if (isNaN(sellingPrice) || sellingPrice < 0) {
@@ -192,8 +192,7 @@ const removeDiscountFromBundle = async (bundle: any, discount: any) => {
     // Add back the discount that was previously applied to selling price
     // const discountAmount = (bundle.MRP * discount.discount) / 100;
     //  newMRP  = bundle.MRP - discountAmount;
-      sellingPrice = bundle.MRP - bundle.MRP * (bundle.discount / 100);
-
+    sellingPrice = bundle.MRP - bundle.MRP * (bundle.discount / 100);
   } else if (discount.type === 'sellingPrice') {
     // Directly remove the discount percentage from the selling price
     const discountAmount = (bundle.sellingPrice * discount.discount) / 100;

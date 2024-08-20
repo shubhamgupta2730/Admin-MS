@@ -10,7 +10,14 @@ interface CustomRequest extends Request {
 }
 
 export const getAllSales = async (req: CustomRequest, res: Response) => {
-  const { search, sortBy, sortOrder, page = 1, limit = 10, isActive } = req.query;
+  const {
+    search,
+    sortBy,
+    sortOrder,
+    page = 1,
+    limit = 10,
+    isActive,
+  } = req.query;
 
   const pageNumber = parseInt(page as string, 10);
   const limitNumber = parseInt(limit as string, 10);

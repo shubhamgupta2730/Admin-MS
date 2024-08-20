@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Sale from '../../../models/saleModel';
-import Category from '../../../models/productCategoryModel'; 
+import Category from '../../../models/productCategoryModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -10,7 +10,10 @@ interface CustomRequest extends Request {
   };
 }
 
-export const removeCategoriesFromSale = async (req: CustomRequest, res: Response) => {
+export const removeCategoriesFromSale = async (
+  req: CustomRequest,
+  res: Response
+) => {
   const saleId = req.query.saleId as string;
   const { categoryIds }: { categoryIds: string[] } = req.body;
 
@@ -22,7 +25,10 @@ export const removeCategoriesFromSale = async (req: CustomRequest, res: Response
   }
 
   // Validate Category IDs
-  if (!Array.isArray(categoryIds) || categoryIds.some(id => !mongoose.Types.ObjectId.isValid(id))) {
+  if (
+    !Array.isArray(categoryIds) ||
+    categoryIds.some((id) => !mongoose.Types.ObjectId.isValid(id))
+  ) {
     return res.status(400).json({
       message: 'Invalid category ID(s).',
     });
@@ -40,7 +46,7 @@ export const removeCategoriesFromSale = async (req: CustomRequest, res: Response
 
     const removedCategories: string[] = [];
     const notFoundCategories: string[] = [];
-    
+
     // Process each categoryId
     for (const categoryId of categoryIds) {
       const categoryIndex = sale.categories.findIndex(

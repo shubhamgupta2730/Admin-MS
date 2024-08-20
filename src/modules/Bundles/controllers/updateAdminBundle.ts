@@ -62,8 +62,8 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
     let newProducts: mongoose.Types.ObjectId[] = [];
 
     if (products && Array.isArray(products) && products.length > 0) {
-      const productIds = products.map((p) =>
-        new mongoose.Types.ObjectId(p.productId)
+      const productIds = products.map(
+        (p) => new mongoose.Types.ObjectId(p.productId)
       );
 
       const activeProducts = await Product.find({

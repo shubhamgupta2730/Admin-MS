@@ -10,7 +10,7 @@ interface CustomRequest extends Request {
 }
 
 export const deleteSale = async (req: CustomRequest, res: Response) => {
-  const  saleId  = req.query.saleId as string;
+  const saleId = req.query.saleId as string;
 
   if (!mongoose.Types.ObjectId.isValid(saleId)) {
     return res.status(400).json({
@@ -32,7 +32,7 @@ export const deleteSale = async (req: CustomRequest, res: Response) => {
     }
 
     return res.status(200).json({
-      message: 'Sale deleted successfully'
+      message: 'Sale deleted successfully',
     });
   } catch (error) {
     const err = error as Error;

@@ -20,7 +20,7 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
     });
   }
 
-  let updateFields: any = {};
+  const updateFields: any = {};
 
   if (name !== undefined) {
     if (!name.trim()) {
@@ -127,24 +127,36 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
         });
       }
 
-      const validCategories = await Promise.all(categories.map(async (category) => {
-        if (!category.categoryId || !mongoose.Types.ObjectId.isValid(category.categoryId)) {
-          return { valid: false, message: 'Invalid categoryId.' };
-        }
+      const validCategories = await Promise.all(
+        categories.map(async (category) => {
+          if (
+            !category.categoryId ||
+            !mongoose.Types.ObjectId.isValid(category.categoryId)
+          ) {
+            return { valid: false, message: 'Invalid categoryId.' };
+          }
 
-        const cat = await Category.findById(category.categoryId);
-        if (!cat ||  !cat.isActive) {
-          return { valid: false, message: 'Category is either inactive or deleted.' };
-        }
+          const cat = await Category.findById(category.categoryId);
+          if (!cat || !cat.isActive) {
+            return {
+              valid: false,
+              message: 'Category is either inactive or deleted.',
+            };
+          }
 
-        if (typeof category.discount !== 'number' || category.discount <= 0 || category.discount > 100) {
-          return { valid: false, message: 'Invalid discount value.' };
-        }
+          if (
+            typeof category.discount !== 'number' ||
+            category.discount <= 0 ||
+            category.discount > 100
+          ) {
+            return { valid: false, message: 'Invalid discount value.' };
+          }
 
-        return { valid: true, category };
-      }));
+          return { valid: true, category };
+        })
+      );
 
-      const invalidCategory = validCategories.find(cat => !cat.valid);
+      const invalidCategory = validCategories.find((cat) => !cat.valid);
       if (invalidCategory) {
         return res.status(400).json({
           message: invalidCategory.message,
@@ -152,7 +164,7 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
       }
 
       const existingCategories = sale.categories || [];
-      const newCategories = validCategories.map(cat => cat.category);
+      const newCategories = validCategories.map((cat) => cat.category);
 
       updateFields.categories = [...existingCategories, ...newCategories];
     }
@@ -160,8 +172,7 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
     if (start || end) {
       const now = new Date();
       updateFields.isActive =
-        (start || sale.startDate) <= now &&
-        now <= (end || sale.endDate);
+        (start || sale.startDate) <= now && now <= (end || sale.endDate);
     }
 
     const updatedSale = await Sale.findOneAndUpdate(

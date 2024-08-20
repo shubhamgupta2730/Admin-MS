@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Sale from '../../../models/saleModel';
+import Product from '../../../models/productModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -19,10 +20,16 @@ export const getSale = async (req: CustomRequest, res: Response) => {
   }
 
   try {
-    const sale = await Sale.findOne({ _id: saleId, isDeleted: false }).populate({
-      path: 'categories.categoryId',
-      select: 'name',
-    });
+    // Find the sale with populated categories and products
+    const sale = await Sale.findOne({ _id: saleId, isDeleted: false })
+      .populate({
+        path: 'categories.categoryId',
+        select: 'name',
+      })
+      .populate({
+        path: 'products.productId',
+        select: 'name sellingPrice categoryId', 
+      });
 
     if (!sale) {
       return res.status(404).json({
@@ -30,6 +37,7 @@ export const getSale = async (req: CustomRequest, res: Response) => {
       });
     }
 
+    // Format the sale for response
     const formattedSale = {
       id: sale._id,
       name: sale.name,
@@ -37,11 +45,27 @@ export const getSale = async (req: CustomRequest, res: Response) => {
       startDate: sale.startDate.toLocaleDateString(),
       endDate: sale.endDate.toLocaleDateString(),
       isActive: sale.isActive,
-      categories: sale.categories.map((cat) => ({
-        categoryId: cat.categoryId?._id || 'Unknown',
-        categoryName: (cat.categoryId as any)?.name || 'Unknown',
-        discount: cat.discount,
-      })),
+      categories: sale.categories.map((cat) => {
+        // Ensure that categoryId is populated and accessible
+        const category = cat.categoryId as any; 
+
+        // Get all products related to the current category
+        const productsInCategory = sale.products
+          .map(p => p.productId as any) 
+          .filter(product => (product.categoryId as any)?._id.equals(category._id)) 
+          .map(product => ({
+            productId: product._id,
+            productName: product.name,
+            sellingPrice: product.sellingPrice,
+          }));
+
+        return {
+          categoryId: category._id,
+          categoryName: category.name || 'Unknown',
+          discount: cat.discount,
+          products: productsInCategory,
+        };
+      }),
       createdBy: sale.createdBy,
     };
 
