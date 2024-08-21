@@ -88,7 +88,7 @@ export const updateBundle = async (req: CustomRequest, res: Response) => {
 
       // Calculate the new total MRP based on the new products
       totalMRP = activeProducts.reduce(
-        (acc, product) => acc + product.MRP,
+        (acc, product) => acc + product.sellingPrice,
         existingBundle.MRP
       );
 

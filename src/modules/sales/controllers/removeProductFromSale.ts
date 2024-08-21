@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Sale from '../../../models/saleModel';
 import Product from '../../../models/productModel';
+import Bundle from '../../../models/adminBundleModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -10,10 +11,7 @@ interface CustomRequest extends Request {
   };
 }
 
-export const removeProductFromSale = async (
-  req: CustomRequest,
-  res: Response
-) => {
+export const removeProductFromSale = async (req: CustomRequest, res: Response) => {
   const saleId = req.query.saleId as string;
   const { productIds }: { productIds: string[] } = req.body;
 
@@ -42,9 +40,7 @@ export const removeProductFromSale = async (
 
   try {
     // Find the sale
-    const sale = await Sale.findOne({ _id: saleId, isDeleted: false }).populate(
-      'categories.categoryId'
-    );
+    const sale = await Sale.findOne({ _id: saleId, isDeleted: false }).populate('categories.categoryId');
 
     if (!sale) {
       return res.status(404).json({
@@ -60,8 +56,10 @@ export const removeProductFromSale = async (
       });
     }
 
-    const removedProducts = [];
-    const notFoundProducts = [];
+    const removedProducts: string[] = [];
+    const notFoundProducts: string[] = [];
+    const removedBundles: string[] = [];
+    const updatedBundles: string[] = [];
 
     // Process each productId
     for (const productId of productIds) {
@@ -78,22 +76,77 @@ export const removeProductFromSale = async (
       // Remove the product from the sale
       sale.products.splice(productIndex, 1);
 
-      // Find the product and remove the discount
+      // Find the product and restore the original selling price
       const product = await Product.findById(productId);
       if (product) {
-        const saleCategory = sale.categories.find((cat) =>
-          product.categoryId?.equals(cat.categoryId._id)
-        );
+        const saleCategory = sale.categories.find((cat) => product.categoryId?.equals(cat.categoryId._id));
 
         if (saleCategory) {
           // Recalculate the original price without the discount
-          const originalPrice =
-            product.sellingPrice / (1 - saleCategory.discount / 100);
+          const originalPrice = product.sellingPrice / (1 - saleCategory.discount / 100);
           product.sellingPrice = originalPrice;
           await product.save();
         }
 
         removedProducts.push(productId);
+
+        // Check for bundles containing this product and update/remove them
+        const bundlesContainingProduct = await Bundle.find({
+          'products.productId': productId,
+          isActive: true,
+          isDeleted: false,
+        });
+
+        for (const bundle of bundlesContainingProduct) {
+          const bundleId = bundle._id as mongoose.Types.ObjectId;
+
+          const productCount = bundle.products.length;
+
+          // If the bundle contains only one product, remove the bundle from the sale
+          if (productCount === 1) {
+            const bundleIndex = sale.bundles.findIndex((b) => b.bundleId.equals(bundleId));
+            if (bundleIndex !== -1) {
+              sale.bundles.splice(bundleIndex, 1);
+              removedBundles.push(bundleId.toString());
+            }
+          } else {
+            // If the bundle contains more than one product, update the bundle's selling price
+            let totalMRP = 0;
+            let totalDiscountedPrice = 0;
+
+            for (const bundleProduct of bundle.products) {
+              if (bundleProduct.productId.toString() !== productId) {
+                const productInBundle = await Product.findOne({
+                  _id: bundleProduct.productId,
+                  isActive: true,
+                  isDeleted: false,
+                });
+
+                if (productInBundle) {
+                  const saleCategoryForBundleProduct = sale.categories.find((cat) =>
+                    productInBundle.categoryId?.equals(cat.categoryId._id)
+                  );
+
+                  const bundleProductDiscount = saleCategoryForBundleProduct
+                    ? saleCategoryForBundleProduct.discount
+                    : 0;
+
+                  const bundleProductDiscountedPrice =
+                    productInBundle.sellingPrice -
+                    (productInBundle.sellingPrice * bundleProductDiscount) / 100;
+
+                  totalMRP += productInBundle.MRP;
+                  totalDiscountedPrice += bundleProductDiscountedPrice;
+                }
+              }
+            }
+
+            // Update the bundle's selling price
+            bundle.sellingPrice = totalDiscountedPrice;
+            await bundle.save();
+            updatedBundles.push(bundleId.toString());
+          }
+        }
       }
     }
 
@@ -105,6 +158,8 @@ export const removeProductFromSale = async (
       message: 'Products removal process completed.',
       removedProducts,
       notFoundProducts,
+      removedBundles,
+      updatedBundles,
     });
   } catch (error) {
     const err = error as Error;

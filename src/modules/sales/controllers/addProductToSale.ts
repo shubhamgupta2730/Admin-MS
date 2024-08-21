@@ -2,12 +2,22 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Sale from '../../../models/saleModel';
 import Product from '../../../models/productModel';
+import Bundle from '../../../models/adminBundleModel';
 
 interface CustomRequest extends Request {
   user?: {
     userId: string;
     role?: string;
   };
+}
+
+interface ISaleProduct {
+  productId: mongoose.Types.ObjectId;
+
+}
+
+interface ISaleBundle {
+  bundleId: mongoose.Types.ObjectId;
 }
 
 export const addProductsToSale = async (req: CustomRequest, res: Response) => {
@@ -49,11 +59,15 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
     }
 
     // Collect IDs of products already in the sale
-    const existingProductIds = sale.products.map(p => p.productId.toString());
-    
-    const validProducts: { productId: mongoose.Types.ObjectId }[] = [];
+    const existingProductIds = sale.products.map((p) => p.productId.toString());
+    const existingBundleIds = sale.bundles.map((b) => b.bundleId.toString());
+
+    const validProducts: ISaleProduct[] = [];
+    const validBundles: ISaleBundle[] = [];
+
+    // Validate and process products
     for (const product of products) {
-      const productId = product.productId;  // Extract productId from the object
+      const productId = product.productId;
 
       if (!mongoose.Types.ObjectId.isValid(productId)) {
         return res.status(400).json({
@@ -102,20 +116,82 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
       productData.sellingPrice = discountedPrice;
       await productData.save();
 
-      validProducts.push({ productId: new mongoose.Types.ObjectId(productId) });  // Add the productId to the validProducts array
+      const saleProduct: ISaleProduct = {
+        productId: new mongoose.Types.ObjectId(productId),
+      };
+
+      validProducts.push(saleProduct);
+
+      // Find bundles containing this product
+      const bundlesContainingProduct = await Bundle.find({
+        'products.productId': productId,
+        isActive: true,
+        isDeleted: false,
+        isBlocked: false,
+      });
+
+      for (const bundle of bundlesContainingProduct) {
+        // Check if the bundle is already in the sale
+        const bundleId = bundle._id as mongoose.Types.ObjectId;
+
+        if (existingBundleIds.includes(bundleId.toString())) {
+          continue;
+        }
+
+        // Recalculate the selling price of the bundle
+        let totalMRP = 0;
+        let totalDiscountedPrice = 0;
+
+        for (const bundleProduct of bundle.products) {
+          const productInBundle = await Product.findOne({
+            _id: bundleProduct.productId,
+            isActive: true,
+            isDeleted: false,
+            isBlocked: false,
+          });
+
+          if (productInBundle) {
+            const saleCategoryForBundleProduct = sale.categories.find((cat) =>
+              productInBundle.categoryId?.equals(cat.categoryId._id)
+            );
+
+            const bundleProductDiscount = saleCategoryForBundleProduct
+              ? saleCategoryForBundleProduct.discount
+              : 0;
+
+            const bundleProductDiscountedPrice =
+              productInBundle.sellingPrice -
+              (productInBundle.sellingPrice * bundleProductDiscount) / 100;
+
+            totalMRP += productInBundle.MRP;
+            totalDiscountedPrice += bundleProductDiscountedPrice;
+          }
+        }
+
+        // Update bundle's selling price
+        bundle.sellingPrice = totalDiscountedPrice;
+        await bundle.save();
+
+        // Create an object that matches the ISaleBundle interface
+        const saleBundle: ISaleBundle = {
+          bundleId,
+        };
+
+        validBundles.push(saleBundle);
+      }
     }
 
-    // Adding valid products to the sale
     sale.products = sale.products.concat(validProducts);
+    sale.bundles = sale.bundles.concat(validBundles);
     await sale.save();
 
     return res.status(200).json({
-      message: 'Products added to the sale successfully.',
+      message: 'Products and related bundles added to the sale successfully.',
     });
   } catch (error) {
     const err = error as Error;
     return res.status(500).json({
-      message: 'Failed to add products to sale',
+      message: 'Failed to add products or bundles to sale',
       error: err.message,
     });
   }

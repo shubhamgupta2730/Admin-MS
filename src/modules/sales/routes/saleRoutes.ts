@@ -24,7 +24,17 @@ router.patch(
   authorizeAdmin,
   removeCategoriesFromSale
 );
-router.post('/add-products', authenticateAdmin, authorizeAdmin, addProductsToSale);
-router.post('/remove-product', authenticateAdmin, authorizeAdmin, removeProductFromSale);
+router.post(
+  '/add-products',
+  authenticateAdmin,
+  authorizeAdmin,
+  addProductsToSale
+);
+router.post(
+  '/remove-product',
+  authenticateAdmin,
+  authorizeAdmin,
+  removeProductFromSale
+);
 
 export default router;

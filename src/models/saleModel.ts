@@ -9,6 +9,10 @@ interface ISaleProduct {
   productId: mongoose.Types.ObjectId;
 }
 
+interface ISaleBundle {
+  bundleId: mongoose.Types.ObjectId;
+}
+
 interface ISale extends Document {
   name: string;
   description: string;
@@ -16,6 +20,7 @@ interface ISale extends Document {
   endDate: Date;
   categories: ISaleCategory[];
   products: ISaleProduct[];
+  bundles: ISaleBundle[];
   isActive: boolean;
   isDeleted: boolean;
   createdBy: mongoose.Types.ObjectId;
@@ -40,6 +45,14 @@ const saleProductSchema = new Schema<ISaleProduct>({
   },
 });
 
+const saleBundleSchema = new Schema<ISaleBundle>({
+  bundleId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Bundle',
+    required: true,
+  },
+});
+
 const saleSchema = new Schema<ISale>({
   name: { type: String, required: true },
   description: { type: String, required: true },
@@ -47,6 +60,7 @@ const saleSchema = new Schema<ISale>({
   endDate: { type: Date, required: true },
   categories: [saleCategorySchema],
   products: [saleProductSchema],
+  bundles: [saleBundleSchema],
   isActive: { type: Boolean, default: true },
   isDeleted: { type: Boolean, default: false },
   createdBy: { type: Schema.Types.ObjectId, ref: 'Admin', required: true },
