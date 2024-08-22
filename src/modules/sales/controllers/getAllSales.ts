@@ -54,8 +54,8 @@ export const getAllSales = async (req: CustomRequest, res: Response) => {
       id: sale._id,
       name: sale.name,
       description: sale.description,
-      startDate: sale.startDate.toLocaleDateString(),
-      endDate: sale.endDate.toLocaleDateString(),
+      startDate: sale.startDate.toLocaleString(),  // Date and time format
+      endDate: sale.endDate.toLocaleString(), 
       isActive: sale.isActive,
       // categories: sale.categories.map((cat) => ({
       //   categoryId: cat.categoryId._id,

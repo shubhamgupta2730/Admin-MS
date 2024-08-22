@@ -79,11 +79,17 @@ export const removeProductFromSale = async (req: CustomRequest, res: Response) =
       // Find the product and restore the original selling price
       const product = await Product.findById(productId);
       if (product) {
-        const saleCategory = sale.categories.find((cat) => product.categoryId?.equals(cat.categoryId._id));
+        const saleCategory = sale.categories.find((cat) =>
+          product.categoryId?.equals(cat.categoryId._id)
+        );
 
         if (saleCategory) {
-          // Recalculate the original price without the discount
-          const originalPrice = product.sellingPrice / (1 - saleCategory.discount / 100);
+          // Calculate the original price before the discount was applied
+          const discount = saleCategory.discount;
+          const discountedPrice = product.sellingPrice;
+          const originalPrice = discountedPrice / (1 - discount / 100);
+
+          // Restore the original selling price
           product.sellingPrice = originalPrice;
           await product.save();
         }
@@ -100,48 +106,54 @@ export const removeProductFromSale = async (req: CustomRequest, res: Response) =
         for (const bundle of bundlesContainingProduct) {
           const bundleId = bundle._id as mongoose.Types.ObjectId;
 
-          const productCount = bundle.products.length;
+          const bundleProducts = bundle.products;
+          const bundleProductCount = bundleProducts.length;
 
-          // If the bundle contains only one product, remove the bundle from the sale
-          if (productCount === 1) {
-            const bundleIndex = sale.bundles.findIndex((b) => b.bundleId.equals(bundleId));
+          // Remove the bundle if no products are left in the sale
+          const remainingProductsInBundle = bundleProducts.filter(bp =>
+            sale.products.some(sp => sp.productId.equals(bp.productId))
+          );
+
+          if (remainingProductsInBundle.length === 0) {
+            // If the bundle contains no products left in the sale, remove it from the sale
+            const bundleIndex = sale.bundles.findIndex((b) =>
+              b.bundleId.equals(bundleId)
+            );
             if (bundleIndex !== -1) {
               sale.bundles.splice(bundleIndex, 1);
               removedBundles.push(bundleId.toString());
             }
           } else {
-            // If the bundle contains more than one product, update the bundle's selling price
+            // Update the bundle's selling price if products are left
             let totalMRP = 0;
             let totalDiscountedPrice = 0;
 
-            for (const bundleProduct of bundle.products) {
-              if (bundleProduct.productId.toString() !== productId) {
-                const productInBundle = await Product.findOne({
-                  _id: bundleProduct.productId,
-                  isActive: true,
-                  isDeleted: false,
-                });
+            for (const bundleProduct of remainingProductsInBundle) {
+              const productInBundle = await Product.findOne({
+                _id: bundleProduct.productId,
+                isActive: true,
+                isDeleted: false,
+              });
 
-                if (productInBundle) {
-                  const saleCategoryForBundleProduct = sale.categories.find((cat) =>
-                    productInBundle.categoryId?.equals(cat.categoryId._id)
-                  );
+              if (productInBundle) {
+                const saleCategoryForBundleProduct = sale.categories.find((cat) =>
+                  productInBundle.categoryId?.equals(cat.categoryId._id)
+                );
 
-                  const bundleProductDiscount = saleCategoryForBundleProduct
-                    ? saleCategoryForBundleProduct.discount
-                    : 0;
+                const bundleProductDiscount = saleCategoryForBundleProduct
+                  ? saleCategoryForBundleProduct.discount
+                  : 0;
 
-                  const bundleProductDiscountedPrice =
-                    productInBundle.sellingPrice -
-                    (productInBundle.sellingPrice * bundleProductDiscount) / 100;
+                const bundleProductDiscountedPrice =
+                  productInBundle.sellingPrice /
+                  (1 - bundleProductDiscount / 100);
 
-                  totalMRP += productInBundle.MRP;
-                  totalDiscountedPrice += bundleProductDiscountedPrice;
-                }
+                totalMRP += productInBundle.MRP;
+                totalDiscountedPrice += bundleProductDiscountedPrice;
               }
             }
 
-            // Update the bundle's selling price
+            // Update the bundle's selling price with the original price (before the discount)
             bundle.sellingPrice = totalDiscountedPrice;
             await bundle.save();
             updatedBundles.push(bundleId.toString());

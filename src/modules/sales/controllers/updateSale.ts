@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import moment from 'moment';
 import Sale from '../../../models/saleModel';
-import Category from '../../../models/productCategoryModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -12,7 +12,7 @@ interface CustomRequest extends Request {
 
 export const updateSale = async (req: CustomRequest, res: Response) => {
   const saleId = req.query.saleId as string;
-  const { name, description, startDate, endDate, categories } = req.body;
+  const { name, description, startDate, endDate } = req.body;
 
   if (!mongoose.Types.ObjectId.isValid(saleId)) {
     return res.status(400).json({
@@ -52,8 +52,8 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
     updateFields.description = description.trim();
   }
 
-  let start: Date | undefined;
-  let end: Date | undefined;
+  let start: moment.Moment | undefined;
+  let end: moment.Moment | undefined;
 
   try {
     const sale = await Sale.findById(saleId);
@@ -64,115 +64,48 @@ export const updateSale = async (req: CustomRequest, res: Response) => {
     }
 
     if (startDate !== undefined) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(startDate)) {
+      start = moment(startDate, 'YYYY-MM-DD HH:mm:ss', true);
+      if (!start.isValid()) {
         return res.status(400).json({
-          message: 'The startDate must be in yyyy-mm-dd format.',
+          message: 'Invalid date format for startDate. Expected format: YYYY-MM-DD HH:mm:ss',
         });
       }
-      start = new Date(startDate);
-      if (isNaN(start.getTime())) {
-        return res.status(400).json({
-          message: 'Invalid date format for startDate.',
-        });
-      }
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      if (start < today) {
+
+      // Check if the start date is in the past
+      const now = moment();
+      if (start.isBefore(now)) {
         return res.status(400).json({
           message: 'The startDate cannot be in the past.',
         });
       }
-      updateFields.startDate = start;
+      updateFields.startDate = start.toDate();
     } else {
-      start = sale.startDate;
+      start = moment(sale.startDate);
     }
 
     if (endDate !== undefined) {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(endDate)) {
+      end = moment(endDate, 'YYYY-MM-DD HH:mm:ss', true);
+      if (!end.isValid()) {
         return res.status(400).json({
-          message: 'The endDate must be in yyyy-mm-dd format.',
+          message: 'Invalid date format for endDate. Expected format: YYYY-MM-DD HH:mm:ss',
         });
       }
-      end = new Date(endDate);
-      if (isNaN(end.getTime())) {
-        return res.status(400).json({
-          message: 'Invalid date format for endDate.',
-        });
-      }
-      if (start && start >= end) {
+      if (start && start.isSameOrAfter(end)) {
         return res.status(400).json({
           message: 'endDate must be later than startDate.',
         });
       }
-      if (end < new Date()) {
-        return res.status(400).json({
-          message: 'The endDate cannot be in the past.',
-        });
-      }
-      updateFields.endDate = end;
+      updateFields.endDate = end.toDate();
     }
 
-    if (start && !endDate) {
-      if (sale.endDate && start >= sale.endDate) {
-        return res.status(400).json({
-          message: 'startDate must be earlier than the current endDate.',
-        });
-      }
-    }
-
-    if (categories !== undefined) {
-      if (!Array.isArray(categories) || categories.length === 0) {
-        return res.status(400).json({
-          message: 'The categories field must be a non-empty array.',
-        });
-      }
-
-      const validCategories = await Promise.all(
-        categories.map(async (category) => {
-          if (
-            !category.categoryId ||
-            !mongoose.Types.ObjectId.isValid(category.categoryId)
-          ) {
-            return { valid: false, message: 'Invalid categoryId.' };
-          }
-
-          const cat = await Category.findById(category.categoryId);
-          if (!cat || !cat.isActive) {
-            return {
-              valid: false,
-              message: 'Category is either inactive or deleted.',
-            };
-          }
-
-          if (
-            typeof category.discount !== 'number' ||
-            category.discount <= 0 ||
-            category.discount > 100
-          ) {
-            return { valid: false, message: 'Invalid discount value.' };
-          }
-
-          return { valid: true, category };
-        })
-      );
-
-      const invalidCategory = validCategories.find((cat) => !cat.valid);
-      if (invalidCategory) {
-        return res.status(400).json({
-          message: invalidCategory.message,
-        });
-      }
-
-      const existingCategories = sale.categories || [];
-      const newCategories = validCategories.map((cat) => cat.category);
-
-      updateFields.categories = [...existingCategories, ...newCategories];
-    }
-
+    // Ensure the sale's active status is correct based on the dates
     if (start || end) {
-      const now = new Date();
+      const now = moment().toDate(); // Convert the current moment to a Date object
+      const saleStartDate = start ? start.toDate() : sale.startDate;
+      const saleEndDate = end ? end.toDate() : sale.endDate;
+
       updateFields.isActive =
-        (start || sale.startDate) <= now && now <= (end || sale.endDate);
+        saleStartDate <= now && now <= saleEndDate;
     }
 
     const updatedSale = await Sale.findOneAndUpdate(

@@ -13,7 +13,6 @@ interface CustomRequest extends Request {
 
 interface ISaleProduct {
   productId: mongoose.Types.ObjectId;
-
 }
 
 interface ISaleBundle {
@@ -107,19 +106,10 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
         });
       }
 
-      // Calculate the selling price after discount
-      const discount = saleCategory.discount;
-      const discountedPrice =
-        productData.sellingPrice - (productData.sellingPrice * discount) / 100;
-
-      // Update the product's selling price
-      productData.sellingPrice = discountedPrice;
-      await productData.save();
-
+      // Add product to the list of valid products to be added to the sale
       const saleProduct: ISaleProduct = {
         productId: new mongoose.Types.ObjectId(productId),
       };
-
       validProducts.push(saleProduct);
 
       // Find bundles containing this product
@@ -138,41 +128,7 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
           continue;
         }
 
-        // Recalculate the selling price of the bundle
-        let totalMRP = 0;
-        let totalDiscountedPrice = 0;
-
-        for (const bundleProduct of bundle.products) {
-          const productInBundle = await Product.findOne({
-            _id: bundleProduct.productId,
-            isActive: true,
-            isDeleted: false,
-            isBlocked: false,
-          });
-
-          if (productInBundle) {
-            const saleCategoryForBundleProduct = sale.categories.find((cat) =>
-              productInBundle.categoryId?.equals(cat.categoryId._id)
-            );
-
-            const bundleProductDiscount = saleCategoryForBundleProduct
-              ? saleCategoryForBundleProduct.discount
-              : 0;
-
-            const bundleProductDiscountedPrice =
-              productInBundle.sellingPrice -
-              (productInBundle.sellingPrice * bundleProductDiscount) / 100;
-
-            totalMRP += productInBundle.MRP;
-            totalDiscountedPrice += bundleProductDiscountedPrice;
-          }
-        }
-
-        // Update bundle's selling price
-        bundle.sellingPrice = totalDiscountedPrice;
-        await bundle.save();
-
-        // Create an object that matches the ISaleBundle interface
+        // Add bundle to the list of valid bundles to be added to the sale
         const saleBundle: ISaleBundle = {
           bundleId,
         };

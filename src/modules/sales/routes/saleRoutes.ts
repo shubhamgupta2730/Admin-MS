@@ -7,7 +7,6 @@ import { getSale } from '../controllers/getSaleById';
 import { getAllSales } from '../controllers/getAllSales';
 import { deleteSale } from '../controllers/removeSale';
 import { updateSale } from '../controllers/updateSale';
-import { removeCategoriesFromSale } from '../controllers/removeCategoryFromSale';
 import { Router } from 'express';
 import { addProductsToSale } from '../controllers/addProductToSale';
 import { removeProductFromSale } from '../controllers/removeProductFromSale';
@@ -18,12 +17,7 @@ router.get('/get-sale', authenticateAdmin, authorizeAdmin, getSale);
 router.get('/get-all-sales', authenticateAdmin, authorizeAdmin, getAllSales);
 router.delete('/delete-sale', authenticateAdmin, authorizeAdmin, deleteSale);
 router.patch('/update-sale', authenticateAdmin, authorizeAdmin, updateSale);
-router.patch(
-  '/remove-category',
-  authenticateAdmin,
-  authorizeAdmin,
-  removeCategoriesFromSale
-);
+
 router.post(
   '/add-products',
   authenticateAdmin,

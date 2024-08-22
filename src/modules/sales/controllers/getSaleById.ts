@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import Sale from '../../../models/saleModel';
 import Product from '../../../models/productModel';
-import Bundle from '../../../models/adminBundleModel'; // Assuming this is your bundle model
+import Bundle from '../../../models/adminBundleModel';
 
 interface CustomRequest extends Request {
   user?: {
@@ -51,8 +51,8 @@ export const getSale = async (req: CustomRequest, res: Response) => {
       id: sale._id,
       name: sale.name,
       description: sale.description,
-      startDate: sale.startDate.toLocaleDateString(),
-      endDate: sale.endDate.toLocaleDateString(),
+      startDate: sale.startDate.toLocaleString(),  // Date and time format
+      endDate: sale.endDate.toLocaleString(),      // Date and time format
       isActive: sale.isActive,
       categories: sale.categories.map((cat) => {
         const category = cat.categoryId as any;

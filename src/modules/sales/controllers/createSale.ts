@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
+import moment from 'moment';
 import Sale from '../../../models/saleModel';
 import Category from '../../../models/productCategoryModel';
 
@@ -42,18 +43,36 @@ export const createSale = async (req: CustomRequest, res: Response) => {
   }
 
   // Validate "startDate"
-  if (!startDate || !/^\d{4}-\d{2}-\d{2}$/.test(startDate)) {
+  if (!startDate || !moment(startDate, 'YYYY-MM-DD HH:mm:ss', true).isValid()) {
     return res.status(400).json({
       message:
-        'The startDate field is required and must be in yyyy-mm-dd format.',
+        'The startDate field is required and must be in yyyy-mm-dd HH:mm:ss format.',
     });
   }
 
   // Validate "endDate"
-  if (!endDate || !/^\d{4}-\d{2}-\d{2}$/.test(endDate)) {
+  if (!endDate || !moment(endDate, 'YYYY-MM-DD HH:mm:ss', true).isValid()) {
     return res.status(400).json({
       message:
-        'The endDate field is required and must be in yyyy-mm-dd format.',
+        'The endDate field is required and must be in yyyy-mm-dd HH:mm:ss format.',
+    });
+  }
+
+  // Parse dates
+  const start = moment(startDate, 'YYYY-MM-DD HH:mm:ss');
+  const end = moment(endDate, 'YYYY-MM-DD HH:mm:ss');
+
+  // Ensure startDate is not in the past
+  if (start.isBefore(moment())) {
+    return res.status(400).json({
+      message: 'The startDate and time cannot be in the past.',
+    });
+  }
+
+  // Ensure startDate is before endDate with time
+  if (!end.isAfter(start)) {
+    return res.status(400).json({
+      message: 'The endDate and time must be after the startDate and time.',
     });
   }
 
@@ -64,36 +83,24 @@ export const createSale = async (req: CustomRequest, res: Response) => {
     });
   }
 
-  // Parse dates
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  // Check for overlapping sales
+  const overlappingSale = await Sale.findOne({
+    $or: [
+      {
+        startDate: { $lte: end.toDate() },
+        endDate: { $gte: start.toDate() },
+      },
+      {
+        startDate: { $lte: start.toDate() },
+        endDate: { $gte: end.toDate() },
+      },
+    ],
+    isDeleted: false,
+  });
 
-  if (isNaN(start.getTime())) {
+  if (overlappingSale) {
     return res.status(400).json({
-      message: 'Invalid date format for startDate.',
-    });
-  }
-
-  if (isNaN(end.getTime())) {
-    return res.status(400).json({
-      message: 'Invalid date format for endDate.',
-    });
-  }
-
-  // Ensure startDate is not in the past
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  if (start < today) {
-    return res.status(400).json({
-      message: 'The startDate cannot be in the past.',
-    });
-  }
-
-  // Ensure startDate is before endDate
-  if (start >= end) {
-    return res.status(400).json({
-      message: 'startDate must be earlier than endDate.',
+      message: 'A sale already exists within the specified time period.',
     });
   }
 
@@ -142,11 +149,11 @@ export const createSale = async (req: CustomRequest, res: Response) => {
     const sale = new Sale({
       name: name.trim(),
       description: description.trim(),
-      startDate: start,
-      endDate: end,
+      startDate: start.toDate(),
+      endDate: end.toDate(),
       categories: validCategories,
       createdBy,
-      isActive: start <= new Date() && new Date() <= end,
+      isActive: start.isSameOrBefore(moment()) && end.isSameOrAfter(moment()),
     });
 
     await sale.save();
