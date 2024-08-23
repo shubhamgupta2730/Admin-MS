@@ -22,7 +22,10 @@ export const getSale = async (req: CustomRequest, res: Response) => {
 
   try {
     // Find the sale with populated categories, products, and bundles
-    const sale = await Sale.findOne({ _id: saleId, isDeleted: false })
+    const sale = await Sale.findOne({
+      _id: saleId,
+      isDeleted: false
+    })
       .populate({
         path: 'categories.categoryId',
         select: 'name',
@@ -51,8 +54,8 @@ export const getSale = async (req: CustomRequest, res: Response) => {
       id: sale._id,
       name: sale.name,
       description: sale.description,
-      startDate: sale.startDate.toLocaleString(),  // Date and time format
-      endDate: sale.endDate.toLocaleString(),      // Date and time format
+      startDate: sale.startDate.toLocaleString(), // Date and time format
+      endDate: sale.endDate.toLocaleString(), // Date and time format
       isActive: sale.isActive,
       categories: sale.categories.map((cat) => {
         const category = cat.categoryId as any;

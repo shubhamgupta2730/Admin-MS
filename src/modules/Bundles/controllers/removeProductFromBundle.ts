@@ -68,7 +68,7 @@ export const removeProductFromBundle = async (
     }
 
     // Calculate the new MRP by subtracting the MRP of the removed product
-    const removedProductMRP = productToRemove.sellingPrice;
+    const removedProductMRP = productToRemove.MRP;
     existingBundle.MRP -= removedProductMRP;
 
     // Remove the product from the bundle

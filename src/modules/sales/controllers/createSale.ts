@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import axios from 'axios';
 import mongoose from 'mongoose';
 import moment from 'moment';
 import Sale from '../../../models/saleModel';
@@ -157,6 +158,18 @@ export const createSale = async (req: CustomRequest, res: Response) => {
     });
 
     await sale.save();
+
+    // Prepare data to send to the scheduler MS:
+    const schedulerData = {
+      saleId: sale._id,
+      saleName: sale.name,
+      startDate: sale.startDate,
+      endDate: sale.endDate,
+      categories: validCategories,
+    };
+
+    // Send the data to the scheduler microservice
+    await axios.post('http://localhost:3005/schedule-tasks', schedulerData);
 
     return res.status(201).json({
       message: 'Sale created successfully',

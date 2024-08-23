@@ -34,9 +34,9 @@ export const getAllSales = async (req: CustomRequest, res: Response) => {
 
   searchQuery.isDeleted = false;
 
-  if (isActive !== undefined) {
-    searchQuery.isActive = isActive === 'true';
-  }
+  // if (isActive !== undefined) {
+  //   searchQuery.isActive = isActive === 'true';
+  // }
 
   try {
     const sales = await Sale.find(searchQuery)
@@ -54,8 +54,8 @@ export const getAllSales = async (req: CustomRequest, res: Response) => {
       id: sale._id,
       name: sale.name,
       description: sale.description,
-      startDate: sale.startDate.toLocaleString(),  // Date and time format
-      endDate: sale.endDate.toLocaleString(), 
+      startDate: sale.startDate.toLocaleString(), // Date and time format
+      endDate: sale.endDate.toLocaleString(),
       isActive: sale.isActive,
       // categories: sale.categories.map((cat) => ({
       //   categoryId: cat.categoryId._id,

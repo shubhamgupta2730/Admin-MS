@@ -39,55 +39,41 @@ export const deleteSale = async (req: CustomRequest, res: Response) => {
     for (const saleProduct of sale.products) {
       const product = await Product.findById(saleProduct.productId);
       if (product) {
-        const saleCategory = sale.categories.find(cat =>
+        const saleCategory = sale.categories.find((cat) =>
           cat.categoryId.equals(product.categoryId)
         );
 
         if (saleCategory) {
-          // Calculate and restore the original price before the discount was applied
-          const discount = saleCategory.discount;
+          // Get the discount percentage applied
+          const discount = product.adminDiscount || 0;
+
           const discountedPrice = product.sellingPrice;
           const originalPrice = discountedPrice / (1 - discount / 100);
 
-          // Restore the original selling price
-          product.sellingPrice = originalPrice;
+          product.sellingPrice = Math.round(originalPrice);
+          product.adminDiscount = null;
           await product.save();
         }
       }
     }
 
-    // Restore original selling prices for bundles and remove them if necessary
+    // Restore original selling prices for bundles and set adminDiscount to null
     for (const saleBundle of sale.bundles) {
       const bundle = await Bundle.findById(saleBundle.bundleId);
       if (bundle) {
-        // Check all products in the bundle and restore their original prices
-        let totalMRP = 0;
-        let totalDiscountedPrice = 0;
-        for (const bundleProduct of bundle.products) {
-          const product = await Product.findById(bundleProduct.productId);
-          if (product) {
-            const saleCategory = sale.categories.find(cat =>
-              cat.categoryId.equals(product.categoryId)
-            );
+        const discount = bundle.adminDiscount || 0;
 
-            if (saleCategory) {
-              const discount = saleCategory.discount;
-              const discountedPrice = product.sellingPrice;
-              const originalPrice = discountedPrice / (1 - discount / 100);
+        // Calculate the original bundle price before the discount was applied
+        const discountedPrice = bundle.sellingPrice;
+        const originalPrice = discountedPrice / (1 - discount / 100);
 
-              totalMRP += product.MRP;
-              totalDiscountedPrice += originalPrice;
-            }
-          }
-        }
-
-        // Update bundle's selling price to the sum of the original prices of its products
-        bundle.sellingPrice = totalDiscountedPrice;
+        // Restore the original bundle selling price and set adminDiscount to null
+        bundle.sellingPrice = Math.round(originalPrice);
+        bundle.adminDiscount = undefined;
         await bundle.save();
       }
     }
 
-    // Clear products and bundles from the sale
     sale.products = [];
     sale.bundles = [];
     await sale.save();
