@@ -22,8 +22,8 @@ interface ISaleBundle {
 // Function to apply discounts to newly added products and bundles
 const applyDiscountsToNewItems = async (
   sale: any,
-  newProducts: any[],
-  newBundles: any[]
+  newProducts: ISaleProduct[],
+  newBundles: ISaleBundle[]
 ) => {
   // Apply discounts to new products
   for (const saleProduct of newProducts) {
@@ -44,9 +44,9 @@ const applyDiscountsToNewItems = async (
     // Find the corresponding sale category
     const saleCategory = sale.categories.find((cat: any) => {
       console.log(
-        `Comparing product category ID: ${productCategoryId} with sale category ID: ${String(cat.categoryId)}`
+        `Comparing product category ID: ${productCategoryId} with sale category ID: ${String(cat.categoryId._id)}`
       );
-      return productCategoryId === String(cat.categoryId);
+      return productCategoryId === String(cat.categoryId._id);
     });
 
     if (!saleCategory) {
@@ -83,9 +83,9 @@ const applyDiscountsToNewItems = async (
       for (const bundleProduct of bundle.products) {
         const product = await Product.findById(bundleProduct.productId);
         if (product) {
-          const saleCategory = sale.categories.find((cat: any) =>
-            product.categoryId?.equals(cat.categoryId)
-          );
+          const saleCategory = sale.categories.find((cat: any) => {
+            return String(product.categoryId) === String(cat.categoryId._id);
+          });
           const discount = saleCategory ? saleCategory.discount : 0;
 
           if (discount > maxDiscount) {
@@ -126,9 +126,9 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
 
   try {
     // Find the sale
-    const sale = await Sale.findOne({ _id: saleId, isDeleted: false }).populate(
-      'categories.categoryId'
-    );
+    const sale = await Sale.findOne({ _id: saleId, isDeleted: false })
+      .populate('categories.categoryId')
+      .exec();
 
     if (!sale) {
       return res.status(404).json({
@@ -179,9 +179,9 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
           });
         }
 
-        const saleCategory = sale.categories.find((cat: any) =>
-          productData.categoryId?.equals(cat.categoryId._id)
-        );
+        const saleCategory = sale.categories.find((cat: any) => {
+          return String(productData.categoryId) === String(cat.categoryId._id);
+        });
 
         if (!saleCategory) {
           return res.status(400).json({
@@ -260,9 +260,14 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
           });
         }
 
-        const saleCategory = sale.categories.find((cat: any) =>
-          productData.categoryId?.equals(cat.categoryId._id)
-        );
+        console.log('Product Category ID:', String(productData.categoryId));
+        sale.categories.forEach((cat: any) => {
+          console.log('Sale Category ID:', String(cat.categoryId._id));
+        });
+
+        const saleCategory = sale.categories.find((cat: any) => {
+          return String(productData.categoryId) === String(cat.categoryId._id);
+        });
 
         if (!saleCategory) {
           return res.status(400).json({
@@ -307,10 +312,9 @@ export const addProductsToSale = async (req: CustomRequest, res: Response) => {
       });
     }
   } catch (error) {
-    const err = error as Error;
+    console.error(error);
     return res.status(500).json({
-      message: 'Failed to add products or bundles to sale',
-      error: err.message,
+      message: 'An error occurred while adding products to the sale.',
     });
   }
 };

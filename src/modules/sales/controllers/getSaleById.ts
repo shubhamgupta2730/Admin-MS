@@ -24,7 +24,7 @@ export const getSale = async (req: CustomRequest, res: Response) => {
     // Find the sale with populated categories, products, and bundles
     const sale = await Sale.findOne({
       _id: saleId,
-      isDeleted: false
+      isDeleted: false,
     })
       .populate({
         path: 'categories.categoryId',
