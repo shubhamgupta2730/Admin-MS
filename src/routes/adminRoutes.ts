@@ -7,6 +7,7 @@ import discountRoutes from '../modules/discounts/routes/discountRoute';
 import userManagementRoutes from '../modules/userManagement/routes/userManagementRoutes';
 import productManagementRoutes from '../modules/productManagement/routes/productManagementRoute';
 import saleRoutes from '../modules/sales/routes/saleRoutes';
+import reviewRoutes from '../modules/review/routes/reviewRoutes';
 const router = Router();
 
 router.use('/authRoute', authRoutes);
@@ -16,5 +17,6 @@ router.use('/discountRoute', discountRoutes);
 router.use('/user-management', userManagementRoutes);
 router.use('/product-management', productManagementRoutes);
 router.use('/saleRoute', saleRoutes);
+router.use('/reviewRoute', reviewRoutes);
 
 export default router;

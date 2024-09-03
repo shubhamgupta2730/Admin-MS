@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Product from '../../../models/productModel';
+import Review from '../../../models/reviewModel'; // Ensure you import the Review model
 import { Types } from 'mongoose';
 
 interface CustomRequest extends Request {
@@ -52,6 +53,34 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
         },
       },
       {
+        $lookup: {
+          from: 'reviews',
+          localField: '_id',
+          foreignField: 'productId',
+          as: 'reviews',
+        },
+      },
+      {
+        $unwind: {
+          path: '$reviews',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'reviews.userId',
+          foreignField: '_id',
+          as: 'reviewUser',
+        },
+      },
+      {
+        $unwind: {
+          path: '$reviewUser',
+          preserveNullAndEmptyArrays: true,
+        },
+      },
+      {
         $project: {
           _id: 1,
           name: 1,
@@ -80,6 +109,19 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
               if: { $gt: [{ $size: '$bundleDetails' }, 0] },
               then: '$bundleDetails.name',
               else: [],
+            },
+          },
+          reviews: {
+            _id: '$reviews._id',
+            rating: '$reviews.rating',
+            reviewText: '$reviews.reviewText',
+            images: '$reviews.images',
+            userName: {
+              $concat: [
+                '$reviewUser.firstName',
+                ' ',
+                '$reviewUser.lastName',
+              ],
             },
           },
         },

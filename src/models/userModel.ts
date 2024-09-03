@@ -1,9 +1,8 @@
 import { Schema, model, Document, Types } from 'mongoose';
 
-// Define the address schema
 export interface IAddress {
   addressLine1: string;
-  addressLine2: string;
+  addressLine2?: string;
   street: string;
   city: string;
   state: string;
@@ -11,7 +10,6 @@ export interface IAddress {
   country: string;
 }
 
-// Define the user schema interface
 export interface IUser extends Document {
   email: string;
   phone: string;
@@ -29,11 +27,9 @@ export interface IUser extends Document {
   twoFactorEnabled?: boolean;
   twoFactorMethod?: 'email' | 'phone' | 'authenticator';
   role: 'user' | 'seller';
-  address: IAddress;
-  createdAt: Date;
-  updatedAt: Date;
+  address: IAddress[];
 }
-// Define the address schema
+
 const AddressSchema: Schema<IAddress> = new Schema({
   addressLine1: {
     type: String,
@@ -41,7 +37,7 @@ const AddressSchema: Schema<IAddress> = new Schema({
   },
   addressLine2: {
     type: String,
-    required: true,
+    required: false,
   },
   street: {
     type: String,
@@ -132,9 +128,7 @@ const UserSchema: Schema<IUser> = new Schema(
       required: true,
       default: 'user',
     },
-    address: {
-      type: AddressSchema,
-    },
+    address: [AddressSchema], 
   },
   {
     timestamps: true,
