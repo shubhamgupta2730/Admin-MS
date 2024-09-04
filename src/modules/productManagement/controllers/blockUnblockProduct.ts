@@ -67,7 +67,7 @@ export const toggleBlockProduct = async (req: CustomRequest, res: Response) => {
       product.blockedBy = null;
     }
 
-    await product.save();
+    await product.save(); 
 
     const response: any = {
       message: `Product ${action}ed successfully`,
