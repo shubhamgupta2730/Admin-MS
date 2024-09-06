@@ -1,4 +1,4 @@
-import { getAggregatedSalesData } from '../controllers/getDashboardSale';
+import { getSalesAnalytics } from '../controllers/getDashboardSale';
 import { Router } from 'express';
 const router = Router();
 import {
@@ -7,5 +7,5 @@ import {
 } from '../../../../middlewares/authMiddleware';
 
 
-router.get('/get-total-sales', authenticateAdmin, authorizeAdmin, getAggregatedSalesData);
+router.get('/get-total-sales', authenticateAdmin, authorizeAdmin, getSalesAnalytics);
 export default router;
