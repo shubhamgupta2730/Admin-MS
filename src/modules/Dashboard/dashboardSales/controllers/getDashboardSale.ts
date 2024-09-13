@@ -5,7 +5,6 @@ import User from '../../../../models/userModel';
 import Category from '../../../../models/productCategoryModel';
 import moment from 'moment';
 
-// Helper function to get total products sold
 const getTotalProductsSold = async (startDate: Date, endDate: Date) => {
   return Order.aggregate([
     {
@@ -23,7 +22,6 @@ const getTotalProductsSold = async (startDate: Date, endDate: Date) => {
   ]);
 };
 
-// Helper function to get top-selling product
 const getTopSellingProduct = async (startDate: Date, endDate: Date) => {
   return Product.aggregate([
     {
@@ -50,12 +48,11 @@ const getTopSellingProduct = async (startDate: Date, endDate: Date) => {
     },
     { $unwind: '$orderData' },
     { $sort: { 'orderData.totalQuantity': -1 } },
-    { $limit: 1 }, // Only get the top product
+    { $limit: 1 },
     { $project: { name: 1, totalQuantity: '$orderData.totalQuantity' } },
   ]);
 };
 
-// Helper function to get top sellers with sales
 const getTopSellers = async (startDate: Date, endDate: Date) => {
   return User.aggregate([
     {
@@ -93,16 +90,15 @@ const getTopSellers = async (startDate: Date, endDate: Date) => {
     {
       $group: {
         _id: '$_id',
-        sellerName: { $first: { $concat: ['$firstName', ' ', '$lastName'] } }, // Concatenate first and last name
+        sellerName: { $first: { $concat: ['$firstName', ' ', '$lastName'] } },
         totalSales: { $sum: '$orderData.totalSales' },
       },
     },
     { $sort: { totalSales: -1 } },
-    { $limit: 5 }, // Get the top 5 sellers
+    { $limit: 5 },
   ]);
 };
 
-// Helper function to get the top-selling category
 const getTopSellingCategory = async (startDate: Date, endDate: Date) => {
   return Category.aggregate([
     {
@@ -145,31 +141,86 @@ const getTopSellingCategory = async (startDate: Date, endDate: Date) => {
       },
     },
     { $sort: { totalQuantity: -1 } },
-    { $limit: 1 }, // Get only the top category
+    { $limit: 1 },
   ]);
 };
 
-// Aggregated sales analytics API
 export const getSalesAnalytics = async (req: Request, res: Response) => {
   try {
-    const { period } = req.query;
+    const {
+      period,
+      startDate: queryStartDate,
+      endDate: queryEndDate,
+    } = req.query;
 
     let startDate: Date;
-    const endDate = new Date(); // Current date and time
+    let endDate = new Date();
+    const currentDate = new Date();
+    // Handle custom date range
+    if (queryStartDate || queryEndDate) {
+      // Validate the custom dates
+      if (!queryStartDate || !queryEndDate) {
+        return res.status(400).json({
+          message:
+            'Both startDate and endDate must be provided for custom range',
+        });
+      }
 
-    // Determine the start date based on the specified period
-    switch (period) {
-      case 'daily':
-        startDate = moment().startOf('day').toDate();
-        break;
-      case 'weekly':
-        startDate = moment().startOf('week').toDate();
-        break;
-      case 'monthly':
-        startDate = moment().startOf('month').toDate();
-        break;
-      default:
-        return res.status(400).json({ message: 'Invalid period specified' });
+      startDate = new Date(queryStartDate as string);
+      endDate = new Date(queryEndDate as string);
+
+      // Check if the custom dates are valid
+      if (isNaN(startDate.getTime()) || isNaN(endDate.getTime())) {
+        return res.status(400).json({
+          message: 'Invalid date format. Please use a valid date string.',
+        });
+      }
+
+      // Ensure that startDate is before endDate
+      if (startDate > endDate) {
+        return res
+          .status(400)
+          .json({ message: 'startDate cannot be after endDate' });
+      }
+
+      // Ensure that startDate is not in the future
+      if (startDate > currentDate) {
+        return res.status(400).json({
+          message: 'startDate cannot be in the future',
+        });
+      }
+
+      // Ensure that endDate is not in the future
+      if (endDate > currentDate) {
+        return res.status(400).json({
+          message: 'endDate cannot be in the future',
+        });
+      }
+    } else {
+      // Determine the start date based on the specified period
+      switch (period) {
+        case 'daily':
+          startDate = moment().startOf('day').toDate();
+          break;
+        case 'weekly':
+          startDate = moment().startOf('week').toDate();
+          break;
+        case 'monthly':
+          startDate = moment().startOf('month').toDate();
+          break;
+        case 'yearly':
+          startDate = moment().startOf('year').toDate();
+          break;
+        default:
+          return res.status(400).json({ message: 'Invalid period specified' });
+      }
+
+      // Ensure that startDate is not in the future (for predefined periods)
+      if (startDate > currentDate) {
+        return res.status(400).json({
+          message: 'Start date cannot be in the future for the selected period',
+        });
+      }
     }
 
     // Get aggregated data

@@ -28,6 +28,7 @@ export interface IUser extends Document {
   twoFactorMethod?: 'email' | 'phone' | 'authenticator';
   role: 'user' | 'seller';
   address: IAddress[];
+  isRandomGenerated: boolean;
 }
 
 const AddressSchema: Schema<IAddress> = new Schema({
@@ -128,7 +129,11 @@ const UserSchema: Schema<IUser> = new Schema(
       required: true,
       default: 'user',
     },
-    address: [AddressSchema], 
+    address: [AddressSchema],
+    isRandomGenerated: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
