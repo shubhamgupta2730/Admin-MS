@@ -117,11 +117,7 @@ export const getProductInfo = async (req: CustomRequest, res: Response) => {
             reviewText: '$reviews.reviewText',
             images: '$reviews.images',
             userName: {
-              $concat: [
-                '$reviewUser.firstName',
-                ' ',
-                '$reviewUser.lastName',
-              ],
+              $concat: ['$reviewUser.firstName', ' ', '$reviewUser.lastName'],
             },
           },
         },

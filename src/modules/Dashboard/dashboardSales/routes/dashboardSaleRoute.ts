@@ -6,6 +6,10 @@ import {
   authorizeAdmin,
 } from '../../../../middlewares/authMiddleware';
 
-
-router.get('/get-total-sales', authenticateAdmin, authorizeAdmin, getSalesAnalytics);
+router.get(
+  '/get-total-sales',
+  authenticateAdmin,
+  authorizeAdmin,
+  getSalesAnalytics
+);
 export default router;

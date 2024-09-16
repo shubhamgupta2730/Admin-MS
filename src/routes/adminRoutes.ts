@@ -10,6 +10,7 @@ import saleRoutes from '../modules/sales/routes/saleRoutes';
 import reviewRoutes from '../modules/review/routes/reviewRoutes';
 import dashboardSalesRoutes from '../modules/Dashboard/dashboardSales/routes/dashboardSaleRoute';
 import generateData from '../modules/generateData/routes/userDataRoutes';
+import couponRoutes from '../modules/coupon/routes/couponRoutes';
 const router = Router();
 
 router.use('/authRoute', authRoutes);
@@ -21,6 +22,7 @@ router.use('/product-management', productManagementRoutes);
 router.use('/saleRoute', saleRoutes);
 router.use('/reviewRoute', reviewRoutes);
 router.use('/dashboardRoute', dashboardSalesRoutes);
-router.use('/dummyData', generateData)
+router.use('/dummyData', generateData);
+router.use('/couponRoute', couponRoutes);
 
 export default router;
