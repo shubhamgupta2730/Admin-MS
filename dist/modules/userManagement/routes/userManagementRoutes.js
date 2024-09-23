@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const authMiddleware_1 = require("../../../middlewares/authMiddleware");
+const blockUnblockUser_1 = require("../controllers/blockUnblockUser");
+const getAllUsers_1 = require("../controllers/getAllUsers");
+const getUserInfo_1 = require("../controllers/getUserInfo");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+router.put('/toggle-block-user', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, blockUnblockUser_1.toggleBlockUser);
+router.get('/get-all-users', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, getAllUsers_1.getAllUsers);
+router.get('/get-user-info', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, getUserInfo_1.getUserInfo);
+exports.default = router;
