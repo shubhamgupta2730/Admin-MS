@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const index_1 = require("../controllers/index");
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const authMiddleware_1 = require("../../../middlewares/authMiddleware");
+router.post('/create-bundle', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.createBundle);
+router.get('/get-bundle', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.getBundle);
+router.get('/get-all-bundles', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.getAllBundles);
+router.patch('/update-bundle', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.updateBundle);
+router.delete('/remove-bundle', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.removeBundle);
+router.put('/toggle-block-unblock', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.toggleBlockBundle);
+router.patch('/remove-product', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, index_1.removeProductFromBundle);
+exports.default = router;

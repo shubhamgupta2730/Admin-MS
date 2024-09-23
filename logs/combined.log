@@ -1,0 +1,1899 @@
+2024-07-29 15:31:06 info: Server is running on http://localhost:3002
+2024-07-29 15:31:31 info: Server is running on http://localhost:3002
+2024-07-29 15:32:35 info: Server is running on http://localhost:3002
+2024-07-29 15:32:56 info: Server is running on http://localhost:3002
+2024-07-29 15:32:58 info: MongoDB connected
+2024-07-29 15:33:50 info: ::1 - - [29/Jul/2024:10:03:50 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:34:26 info: ::1 - - [29/Jul/2024:10:04:26 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:34:44 info: ::1 - - [29/Jul/2024:10:04:44 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories HTTP/1.1" 200 469 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:56:55 info: Server is running on http://localhost:3002
+2024-07-29 15:56:57 info: MongoDB connected
+2024-07-29 15:57:03 info: Incoming request: POST /api/v1/admin/authRoute/signup - Body: {"email":"shubhgupta2730@gmail.com","password":"12345","phone":"7610991341","role":"admin"}
+2024-07-29 15:57:03 info: ::1 - - [29/Jul/2024:10:27:03 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:57:03 info: Response status: 400 - Response time: 93.30ms
+2024-07-29 15:57:38 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-07-29 15:57:38 info: ::1 - - [29/Jul/2024:10:27:38 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-07-29 15:57:38 info: Response status: 200 - Response time: 172.46ms
+2024-07-30 14:46:25 info: Server is running on http://localhost:3002
+2024-07-30 14:46:27 info: Server is running on http://localhost:3002
+2024-07-30 14:46:30 info: MongoDB connected
+2024-07-30 23:31:28 info: Server is running on http://localhost:3002
+2024-07-30 23:31:29 info: MongoDB connected
+2024-07-31 09:55:10 info: Server is running on http://localhost:3002
+2024-07-31 09:55:12 info: MongoDB connected
+2024-07-31 09:55:22 info: Server is running on http://localhost:3002
+2024-07-31 09:55:23 info: MongoDB connected
+2024-07-31 09:59:41 info: Server is running on http://localhost:3002
+2024-07-31 09:59:44 info: MongoDB connected
+2024-07-31 10:02:42 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:02:42 info: ::1 - - [31/Jul/2024:04:32:42 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 404 178 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:02:42 info: Response status: 404 - Response time: 24.16ms
+2024-07-31 10:03:21 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:03:21 info: ::1 - - [31/Jul/2024:04:33:21 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 401 27 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:03:21 info: Response status: 401 - Response time: 10.10ms
+2024-07-31 10:03:28 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhamgupta2730@gmail.com","password":"12345"}
+2024-07-31 10:03:28 info: ::1 - - [31/Jul/2024:04:33:28 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 400 30 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:03:28 info: Response status: 400 - Response time: 109.32ms
+2024-07-31 10:03:37 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-07-31 10:03:37 info: ::1 - - [31/Jul/2024:04:33:37 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:03:37 info: Response status: 200 - Response time: 335.44ms
+2024-07-31 10:03:42 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:03:43 info: ::1 - - [31/Jul/2024:04:33:43 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 500 34 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:03:43 info: Response status: 500 - Response time: 67.39ms
+2024-07-31 10:04:57 info: Server is running on http://localhost:3002
+2024-07-31 10:05:00 info: MongoDB connected
+2024-07-31 10:05:03 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"12345","quantity":2},{"productId":"67890","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:05:03 info: ::1 - - [31/Jul/2024:04:35:03 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 500 34 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:05:03 info: Response status: 500 - Response time: 138.03ms
+2024-07-31 10:07:47 info: Incoming request: POST /api/v1/admin/bundleRoute/createBundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2},{"productId":"66a923eaded391a76f1f8cce","quantity":1}],"discount":10,"MRP":150,"sellingPrice":135}
+2024-07-31 10:07:47 info: ::1 - - [31/Jul/2024:04:37:47 +0000] "POST /api/v1/admin/bundleRoute/createBundle HTTP/1.1" 201 511 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:07:47 info: Response status: 201 - Response time: 196.46ms
+2024-07-31 10:17:55 info: Server is running on http://localhost:3002
+2024-07-31 10:17:57 info: MongoDB connected
+2024-07-31 10:17:59 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15,"MRP":150,"sellingPrice":127.5,"isActive":true}
+2024-07-31 10:17:59 info: ::1 - - [31/Jul/2024:04:47:59 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 425 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:17:59 info: Response status: 200 - Response time: 190.95ms
+2024-07-31 10:18:39 info: Incoming request: GET /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:39 info: ::1 - - [31/Jul/2024:04:48:39 +0000] "GET /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 404 177 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:39 info: Response status: 404 - Response time: 9.25ms
+2024-07-31 10:18:44 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:44 info: ::1 - - [31/Jul/2024:04:48:44 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:44 info: Response status: 401 - Response time: 3.76ms
+2024-07-31 10:18:51 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:18:51 info: ::1 - - [31/Jul/2024:04:48:51 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 378 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:18:51 info: Response status: 200 - Response time: 125.03ms
+2024-07-31 10:19:26 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles - Body: {}
+2024-07-31 10:19:26 info: ::1 - - [31/Jul/2024:04:49:26 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles HTTP/1.1" 200 429 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:19:26 info: Response status: 200 - Response time: 371.36ms
+2024-07-31 10:20:47 info: Incoming request: DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:20:47 info: ::1 - - [31/Jul/2024:04:50:47 +0000] "DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 433 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:20:47 info: Response status: 200 - Response time: 121.35ms
+2024-07-31 10:20:55 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-07-31 10:20:55 info: ::1 - - [31/Jul/2024:04:50:55 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 200 379 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:20:55 info: Response status: 200 - Response time: 108.94ms
+2024-07-31 10:22:55 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL","isActive":true}
+2024-07-31 10:22:55 info: ::1 - - [31/Jul/2024:04:52:55 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 311 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:22:55 info: Response status: 201 - Response time: 280.63ms
+2024-07-31 10:23:24 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL"}
+2024-07-31 10:23:25 info: ::1 - - [31/Jul/2024:04:53:25 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 33 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:23:25 info: Response status: 500 - Response time: 189.84ms
+2024-07-31 10:24:03 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACK2SCHOOL"}
+2024-07-31 10:24:03 info: ::1 - - [31/Jul/2024:04:54:03 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 33 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:24:03 info: Response status: 500 - Response time: 146.26ms
+2024-07-31 10:24:31 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-07-31 10:24:32 info: ::1 - - [31/Jul/2024:04:54:32 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 310 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:24:32 info: Response status: 201 - Response time: 134.67ms
+2024-07-31 10:25:53 info: Incoming request: PUT /api/v1/admin/discountRoute/update-discount?discountId=66a9c3873e8b189274046b4d - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-07-31 10:25:53 info: ::1 - - [31/Jul/2024:04:55:53 +0000] "PUT /api/v1/admin/discountRoute/update-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 200 319 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:25:53 info: Response status: 200 - Response time: 120.35ms
+2024-07-31 10:26:12 info: Incoming request: DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d - Body: {}
+2024-07-31 10:26:12 info: ::1 - - [31/Jul/2024:04:56:12 +0000] "DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:26:12 info: Response status: 401 - Response time: 3.58ms
+2024-07-31 10:26:20 info: Incoming request: DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d - Body: {}
+2024-07-31 10:26:20 info: ::1 - - [31/Jul/2024:04:56:20 +0000] "DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66a9c3873e8b189274046b4d HTTP/1.1" 200 326 "-" "PostmanRuntime/7.40.0"
+2024-07-31 10:26:20 info: Response status: 200 - Response time: 108.44ms
+2024-07-31 17:39:49 info: Server is running on http://localhost:3002
+2024-07-31 17:39:52 info: MongoDB connected
+2024-08-01 23:19:33 info: Server is running on http://localhost:3002
+2024-08-01 23:19:35 info: MongoDB connected
+2024-08-01 23:20:28 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-01 23:20:28 info: ::1 - - [01/Aug/2024:17:50:28 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 233 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:20:28 info: Response status: 200 - Response time: 208.18ms
+2024-08-01 23:20:33 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"category 1","description":"category 1 description"}
+2024-08-01 23:20:33 info: ::1 - - [01/Aug/2024:17:50:33 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:20:33 info: Response status: 400 - Response time: 5.52ms
+2024-08-01 23:25:04 info: Server is running on http://localhost:3002
+2024-08-01 23:25:05 info: MongoDB connected
+2024-08-01 23:25:28 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:25:28 info: ::1 - - [01/Aug/2024:17:55:28 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:25:28 info: Response status: 400 - Response time: 11.39ms
+2024-08-01 23:26:08 info: Server is running on http://localhost:3002
+2024-08-01 23:26:09 info: MongoDB connected
+2024-08-01 23:26:58 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:26:58 info: ::1 - - [01/Aug/2024:17:56:58 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:26:58 info: Response status: 400 - Response time: 22.32ms
+2024-08-01 23:30:38 info: Server is running on http://localhost:3002
+2024-08-01 23:30:39 info: MongoDB connected
+2024-08-01 23:30:43 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:30:43 info: ::1 - - [01/Aug/2024:18:00:43 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:30:43 info: Response status: 400 - Response time: 8.21ms
+2024-08-01 23:31:27 info: Server is running on http://localhost:3002
+2024-08-01 23:31:28 info: MongoDB connected
+2024-08-01 23:31:30 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:31:30 info: ::1 - - [01/Aug/2024:18:01:30 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:31:30 info: Response status: 400 - Response time: 8.95ms
+2024-08-01 23:31:48 info: Server is running on http://localhost:3002
+2024-08-01 23:31:49 info: MongoDB connected
+2024-08-01 23:31:50 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:31:50 info: ::1 - - [01/Aug/2024:18:01:50 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:31:50 info: Response status: 400 - Response time: 10.99ms
+2024-08-01 23:33:39 info: Server is running on http://localhost:3002
+2024-08-01 23:33:40 info: MongoDB connected
+2024-08-01 23:33:43 info: Server is running on http://localhost:3002
+2024-08-01 23:33:44 info: MongoDB connected
+2024-08-01 23:33:46 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:33:46 info: ::1 - - [01/Aug/2024:18:03:46 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:33:46 info: Response status: 400 - Response time: 10.31ms
+2024-08-01 23:35:01 info: Server is running on http://localhost:3002
+2024-08-01 23:35:02 info: MongoDB connected
+2024-08-01 23:35:05 info: Server is running on http://localhost:3002
+2024-08-01 23:35:06 info: MongoDB connected
+2024-08-01 23:35:08 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:35:08 info: ::1 - - [01/Aug/2024:18:05:08 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:35:08 info: Response status: 400 - Response time: 13.51ms
+2024-08-01 23:35:25 info: Server is running on http://localhost:3002
+2024-08-01 23:35:26 info: MongoDB connected
+2024-08-01 23:35:27 info: Server is running on http://localhost:3002
+2024-08-01 23:35:28 info: MongoDB connected
+2024-08-01 23:35:31 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:35:31 info: ::1 - - [01/Aug/2024:18:05:31 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:35:31 info: Response status: 400 - Response time: 11.79ms
+2024-08-01 23:35:45 info: Server is running on http://localhost:3002
+2024-08-01 23:35:46 info: MongoDB connected
+2024-08-01 23:36:27 info: Server is running on http://localhost:3002
+2024-08-01 23:36:28 info: MongoDB connected
+2024-08-01 23:36:29 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-01 23:36:29 info: ::1 - - [01/Aug/2024:18:06:29 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:36:29 info: Response status: 200 - Response time: 241.30ms
+2024-08-01 23:36:44 info: Server is running on http://localhost:3002
+2024-08-01 23:36:45 info: MongoDB connected
+2024-08-01 23:39:03 info: Server is running on http://localhost:3002
+2024-08-01 23:39:04 info: MongoDB connected
+2024-08-01 23:39:07 info: Server is running on http://localhost:3002
+2024-08-01 23:39:08 info: Server is running on http://localhost:3002
+2024-08-01 23:39:09 info: MongoDB connected
+2024-08-01 23:39:12 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-01 23:39:13 info: ::1 - - [01/Aug/2024:18:09:13 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 201 284 "-" "PostmanRuntime/7.40.0"
+2024-08-01 23:39:13 info: Response status: 201 - Response time: 186.12ms
+2024-08-01 23:39:30 info: Server is running on http://localhost:3002
+2024-08-01 23:39:31 info: MongoDB connected
+2024-08-02 09:30:18 info: Server is running on http://localhost:3002
+2024-08-02 09:30:21 info: Server is running on http://localhost:3002
+2024-08-02 09:30:28 info: MongoDB connected
+2024-08-02 09:32:22 info: Server is running on http://localhost:3002
+2024-08-02 09:32:27 info: MongoDB connected
+2024-08-02 09:36:53 info: Server is running on http://localhost:3002
+2024-08-02 09:37:38 error: MongoNetworkTimeoutError: connection 1 to 43.205.152.252:27017 timed out
+    at Timeout._onTimeout (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connection.ts:300:20)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)
+2024-08-02 09:52:41 info: Server is running on http://localhost:3002
+2024-08-02 09:52:43 info: MongoDB connected
+2024-08-02 09:56:38 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?search=phone&sortBy=name&order=asc&page=2&limit=10 - Body: {}
+2024-08-02 09:56:38 info: ::1 - - [02/Aug/2024:04:26:38 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?search=phone&sortBy=name&order=asc&page=2&limit=10 HTTP/1.1" 404 33 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:56:38 info: Response status: 404 - Response time: 268.21ms
+2024-08-02 09:56:43 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 - Body: {}
+2024-08-02 09:56:43 info: ::1 - - [02/Aug/2024:04:26:43 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 HTTP/1.1" 404 33 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:56:43 info: Response status: 404 - Response time: 211.72ms
+2024-08-02 09:56:54 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-02 09:56:54 info: ::1 - - [02/Aug/2024:04:26:54 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:56:54 info: Response status: 200 - Response time: 273.21ms
+2024-08-02 09:56:58 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 - Body: {}
+2024-08-02 09:56:58 info: ::1 - - [02/Aug/2024:04:26:58 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 HTTP/1.1" 404 33 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:56:58 info: Response status: 404 - Response time: 202.74ms
+2024-08-02 09:57:06 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"electronics","description":"Electronic items"}
+2024-08-02 09:57:06 info: ::1 - - [02/Aug/2024:04:27:06 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 400 82 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:57:06 info: Response status: 400 - Response time: 78.35ms
+2024-08-02 09:57:26 info: Incoming request: POST /api/v1/admin/categoryRoute/create-category - Body: {"name":"tablets","description":"Electronic items"}
+2024-08-02 09:57:26 info: ::1 - - [02/Aug/2024:04:27:26 +0000] "POST /api/v1/admin/categoryRoute/create-category HTTP/1.1" 201 280 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:57:26 info: Response status: 201 - Response time: 263.90ms
+2024-08-02 09:57:43 info: Incoming request: GET /api/v1/admin/categoryRoute/get-category?id=66ac602ed1f4f5f1423ef293 - Body: {}
+2024-08-02 09:57:43 info: ::1 - - [02/Aug/2024:04:27:43 +0000] "GET /api/v1/admin/categoryRoute/get-category?id=66ac602ed1f4f5f1423ef293 HTTP/1.1" 200 282 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:57:43 info: Response status: 200 - Response time: 136.34ms
+2024-08-02 09:57:49 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 - Body: {}
+2024-08-02 09:57:49 info: ::1 - - [02/Aug/2024:04:27:49 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?search=&sortBy=name&order=asc&page=2&limit=10 HTTP/1.1" 404 33 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:57:49 info: Response status: 404 - Response time: 255.95ms
+2024-08-02 09:58:11 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 - Body: {}
+2024-08-02 09:58:11 info: ::1 - - [02/Aug/2024:04:28:11 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 HTTP/1.1" 200 728 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:58:11 info: Response status: 200 - Response time: 206.91ms
+2024-08-02 09:58:35 info: Incoming request: PUT /api/v1/admin/categoryRoute/update-category?id=66ac602ed1f4f5f1423ef293 - Body: {"name":"category 1 update","description":"category 1 description update"}
+2024-08-02 09:58:35 info: ::1 - - [02/Aug/2024:04:28:35 +0000] "PUT /api/v1/admin/categoryRoute/update-category?id=66ac602ed1f4f5f1423ef293 HTTP/1.1" 400 81 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:58:35 info: Response status: 400 - Response time: 175.49ms
+2024-08-02 09:58:48 info: Incoming request: PUT /api/v1/admin/categoryRoute/update-category?id=66ac602ed1f4f5f1423ef293 - Body: {"name":"tablet update","description":"category 1 description update"}
+2024-08-02 09:58:48 info: ::1 - - [02/Aug/2024:04:28:48 +0000] "PUT /api/v1/admin/categoryRoute/update-category?id=66ac602ed1f4f5f1423ef293 HTTP/1.1" 200 299 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:58:48 info: Response status: 200 - Response time: 378.01ms
+2024-08-02 09:58:52 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 - Body: {}
+2024-08-02 09:58:53 info: ::1 - - [02/Aug/2024:04:28:53 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 HTTP/1.1" 200 747 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:58:53 info: Response status: 200 - Response time: 221.72ms
+2024-08-02 09:59:04 info: Incoming request: DELETE /api/v1/admin/categoryRoute/remove-category?id=66ac602ed1f4f5f1423ef293 - Body: {}
+2024-08-02 09:59:04 info: ::1 - - [02/Aug/2024:04:29:04 +0000] "DELETE /api/v1/admin/categoryRoute/remove-category?id=66ac602ed1f4f5f1423ef293 HTTP/1.1" 200 43 "-" "PostmanRuntime/7.40.0"
+2024-08-02 09:59:04 info: Response status: 200 - Response time: 291.98ms
+2024-08-02 10:40:18 info: Server is running on http://localhost:3002
+2024-08-02 10:40:21 info: MongoDB connected
+2024-08-02 10:41:20 info: Server is running on http://localhost:3002
+2024-08-02 10:41:22 info: Server is running on http://localhost:3002
+2024-08-02 10:41:25 info: MongoDB connected
+2024-08-02 10:42:11 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user - Body: {}
+2024-08-02 10:42:11 info: ::1 - - [02/Aug/2024:05:12:11 +0000] "PUT /api/v1/admin/user-management/toggle-block-user HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:42:11 info: Response status: 401 - Response time: 21.04ms
+2024-08-02 10:42:25 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user - Body: {}
+2024-08-02 10:42:25 info: ::1 - - [02/Aug/2024:05:12:25 +0000] "PUT /api/v1/admin/user-management/toggle-block-user HTTP/1.1" 400 38 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:42:25 info: Response status: 400 - Response time: 14.03ms
+2024-08-02 10:43:13 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66ac602ed1f4f5f1423ef293 - Body: {}
+2024-08-02 10:43:13 info: ::1 - - [02/Aug/2024:05:13:13 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66ac602ed1f4f5f1423ef293 HTTP/1.1" 400 28 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:43:13 info: Response status: 400 - Response time: 8.22ms
+2024-08-02 10:43:44 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66ac602ed1f4f5f1423ef293 - Body: {"action":"block"}
+2024-08-02 10:43:44 info: ::1 - - [02/Aug/2024:05:13:44 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66ac602ed1f4f5f1423ef293 HTTP/1.1" 404 28 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:43:44 info: Response status: 404 - Response time: 186.40ms
+2024-08-02 10:45:07 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-02 10:45:07 info: ::1 - - [02/Aug/2024:05:15:07 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 796 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:45:07 info: Response status: 200 - Response time: 505.23ms
+2024-08-02 10:46:40 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-02 10:46:40 info: ::1 - - [02/Aug/2024:05:16:40 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 796 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:46:40 info: Response status: 200 - Response time: 256.65ms
+2024-08-02 10:46:44 info: Server is running on http://localhost:3002
+2024-08-02 10:46:46 info: MongoDB connected
+2024-08-02 10:47:23 info: Server is running on http://localhost:3002
+2024-08-02 10:47:26 info: MongoDB connected
+2024-08-02 10:48:45 info: Server is running on http://localhost:3002
+2024-08-02 10:48:47 info: MongoDB connected
+2024-08-02 10:48:51 info: Server is running on http://localhost:3002
+2024-08-02 10:48:52 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-02 10:48:52 info: MongoDB connected
+2024-08-02 10:48:53 info: ::1 - - [02/Aug/2024:05:18:53 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 400 37 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:48:53 info: Response status: 400 - Response time: 550.53ms
+2024-08-02 10:49:01 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"unblock"}
+2024-08-02 10:49:01 info: ::1 - - [02/Aug/2024:05:19:01 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 95 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:49:01 info: Response status: 200 - Response time: 300.32ms
+2024-08-02 10:49:50 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-02 10:49:50 info: ::1 - - [02/Aug/2024:05:19:50 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 92 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:49:50 info: Response status: 200 - Response time: 180.12ms
+2024-08-02 10:49:57 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"unblock"}
+2024-08-02 10:49:57 info: ::1 - - [02/Aug/2024:05:19:57 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 95 "-" "PostmanRuntime/7.40.0"
+2024-08-02 10:49:57 info: Response status: 200 - Response time: 188.60ms
+2024-08-02 10:56:15 info: Server is running on http://localhost:3002
+2024-08-02 10:56:41 info: Server is running on http://localhost:3002
+2024-08-02 10:56:42 info: MongoDB connected
+2024-08-02 10:57:04 info: Server is running on http://localhost:3002
+2024-08-02 10:57:05 info: MongoDB connected
+2024-08-02 11:43:00 info: Server is running on http://localhost:3002
+2024-08-02 11:43:02 info: MongoDB connected
+2024-08-02 11:51:18 info: Server is running on http://localhost:3002
+2024-08-02 11:51:21 info: MongoDB connected
+2024-08-02 11:51:35 info: Server is running on http://localhost:3002
+2024-08-02 11:51:38 info: Server is running on http://localhost:3002
+2024-08-02 11:51:42 info: Server is running on http://localhost:3002
+2024-08-02 11:51:43 info: MongoDB connected
+2024-08-02 11:55:42 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:55:42 info: ::1 - - [02/Aug/2024:06:25:42 +0000] "GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc HTTP/1.1" 401 31 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:55:42 info: Response status: 401 - Response time: 19.10ms
+2024-08-02 11:55:49 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:55:49 info: ::1 - - [02/Aug/2024:06:25:49 +0000] "GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc HTTP/1.1" 200 799 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:55:49 info: Response status: 200 - Response time: 181.79ms
+2024-08-02 11:56:28 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?role=seller&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:56:28 info: ::1 - - [02/Aug/2024:06:26:28 +0000] "GET /api/v1/admin/user-management/get-all-users?role=seller&page=1&limit=10&search&sort=asc HTTP/1.1" 200 799 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:56:28 info: Response status: 200 - Response time: 93.98ms
+2024-08-02 11:58:33 info: Server is running on http://localhost:3002
+2024-08-02 11:58:34 info: MongoDB connected
+2024-08-02 11:59:04 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?role=user&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:59:04 info: ::1 - - [02/Aug/2024:06:29:04 +0000] "GET /api/v1/admin/user-management/get-all-users?role=user&page=1&limit=10&search&sort=asc HTTP/1.1" 200 799 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:59:04 info: Response status: 200 - Response time: 117.40ms
+2024-08-02 11:59:19 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?status=blocked&role=user&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:59:20 info: ::1 - - [02/Aug/2024:06:29:20 +0000] "GET /api/v1/admin/user-management/get-all-users?status=blocked&role=user&page=1&limit=10&search&sort=asc HTTP/1.1" 200 71 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:59:20 info: Response status: 200 - Response time: 154.97ms
+2024-08-02 11:59:29 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:59:29 info: ::1 - - [02/Aug/2024:06:29:29 +0000] "GET /api/v1/admin/user-management/get-all-users?status=blocked&role=seller&page=1&limit=10&search&sort=asc HTTP/1.1" 200 71 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:59:29 info: Response status: 200 - Response time: 116.86ms
+2024-08-02 11:59:34 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?role=seller&page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 11:59:34 info: ::1 - - [02/Aug/2024:06:29:34 +0000] "GET /api/v1/admin/user-management/get-all-users?role=seller&page=1&limit=10&search&sort=asc HTTP/1.1" 200 1885 "-" "PostmanRuntime/7.40.0"
+2024-08-02 11:59:34 info: Response status: 200 - Response time: 164.08ms
+2024-08-02 12:00:01 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 12:00:01 info: ::1 - - [02/Aug/2024:06:30:01 +0000] "GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc HTTP/1.1" 200 2614 "-" "PostmanRuntime/7.40.0"
+2024-08-02 12:00:01 info: Response status: 200 - Response time: 112.81ms
+2024-08-02 12:02:09 info: Server is running on http://localhost:3002
+2024-08-02 12:02:12 info: MongoDB connected
+2024-08-02 12:02:13 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc - Body: {}
+2024-08-02 12:02:13 info: ::1 - - [02/Aug/2024:06:32:13 +0000] "GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc HTTP/1.1" 200 2286 "-" "PostmanRuntime/7.40.0"
+2024-08-02 12:02:13 info: Response status: 200 - Response time: 157.57ms
+2024-08-02 12:06:25 info: Server is running on http://localhost:3002
+2024-08-02 12:06:26 info: MongoDB connected
+2024-08-02 12:06:34 info: Server is running on http://localhost:3002
+2024-08-02 12:06:36 info: Server is running on http://localhost:3002
+2024-08-02 12:06:37 info: MongoDB connected
+2024-08-02 12:06:41 info: Server is running on http://localhost:3002
+2024-08-02 12:06:43 info: MongoDB connected
+2024-08-02 12:06:45 info: Server is running on http://localhost:3002
+2024-08-02 12:06:47 info: MongoDB connected
+2024-08-02 12:07:21 info: Incoming request: GET /api/v1/admin/user-management/get-user-info?userId=66a6680873d8709ef30da418 - Body: {}
+2024-08-02 12:07:21 info: ::1 - - [02/Aug/2024:06:37:21 +0000] "GET /api/v1/admin/user-management/get-user-info?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 655 "-" "PostmanRuntime/7.40.0"
+2024-08-02 12:07:21 info: Response status: 200 - Response time: 170.02ms
+2024-08-02 12:07:57 info: Incoming request: GET /api/v1/admin/user-management/get-user-info?userId=66a66c1b97fb3978f6ea189e - Body: {}
+2024-08-02 12:07:58 info: ::1 - - [02/Aug/2024:06:37:58 +0000] "GET /api/v1/admin/user-management/get-user-info?userId=66a66c1b97fb3978f6ea189e HTTP/1.1" 200 648 "-" "PostmanRuntime/7.40.0"
+2024-08-02 12:07:58 info: Response status: 200 - Response time: 90.82ms
+2024-08-02 13:15:54 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66a670fd0f29fb8e2aa34350 - Body: {"action":"block"}
+2024-08-02 13:15:55 info: ::1 - - [02/Aug/2024:07:45:55 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66a670fd0f29fb8e2aa34350 HTTP/1.1" 500 402 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:15:55 info: Response status: 500 - Response time: 964.22ms
+2024-08-02 13:18:02 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf - Body: {"action":"block"}
+2024-08-02 13:18:02 info: ::1 - - [02/Aug/2024:07:48:02 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf HTTP/1.1" 200 204 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:18:02 info: Response status: 200 - Response time: 330.32ms
+2024-08-02 13:18:19 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf - Body: {"action":"unblock"}
+2024-08-02 13:18:20 info: ::1 - - [02/Aug/2024:07:48:20 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf HTTP/1.1" 200 185 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:18:20 info: Response status: 200 - Response time: 209.79ms
+2024-08-02 13:23:06 info: Server is running on http://localhost:3002
+2024-08-02 13:23:08 info: MongoDB connected
+2024-08-02 13:23:13 info: Server is running on http://localhost:3002
+2024-08-02 13:23:14 info: MongoDB connected
+2024-08-02 13:24:18 info: Incoming request: GET /api/v1/admin/product-management/get-product-info?productId=66abcf90bd41ad01c437d3cf - Body: {}
+2024-08-02 13:24:18 info: ::1 - - [02/Aug/2024:07:54:18 +0000] "GET /api/v1/admin/product-management/get-product-info?productId=66abcf90bd41ad01c437d3cf HTTP/1.1" 200 438 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:24:18 info: Response status: 200 - Response time: 234.55ms
+2024-08-02 13:27:29 info: Server is running on http://localhost:3002
+2024-08-02 13:27:31 info: MongoDB connected
+2024-08-02 13:33:19 info: Server is running on http://localhost:3002
+2024-08-02 13:33:21 info: MongoDB connected
+2024-08-02 13:47:36 info: Server is running on http://localhost:3002
+2024-08-02 13:47:39 info: MongoDB connected
+2024-08-02 13:49:02 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?search=example&sort=name:desc&page=1&limit=5&categoryName=Electronics - Body: {}
+2024-08-02 13:49:02 info: ::1 - - [02/Aug/2024:08:19:02 +0000] "GET /api/v1/admin/product-management/get-all-products?search=example&sort=name:desc&page=1&limit=5&categoryName=Electronics HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:02 info: Response status: 200 - Response time: 232.40ms
+2024-08-02 13:49:09 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?search=example&sort=name:desc&page=1&limit=5 - Body: {}
+2024-08-02 13:49:10 info: ::1 - - [02/Aug/2024:08:19:10 +0000] "GET /api/v1/admin/product-management/get-all-products?search=example&sort=name:desc&page=1&limit=5 HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:10 info: Response status: 200 - Response time: 193.65ms
+2024-08-02 13:49:16 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 - Body: {}
+2024-08-02 13:49:16 info: ::1 - - [02/Aug/2024:08:19:16 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 HTTP/1.1" 200 2046 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:16 info: Response status: 200 - Response time: 139.06ms
+2024-08-02 13:49:23 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&categoryName=Electronics - Body: {}
+2024-08-02 13:49:23 info: ::1 - - [02/Aug/2024:08:19:23 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&categoryName=Electronics HTTP/1.1" 200 2161 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:23 info: Response status: 200 - Response time: 265.21ms
+2024-08-02 13:49:30 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked&categoryName=Electronics - Body: {}
+2024-08-02 13:49:30 info: ::1 - - [02/Aug/2024:08:19:30 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked&categoryName=Electronics HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:30 info: Response status: 200 - Response time: 218.36ms
+2024-08-02 13:49:34 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-02 13:49:34 info: ::1 - - [02/Aug/2024:08:19:34 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:49:34 info: Response status: 200 - Response time: 94.56ms
+2024-08-02 13:50:09 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf - Body: {"action":"block"}
+2024-08-02 13:50:09 info: ::1 - - [02/Aug/2024:08:20:09 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf90bd41ad01c437d3cf HTTP/1.1" 400 40 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:50:09 info: Response status: 400 - Response time: 126.30ms
+2024-08-02 13:50:20 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-02 13:50:21 info: ::1 - - [02/Aug/2024:08:20:21 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:50:21 info: Response status: 200 - Response time: 116.36ms
+2024-08-02 13:50:24 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 - Body: {}
+2024-08-02 13:50:24 info: ::1 - - [02/Aug/2024:08:20:24 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 HTTP/1.1" 200 2046 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:50:24 info: Response status: 200 - Response time: 87.57ms
+2024-08-02 13:50:46 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66a923eaded391a76f1f8cce - Body: {"action":"block"}
+2024-08-02 13:50:46 info: ::1 - - [02/Aug/2024:08:20:46 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66a923eaded391a76f1f8cce HTTP/1.1" 500 402 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:50:46 info: Response status: 500 - Response time: 125.85ms
+2024-08-02 13:51:31 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 - Body: {"action":"block"}
+2024-08-02 13:51:32 info: ::1 - - [02/Aug/2024:08:21:32 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 HTTP/1.1" 200 204 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:51:32 info: Response status: 200 - Response time: 539.31ms
+2024-08-02 13:51:39 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-02 13:51:39 info: ::1 - - [02/Aug/2024:08:21:39 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 200 524 "-" "PostmanRuntime/7.40.0"
+2024-08-02 13:51:39 info: Response status: 200 - Response time: 101.60ms
+2024-08-02 14:15:25 info: Server is running on http://localhost:3002
+2024-08-02 14:15:28 info: Server is running on http://localhost:3002
+2024-08-02 14:15:29 info: MongoDB connected
+2024-08-03 10:23:55 info: Server is running on http://localhost:3002
+2024-08-03 10:23:59 info: MongoDB connected
+2024-08-03 10:25:06 info: Incoming request: POST /api/v1/admin/authRoute/signup - Body: {"name":"Shubham","email":"shubhamgupta2730@gmail.com","password":"12345","phone":"7610991341","role":"admin"}
+2024-08-03 10:25:06 info: ::1 - - [03/Aug/2024:04:55:06 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:25:06 info: Response status: 400 - Response time: 138.78ms
+2024-08-03 10:25:36 info: Incoming request: POST /api/v1/admin/authRoute/signup - Body: {"name":"Shubham","email":"virtualshubham2730@gmail.com","password":"12345","phone":"7610991341","role":"admin"}
+2024-08-03 10:25:36 info: ::1 - - [03/Aug/2024:04:55:36 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:25:36 info: Response status: 400 - Response time: 103.86ms
+2024-08-03 10:26:02 info: Incoming request: POST /api/v1/admin/authRoute/signup - Body: {"name":"Shubham","email":"virtualshubham2730@gmail.com","password":"12345","phone":"7610991342","role":"admin"}
+2024-08-03 10:26:03 info: ::1 - - [03/Aug/2024:04:56:03 +0000] "POST /api/v1/admin/authRoute/signup HTTP/1.1" 200 38 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:26:03 info: Response status: 200 - Response time: 571.55ms
+2024-08-03 10:26:20 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-03 10:26:20 info: ::1 - - [03/Aug/2024:04:56:20 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 401 27 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:26:20 info: Response status: 401 - Response time: 16.49ms
+2024-08-03 10:26:33 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-03 10:26:33 info: ::1 - - [03/Aug/2024:04:56:33 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:26:33 info: Response status: 200 - Response time: 391.18ms
+2024-08-03 10:26:39 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-03 10:26:39 info: ::1 - - [03/Aug/2024:04:56:39 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 200 524 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:26:39 info: Response status: 200 - Response time: 103.25ms
+2024-08-03 10:27:02 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 - Body: {"action":"unblock"}
+2024-08-03 10:27:02 info: ::1 - - [03/Aug/2024:04:57:02 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 HTTP/1.1" 200 185 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:27:02 info: Response status: 200 - Response time: 182.49ms
+2024-08-03 10:27:16 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"virtualshubham2730@gmail.com","password":"12345"}
+2024-08-03 10:27:17 info: ::1 - - [03/Aug/2024:04:57:17 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:27:17 info: Response status: 200 - Response time: 392.09ms
+2024-08-03 10:27:26 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 - Body: {"action":"unblock"}
+2024-08-03 10:27:26 info: ::1 - - [03/Aug/2024:04:57:26 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 HTTP/1.1" 400 36 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:27:26 info: Response status: 400 - Response time: 116.33ms
+2024-08-03 10:27:34 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 - Body: {"action":"block"}
+2024-08-03 10:27:35 info: ::1 - - [03/Aug/2024:04:57:35 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 HTTP/1.1" 200 204 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:27:35 info: Response status: 200 - Response time: 212.37ms
+2024-08-03 10:27:57 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-03 10:27:58 info: ::1 - - [03/Aug/2024:04:57:58 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:27:58 info: Response status: 200 - Response time: 422.90ms
+2024-08-03 10:28:07 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 - Body: {"action":"unblock"}
+2024-08-03 10:28:07 info: ::1 - - [03/Aug/2024:04:58:07 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66abcf94bd41ad01c437d3d2 HTTP/1.1" 200 185 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:28:07 info: Response status: 200 - Response time: 227.48ms
+2024-08-03 10:29:09 info: Server is running on http://localhost:3002
+2024-08-03 10:29:12 info: MongoDB connected
+2024-08-03 10:29:16 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"unblock"}
+2024-08-03 10:29:16 info: ::1 - - [03/Aug/2024:04:59:16 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 400 33 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:29:16 info: Response status: 400 - Response time: 187.77ms
+2024-08-03 10:29:23 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-03 10:29:23 info: ::1 - - [03/Aug/2024:04:59:23 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 92 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:29:23 info: Response status: 200 - Response time: 303.03ms
+2024-08-03 10:29:32 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"unblock"}
+2024-08-03 10:29:32 info: ::1 - - [03/Aug/2024:04:59:32 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 95 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:29:32 info: Response status: 200 - Response time: 180.57ms
+2024-08-03 10:39:55 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"virtualshubham2730@gmail.com","password":"12345"}
+2024-08-03 10:39:55 info: ::1 - - [03/Aug/2024:05:09:55 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:39:55 info: Response status: 200 - Response time: 280.77ms
+2024-08-03 10:40:01 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc - Body: {}
+2024-08-03 10:40:01 info: ::1 - - [03/Aug/2024:05:10:01 +0000] "GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc HTTP/1.1" 200 2286 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:40:01 info: Response status: 200 - Response time: 116.06ms
+2024-08-03 10:44:16 info: Server is running on http://localhost:3002
+2024-08-03 10:44:17 info: MongoDB connected
+2024-08-03 10:44:39 info: Server is running on http://localhost:3002
+2024-08-03 10:44:40 info: MongoDB connected
+2024-08-03 10:44:48 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked - Body: {}
+2024-08-03 10:44:48 info: ::1 - - [03/Aug/2024:05:14:48 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5&status=blocked HTTP/1.1" 200 73 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:44:48 info: Response status: 200 - Response time: 125.52ms
+2024-08-03 10:44:53 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 - Body: {}
+2024-08-03 10:44:53 info: ::1 - - [03/Aug/2024:05:14:53 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 HTTP/1.1" 200 2208 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:44:53 info: Response status: 200 - Response time: 188.30ms
+2024-08-03 10:46:45 info: Incoming request: GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc - Body: {}
+2024-08-03 10:46:45 info: ::1 - - [03/Aug/2024:05:16:45 +0000] "GET /api/v1/admin/user-management/get-all-users?page=1&limit=10&search&sort=asc HTTP/1.1" 200 2286 "-" "PostmanRuntime/7.40.0"
+2024-08-03 10:46:45 info: Response status: 200 - Response time: 159.98ms
+2024-08-03 22:47:34 info: Server is running on http://localhost:3002
+2024-08-03 22:47:35 info: MongoDB connected
+2024-08-03 22:48:16 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 - Body: {"action":"block"}
+2024-08-03 22:48:17 info: ::1 - - [03/Aug/2024:17:18:17 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 92 "-" "PostmanRuntime/7.40.0"
+2024-08-03 22:48:17 info: Response status: 200 - Response time: 216.89ms
+2024-08-03 22:48:29 info: Incoming request: GET /api/v1/admin/user-management/get-user-info?userId=66a6680873d8709ef30da418 - Body: {}
+2024-08-03 22:48:29 info: ::1 - - [03/Aug/2024:17:18:29 +0000] "GET /api/v1/admin/user-management/get-user-info?userId=66a6680873d8709ef30da418 HTTP/1.1" 200 676 "-" "PostmanRuntime/7.40.0"
+2024-08-03 22:48:29 info: Response status: 200 - Response time: 89.11ms
+2024-08-03 22:54:24 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e - Body: {"action":"block"}
+2024-08-03 22:54:24 info: ::1 - - [03/Aug/2024:17:24:24 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e HTTP/1.1" 200 92 "-" "PostmanRuntime/7.40.0"
+2024-08-03 22:54:24 info: Response status: 200 - Response time: 176.48ms
+2024-08-03 22:55:02 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e - Body: {"action":"unblock"}
+2024-08-03 22:55:02 info: ::1 - - [03/Aug/2024:17:25:02 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e HTTP/1.1" 200 95 "-" "PostmanRuntime/7.40.0"
+2024-08-03 22:55:02 info: Response status: 200 - Response time: 175.41ms
+2024-08-03 22:55:53 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e - Body: {"action":"block"}
+2024-08-03 22:55:54 info: ::1 - - [03/Aug/2024:17:25:54 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e HTTP/1.1" 200 92 "-" "PostmanRuntime/7.40.0"
+2024-08-03 22:55:54 info: Response status: 200 - Response time: 163.05ms
+2024-08-03 23:11:54 info: Incoming request: PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e - Body: {"action":"unblock"}
+2024-08-03 23:11:55 info: ::1 - - [03/Aug/2024:17:41:55 +0000] "PUT /api/v1/admin/user-management/toggle-block-user?userId=66a66c1b97fb3978f6ea189e HTTP/1.1" 200 95 "-" "PostmanRuntime/7.40.0"
+2024-08-03 23:11:55 info: Response status: 200 - Response time: 392.48ms
+2024-08-03 23:13:18 info: Incoming request: PUT /api/v1/admin/product-management/toggle-block-product?productId=66ae682930fdbfaea701f8b9 - Body: {"action":"block"}
+2024-08-03 23:13:19 info: ::1 - - [03/Aug/2024:17:43:19 +0000] "PUT /api/v1/admin/product-management/toggle-block-product?productId=66ae682930fdbfaea701f8b9 HTTP/1.1" 200 204 "-" "PostmanRuntime/7.40.0"
+2024-08-03 23:13:19 info: Response status: 200 - Response time: 260.04ms
+2024-08-04 10:13:10 info: Server is running on http://localhost:3002
+2024-08-04 10:13:13 info: MongoDB connected
+2024-08-04 10:47:24 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Winter Essentials Bundle","description":"A bundle of essential products for the winter season","products":[{"productId":"64cdaa67b3e2f041b9fdf1a1","quantity":2},{"productId":"64cdaa67b3e2f041b9fdf1a2","quantity":1},{"productId":"64cdaa67b3e2f041b9fdf1a3","quantity":3}],"discount":15}
+2024-08-04 10:47:24 info: ::1 - - [04/Aug/2024:05:17:24 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 404 178 "-" "PostmanRuntime/7.40.0"
+2024-08-04 10:47:24 info: Response status: 404 - Response time: 29.82ms
+2024-08-04 10:48:25 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"virtualshubham2730@gmail.com","password":"12345"}
+2024-08-04 10:48:26 info: ::1 - - [04/Aug/2024:05:18:26 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-04 10:48:26 info: Response status: 200 - Response time: 1118.06ms
+2024-08-04 10:48:30 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Winter Essentials Bundle","description":"A bundle of essential products for the winter season","products":[{"productId":"64cdaa67b3e2f041b9fdf1a1","quantity":2},{"productId":"64cdaa67b3e2f041b9fdf1a2","quantity":1},{"productId":"64cdaa67b3e2f041b9fdf1a3","quantity":3}],"discount":15}
+2024-08-04 10:48:30 info: ::1 - - [04/Aug/2024:05:18:30 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 404 178 "-" "PostmanRuntime/7.40.0"
+2024-08-04 10:48:30 info: Response status: 404 - Response time: 3.48ms
+2024-08-04 20:55:59 info: Server is running on http://localhost:3002
+2024-08-04 20:56:01 info: MongoDB connected
+2024-08-04 20:56:31 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2},{"productId":"66a923eaded391a76f1f8cce","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 20:56:31 info: ::1 - - [04/Aug/2024:15:26:31 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 403 70 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:56:31 info: Response status: 403 - Response time: 169.13ms
+2024-08-04 20:56:47 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 - Body: {}
+2024-08-04 20:56:47 info: ::1 - - [04/Aug/2024:15:26:47 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=1&limit=5 HTTP/1.1" 200 2208 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:56:47 info: Response status: 200 - Response time: 123.61ms
+2024-08-04 20:57:36 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66ab638093d7d86ccf7dc1f9","quantity":2},{"productId":"66ab650beb41f71489319b35","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 20:57:36 info: ::1 - - [04/Aug/2024:15:27:36 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 500 966 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:57:36 info: Response status: 500 - Response time: 166.83ms
+2024-08-04 20:58:04 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=4&limit=5 - Body: {}
+2024-08-04 20:58:04 info: ::1 - - [04/Aug/2024:15:28:04 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=4&limit=5 HTTP/1.1" 200 1786 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:58:04 info: Response status: 200 - Response time: 127.98ms
+2024-08-04 20:58:40 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66ae682930fdbfaea701f8b9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 20:58:40 info: ::1 - - [04/Aug/2024:15:28:40 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 403 70 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:58:40 info: Response status: 403 - Response time: 74.53ms
+2024-08-04 20:59:20 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf8cbd41ad01c437d3cc","quantity":2},{"productId":"66abcf88bd41ad01c437d3c9","quantity":1}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 20:59:20 info: ::1 - - [04/Aug/2024:15:29:20 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 500 966 "-" "PostmanRuntime/7.40.0"
+2024-08-04 20:59:20 info: Response status: 500 - Response time: 178.62ms
+2024-08-04 21:00:22 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 21:00:22 info: ::1 - - [04/Aug/2024:15:30:22 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 400 64 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:00:22 info: Response status: 400 - Response time: 15.76ms
+2024-08-04 21:00:37 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2}],"discountPercentage":10,"MRP":150,"sellingPrice":135}
+2024-08-04 21:00:37 info: ::1 - - [04/Aug/2024:15:30:37 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 500 966 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:00:37 info: Response status: 500 - Response time: 102.19ms
+2024-08-04 21:06:44 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2}],"discount":10}
+2024-08-04 21:06:44 info: ::1 - - [04/Aug/2024:15:36:44 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 500 720 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:06:44 info: Response status: 500 - Response time: 168.30ms
+2024-08-04 21:08:23 info: Server is running on http://localhost:3002
+2024-08-04 21:08:27 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2}],"discount":10}
+2024-08-04 21:08:27 info: MongoDB connected
+2024-08-04 21:08:28 info: ::1 - - [04/Aug/2024:15:38:28 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 515 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:08:28 info: Response status: 201 - Response time: 1236.09ms
+2024-08-04 21:09:34 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":2}],"discount":10}
+2024-08-04 21:09:34 info: ::1 - - [04/Aug/2024:15:39:34 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 602 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:09:34 info: Response status: 201 - Response time: 369.77ms
+2024-08-04 21:10:06 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf88bd41ad01c437d3c9","quantity":2}],"discount":10}
+2024-08-04 21:10:07 info: ::1 - - [04/Aug/2024:15:40:07 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 403 70 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:10:07 info: Response status: 403 - Response time: 123.04ms
+2024-08-04 21:10:40 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":2}],"discount":10}
+2024-08-04 21:10:41 info: ::1 - - [04/Aug/2024:15:40:41 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 602 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:10:41 info: Response status: 201 - Response time: 488.74ms
+2024-08-04 21:11:01 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-04 21:11:01 info: ::1 - - [04/Aug/2024:15:41:01 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 403 58 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:11:01 info: Response status: 403 - Response time: 11.43ms
+2024-08-04 21:11:21 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-04 21:11:21 info: ::1 - - [04/Aug/2024:15:41:21 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 403 58 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:11:21 info: Response status: 403 - Response time: 7.43ms
+2024-08-04 21:12:21 info: Server is running on http://localhost:3002
+2024-08-04 21:12:25 info: MongoDB connected
+2024-08-04 21:12:30 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-04 21:12:30 info: ::1 - - [04/Aug/2024:15:42:30 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 400 42 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:12:30 info: Response status: 400 - Response time: 33.81ms
+2024-08-04 21:12:52 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-04 21:12:52 info: ::1 - - [04/Aug/2024:15:42:52 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 400 42 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:12:52 info: Response status: 400 - Response time: 7.24ms
+2024-08-04 21:13:52 info: Server is running on http://localhost:3002
+2024-08-04 21:13:55 info: MongoDB connected
+2024-08-04 21:13:56 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-04 21:13:58 info: ::1 - - [04/Aug/2024:15:43:58 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 505 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:13:58 info: Response status: 200 - Response time: 1820.54ms
+2024-08-04 21:15:19 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {}
+2024-08-04 21:15:19 info: ::1 - - [04/Aug/2024:15:45:19 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 403 58 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:15:19 info: Response status: 403 - Response time: 9.07ms
+2024-08-04 21:15:33 info: Server is running on http://localhost:3002
+2024-08-04 21:15:36 info: MongoDB connected
+2024-08-04 21:16:07 info: Server is running on http://localhost:3002
+2024-08-04 21:16:09 info: MongoDB connected
+2024-08-04 21:16:11 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {}
+2024-08-04 21:16:11 info: ::1 - - [04/Aug/2024:15:46:11 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 463 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:16:11 info: Response status: 200 - Response time: 134.86ms
+2024-08-04 21:16:26 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles - Body: {}
+2024-08-04 21:16:26 info: ::1 - - [04/Aug/2024:15:46:26 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles HTTP/1.1" 403 58 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:16:26 info: Response status: 403 - Response time: 7.66ms
+2024-08-04 21:16:40 info: Server is running on http://localhost:3002
+2024-08-04 21:16:42 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles - Body: {}
+2024-08-04 21:16:43 info: MongoDB connected
+2024-08-04 21:16:43 info: ::1 - - [04/Aug/2024:15:46:43 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles HTTP/1.1" 200 3810 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:16:43 info: Response status: 200 - Response time: 1299.38ms
+2024-08-04 21:18:40 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showBlocked=false&showAll=true - Body: {}
+2024-08-04 21:18:40 info: ::1 - - [04/Aug/2024:15:48:40 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showBlocked=false&showAll=true HTTP/1.1" 200 105 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:18:40 info: Response status: 200 - Response time: 146.79ms
+2024-08-04 21:18:55 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showBlocked=false - Body: {}
+2024-08-04 21:18:55 info: ::1 - - [04/Aug/2024:15:48:55 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showBlocked=false HTTP/1.1" 200 105 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:18:55 info: Response status: 200 - Response time: 130.77ms
+2024-08-04 21:18:59 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc - Body: {}
+2024-08-04 21:18:59 info: ::1 - - [04/Aug/2024:15:48:59 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc HTTP/1.1" 200 3810 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:18:59 info: Response status: 200 - Response time: 387.95ms
+2024-08-04 21:19:11 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showAll=true - Body: {}
+2024-08-04 21:19:11 info: ::1 - - [04/Aug/2024:15:49:11 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showAll=true HTTP/1.1" 200 3810 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:19:11 info: Response status: 200 - Response time: 87.42ms
+2024-08-04 21:20:42 info: Server is running on http://localhost:3002
+2024-08-04 21:20:44 info: MongoDB connected
+2024-08-04 21:20:46 info: Incoming request: DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-08-04 21:20:46 info: ::1 - - [04/Aug/2024:15:50:46 +0000] "DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 403 58 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:20:46 info: Response status: 403 - Response time: 14.70ms
+2024-08-04 21:20:57 info: Server is running on http://localhost:3002
+2024-08-04 21:20:57 info: Incoming request: DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-08-04 21:20:58 info: MongoDB connected
+2024-08-04 21:20:58 info: ::1 - - [04/Aug/2024:15:50:58 +0000] "DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 404 30 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:20:58 info: Response status: 404 - Response time: 1134.72ms
+2024-08-04 21:21:06 info: Incoming request: DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {}
+2024-08-04 21:21:07 info: ::1 - - [04/Aug/2024:15:51:07 +0000] "DELETE /api/v1/admin/bundleRoute/remove-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 41 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:21:07 info: Response status: 200 - Response time: 380.25ms
+2024-08-04 21:21:12 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {}
+2024-08-04 21:21:13 info: ::1 - - [04/Aug/2024:15:51:13 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 464 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:21:13 info: Response status: 200 - Response time: 135.20ms
+2024-08-04 21:21:15 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {}
+2024-08-04 21:21:15 info: ::1 - - [04/Aug/2024:15:51:15 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 464 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:21:15 info: Response status: 200 - Response time: 126.73ms
+2024-08-04 21:21:30 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showAll=true - Body: {}
+2024-08-04 21:21:30 info: ::1 - - [04/Aug/2024:15:51:30 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles?page=1&limit=10&sortField=name&sortOrder=asc&showAll=true HTTP/1.1" 200 3810 "-" "PostmanRuntime/7.40.0"
+2024-08-04 21:21:30 info: Response status: 200 - Response time: 109.93ms
+2024-08-04 22:19:50 info: Server is running on http://localhost:3002
+2024-08-04 22:19:52 info: MongoDB connected
+2024-08-04 22:19:55 info: Server is running on http://localhost:3002
+2024-08-04 22:19:57 info: MongoDB connected
+2024-08-04 22:20:04 info: Server is running on http://localhost:3002
+2024-08-04 22:20:07 info: Server is running on http://localhost:3002
+2024-08-04 22:20:08 info: MongoDB connected
+2024-08-04 22:20:11 info: Server is running on http://localhost:3002
+2024-08-04 22:20:12 info: MongoDB connected
+2024-08-04 22:20:15 info: Server is running on http://localhost:3002
+2024-08-04 22:20:16 info: MongoDB connected
+2024-08-04 22:20:21 info: Server is running on http://localhost:3002
+2024-08-04 22:20:22 info: MongoDB connected
+2024-08-04 22:20:24 info: Server is running on http://localhost:3002
+2024-08-04 22:20:25 info: MongoDB connected
+2024-08-04 22:21:25 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-08-04 22:21:25 info: ::1 - - [04/Aug/2024:16:51:25 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 401 27 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:21:25 info: Response status: 401 - Response time: 18.66ms
+2024-08-04 22:21:44 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 - Body: {}
+2024-08-04 22:21:44 info: ::1 - - [04/Aug/2024:16:51:44 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66a9bf9bf4feb23c156ca061 HTTP/1.1" 401 27 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:21:44 info: Response status: 401 - Response time: 4.83ms
+2024-08-04 22:21:51 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"shubhgupta2730@gmail.com","password":"12345"}
+2024-08-04 22:21:51 info: ::1 - - [04/Aug/2024:16:51:51 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:21:51 info: Response status: 200 - Response time: 446.30ms
+2024-08-04 22:21:58 info: Incoming request: GET /api/v1/admin/bundleRoute/get-all-bundles - Body: {}
+2024-08-04 22:21:58 info: ::1 - - [04/Aug/2024:16:51:58 +0000] "GET /api/v1/admin/bundleRoute/get-all-bundles HTTP/1.1" 200 3355 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:21:58 info: Response status: 200 - Response time: 103.07ms
+2024-08-04 22:22:29 info: Incoming request: PUT /api/v1/admin/bundleRoute/toggle-block-bundle?bundleId=66afa0b673938886f87f1f1e - Body: {"action":"block"}
+2024-08-04 22:22:29 info: ::1 - - [04/Aug/2024:16:52:29 +0000] "PUT /api/v1/admin/bundleRoute/toggle-block-bundle?bundleId=66afa0b673938886f87f1f1e HTTP/1.1" 404 183 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:22:29 info: Response status: 404 - Response time: 5.77ms
+2024-08-04 22:24:26 info: Incoming request: PUT /api/v1/admin/bundleRoute/toggle-block-unblock?bundleId=66afa0b673938886f87f1f1e - Body: {"action":"block"}
+2024-08-04 22:24:26 info: ::1 - - [04/Aug/2024:16:54:26 +0000] "PUT /api/v1/admin/bundleRoute/toggle-block-unblock?bundleId=66afa0b673938886f87f1f1e HTTP/1.1" 200 601 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:24:26 info: Response status: 200 - Response time: 241.87ms
+2024-08-04 22:24:47 info: Incoming request: GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0b673938886f87f1f1e - Body: {}
+2024-08-04 22:24:47 info: ::1 - - [04/Aug/2024:16:54:47 +0000] "GET /api/v1/admin/bundleRoute/get-bundle?bundleId=66afa0b673938886f87f1f1e HTTP/1.1" 200 560 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:24:47 info: Response status: 200 - Response time: 92.22ms
+2024-08-04 22:25:27 info: Server is running on http://localhost:3002
+2024-08-04 22:25:29 info: MongoDB connected
+2024-08-04 22:33:43 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discountPercentage":20,"code":"BACKSCHOOL"}
+2024-08-04 22:33:43 info: ::1 - - [04/Aug/2024:17:03:43 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 404 179 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:33:43 info: Response status: 404 - Response time: 30.52ms
+2024-08-04 22:34:38 info: Server is running on http://localhost:3002
+2024-08-04 22:34:40 info: MongoDB connected
+2024-08-04 22:34:49 info: Server is running on http://localhost:3002
+2024-08-04 22:34:50 info: MongoDB connected
+2024-08-04 22:34:54 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discountPercentage":20,"code":"BACKSCHOOL"}
+2024-08-04 22:34:54 info: ::1 - - [04/Aug/2024:17:04:54 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 410 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:34:54 info: Response status: 500 - Response time: 42.85ms
+2024-08-04 22:35:16 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-08-04 22:35:16 info: ::1 - - [04/Aug/2024:17:05:16 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 340 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:35:16 info: Response status: 500 - Response time: 129.89ms
+2024-08-04 22:35:30 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"summer20"}
+2024-08-04 22:35:30 info: ::1 - - [04/Aug/2024:17:05:30 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 299 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:35:30 info: Response status: 201 - Response time: 103.17ms
+2024-08-04 22:36:09 info: Incoming request: PUT /api/v1/admin/discountRoute/update-discount?discountId=66afb4daecc164ab7765a1a0 - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discountPercentage":23,"code":"summer23"}
+2024-08-04 22:36:09 info: ::1 - - [04/Aug/2024:17:06:09 +0000] "PUT /api/v1/admin/discountRoute/update-discount?discountId=66afb4daecc164ab7765a1a0 HTTP/1.1" 200 306 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:36:09 info: Response status: 200 - Response time: 134.21ms
+2024-08-04 22:36:20 info: Incoming request: DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66afb4daecc164ab7765a1a0 - Body: {}
+2024-08-04 22:36:20 info: ::1 - - [04/Aug/2024:17:06:20 +0000] "DELETE /api/v1/admin/discountRoute/remove-discount?discountId=66afb4daecc164ab7765a1a0 HTTP/1.1" 200 314 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:36:20 info: Response status: 200 - Response time: 110.36ms
+2024-08-04 22:37:45 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01T00:00:00Z","endDate":"2024-08-31T23:59:59Z","discount":20,"code":"BACKSCHOOL"}
+2024-08-04 22:37:45 info: ::1 - - [04/Aug/2024:17:07:45 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 340 "-" "PostmanRuntime/7.40.0"
+2024-08-04 22:37:45 info: Response status: 500 - Response time: 104.68ms
+2024-08-05 16:18:33 info: Server is running on http://localhost:3002
+2024-08-05 16:18:35 info: MongoDB connected
+2024-08-05 17:25:23 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"virtualshubham2730@gmail.com","password":"12345"}
+2024-08-05 17:25:23 info: ::1 - - [05/Aug/2024:11:55:23 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:25:23 info: Response status: 200 - Response time: 546.27ms
+2024-08-05 17:25:35 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":2}],"discount":10}
+2024-08-05 17:25:36 info: ::1 - - [05/Aug/2024:11:55:36 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 602 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:25:36 info: Response status: 201 - Response time: 396.31ms
+2024-08-05 17:25:56 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":"2"},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":2}],"discount":10}
+2024-08-05 17:25:56 info: ::1 - - [05/Aug/2024:11:55:56 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 602 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:25:56 info: Response status: 201 - Response time: 299.03ms
+2024-08-05 17:28:30 info: Server is running on http://localhost:3002
+2024-08-05 17:28:32 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":"j"}],"discount":10}
+2024-08-05 17:28:32 info: ::1 - - [05/Aug/2024:11:58:32 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 400 87 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:28:32 info: Response status: 400 - Response time: 14.56ms
+2024-08-05 17:28:33 info: MongoDB connected
+2024-08-05 17:28:42 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":"2"}],"discount":10}
+2024-08-05 17:28:42 info: ::1 - - [05/Aug/2024:11:58:42 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 400 87 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:28:42 info: Response status: 400 - Response time: 9.93ms
+2024-08-05 17:28:49 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":1}],"discount":10}
+2024-08-05 17:28:49 info: ::1 - - [05/Aug/2024:11:58:49 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 201 602 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:28:49 info: Response status: 201 - Response time: 327.10ms
+2024-08-05 17:28:53 info: Incoming request: POST /api/v1/admin/bundleRoute/create-bundle - Body: {"name":"Back to School Bundle","description":"A special bundle for school supplies","products":[{"productId":"66abcf88bd41ad01c437d3c9","quantity":2},{"productId":"66abcf8cbd41ad01c437d3cc","quantity":1}],"discount":"10"}
+2024-08-05 17:28:53 info: ::1 - - [05/Aug/2024:11:58:53 +0000] "POST /api/v1/admin/bundleRoute/create-bundle HTTP/1.1" 400 68 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:28:53 info: Response status: 400 - Response time: 6.12ms
+2024-08-05 17:30:25 info: Server is running on http://localhost:3002
+2024-08-05 17:30:27 info: MongoDB connected
+2024-08-05 17:30:35 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":15}
+2024-08-05 17:30:36 info: ::1 - - [05/Aug/2024:12:00:36 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 200 505 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:30:36 info: Response status: 200 - Response time: 927.64ms
+2024-08-05 17:30:49 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":"2"}],"discount":15}
+2024-08-05 17:30:49 info: ::1 - - [05/Aug/2024:12:00:49 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 400 87 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:30:49 info: Response status: 400 - Response time: 20.91ms
+2024-08-05 17:31:00 info: Incoming request: PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 - Body: {"name":"bundle update","description":"A special bundle for school supplies","products":[{"productId":"66a923eaded391a76f1f8cce","quantity":2}],"discount":"15"}
+2024-08-05 17:31:00 info: ::1 - - [05/Aug/2024:12:01:00 +0000] "PUT /api/v1/admin/bundleRoute/update-bundle?bundleId=66afa0f973938886f87f1f25 HTTP/1.1" 400 68 "-" "PostmanRuntime/7.40.0"
+2024-08-05 17:31:00 info: Response status: 400 - Response time: 6.33ms
+2024-08-05 17:33:03 info: Server is running on http://localhost:3002
+2024-08-05 17:33:05 info: MongoDB connected
+2024-08-05 17:42:24 info: Server is running on http://localhost:3002
+2024-08-05 17:42:26 info: MongoDB connected
+2024-08-06 09:40:52 info: Server is running on http://localhost:3002
+2024-08-06 09:40:55 info: MongoDB connected
+2024-08-06 09:41:04 info: Incoming request: POST /api/v1/admin/authRoute/sign-in - Body: {"email":"virtualshubham2730@gmail.com","password":"12345"}
+2024-08-06 09:41:04 info: ::1 - - [06/Aug/2024:04:11:04 +0000] "POST /api/v1/admin/authRoute/sign-in HTTP/1.1" 200 238 "-" "PostmanRuntime/7.40.0"
+2024-08-06 09:41:04 info: Response status: 200 - Response time: 246.00ms
+2024-08-06 09:41:08 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 - Body: {}
+2024-08-06 09:41:08 info: ::1 - - [06/Aug/2024:04:11:08 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 HTTP/1.1" 200 502 "-" "PostmanRuntime/7.40.0"
+2024-08-06 09:41:08 info: Response status: 200 - Response time: 163.48ms
+2024-08-06 09:46:04 info: Incoming request: GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 - Body: {}
+2024-08-06 09:46:04 info: ::1 - - [06/Aug/2024:04:16:04 +0000] "GET /api/v1/admin/categoryRoute/get-all-categories?sortBy=name&order=asc&page=1&limit=10 HTTP/1.1" 200 502 "-" "PostmanRuntime/7.40.0"
+2024-08-06 09:46:04 info: Response status: 200 - Response time: 207.52ms
+2024-08-06 10:41:51 info: Server is running on http://localhost:3002
+2024-08-06 10:41:54 info: MongoDB connected
+2024-08-06 10:41:55 info: Incoming request: POST /api/v1/admin/discountRoute/apply-discount - Body: {"productIds":["60d21b4667d0d8992e610c85","60d21b4667d0d8992e610c86"],"bundleIds":[],"discountCode":"SUMMER2024"}
+2024-08-06 10:41:55 info: ::1 - - [06/Aug/2024:05:11:55 +0000] "POST /api/v1/admin/discountRoute/apply-discount HTTP/1.1" 400 47 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:41:55 info: Response status: 400 - Response time: 96.41ms
+2024-08-06 10:43:06 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01","endDate":"2024-08-31","discount":20,"code":"BACKSCHOOL"}
+2024-08-06 10:43:06 info: ::1 - - [06/Aug/2024:05:13:06 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 500 340 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:43:06 info: Response status: 500 - Response time: 115.18ms
+2024-08-06 10:43:16 info: Incoming request: POST /api/v1/admin/discountRoute/add-discount - Body: {"startDate":"2024-08-01","endDate":"2024-08-31","discount":20,"code":"SUMMER2024"}
+2024-08-06 10:43:16 info: ::1 - - [06/Aug/2024:05:13:16 +0000] "POST /api/v1/admin/discountRoute/add-discount HTTP/1.1" 201 301 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:43:16 info: Response status: 201 - Response time: 94.49ms
+2024-08-06 10:45:50 info: Server is running on http://localhost:3002
+2024-08-06 10:45:52 info: MongoDB connected
+2024-08-06 10:46:05 info: Incoming request: POST /api/v1/admin/discountRoute/apply-discount - Body: {"productIds":["60d21b4667d0d8992e610c85","60d21b4667d0d8992e610c86"],"bundleIds":[],"discountCode":"SUMMER2024"}
+2024-08-06 10:46:05 info: ::1 - - [06/Aug/2024:05:16:05 +0000] "POST /api/v1/admin/discountRoute/apply-discount HTTP/1.1" 500 38 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:46:05 info: Response status: 500 - Response time: 200.26ms
+2024-08-06 10:46:15 info: Incoming request: GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=4&limit=5 - Body: {}
+2024-08-06 10:46:15 info: ::1 - - [06/Aug/2024:05:16:15 +0000] "GET /api/v1/admin/product-management/get-all-products?sort=name:desc&page=4&limit=5 HTTP/1.1" 200 2271 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:46:15 info: Response status: 200 - Response time: 87.73ms
+2024-08-06 10:46:44 info: Incoming request: POST /api/v1/admin/discountRoute/apply-discount - Body: {"productIds":["66ae682930fdbfaea701f8b9","66ae682930fdbfaea701f8b9"],"bundleIds":[],"discountCode":"SUMMER2024"}
+2024-08-06 10:46:44 info: ::1 - - [06/Aug/2024:05:16:44 +0000] "POST /api/v1/admin/discountRoute/apply-discount HTTP/1.1" 500 38 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:46:44 info: Response status: 500 - Response time: 162.06ms
+2024-08-06 10:47:05 info: Incoming request: POST /api/v1/admin/discountRoute/apply-discount - Body: {"productIds":["66ae682930fdbfaea701f8b9","66b0b1aa182e3d4c4d0f841b"],"bundleIds":[],"discountCode":"SUMMER2024"}
+2024-08-06 10:47:05 info: ::1 - - [06/Aug/2024:05:17:05 +0000] "POST /api/v1/admin/discountRoute/apply-discount HTTP/1.1" 500 38 "-" "PostmanRuntime/7.40.0"
+2024-08-06 10:47:05 info: Response status: 500 - Response time: 157.51ms
+2024-08-06 10:48:34 info: Server is running on http://localhost:3002
+2024-08-06 10:48:36 info: Server is running on http://localhost:3002
+2024-08-06 10:48:37 info: MongoDB connected
+2024-08-06 10:50:12 info: Server is running on http://localhost:3002
+2024-08-06 10:50:13 info: MongoDB connected
+2024-08-07 10:40:41 info: Server is running on http://localhost:3002
+2024-08-07 10:40:43 info: MongoDB connected
+2024-08-07 10:44:37 info: Server is running on http://localhost:3002
+2024-08-07 10:44:38 info: MongoDB connected
+2024-08-07 10:52:52 info: Server is running on http://localhost:3002
+2024-08-07 10:52:55 info: MongoDB connected
+2024-08-07 10:54:06 info: Server is running on http://localhost:3002
+2024-08-07 10:54:07 info: MongoDB connected
+2024-08-07 10:59:56 info: Server is running on http://localhost:3002
+2024-08-07 10:59:57 info: MongoDB connected
+2024-08-07 11:00:14 info: Server is running on http://localhost:3002
+2024-08-07 11:00:16 info: MongoDB connected
+2024-08-07 11:00:31 info: Server is running on http://localhost:3002
+2024-08-07 11:00:32 info: MongoDB connected
+2024-08-07 11:02:11 info: Server is running on http://localhost:3002
+2024-08-07 11:02:15 info: MongoDB connected
+2024-08-07 11:02:50 info: Server is running on http://localhost:3002
+2024-08-07 11:02:51 info: MongoDB connected
+2024-08-07 11:21:57 info: Server is running on http://localhost:3002
+2024-08-07 11:21:59 info: MongoDB connected
+2024-08-07 11:22:09 info: Server is running on http://localhost:3002
+2024-08-07 11:22:10 info: MongoDB connected
+2024-08-07 11:23:44 info: Server is running on http://localhost:3002
+2024-08-07 11:23:46 info: MongoDB connected
+2024-08-07 11:23:53 info: Server is running on http://localhost:3002
+2024-08-07 11:23:54 info: MongoDB connected
+2024-08-07 11:23:57 info: Server is running on http://localhost:3002
+2024-08-07 11:23:58 info: MongoDB connected
+2024-08-07 11:32:21 info: Server is running on http://localhost:3002
+2024-08-07 11:32:22 info: MongoDB connected
+2024-08-07 18:29:29 info: Server is running on http://localhost:3002
+2024-08-07 18:29:31 info: MongoDB connected
+2024-08-07 18:40:36 info: Server is running on http://localhost:3002
+2024-08-07 18:40:38 info: MongoDB connected
+2024-08-07 18:46:42 info: Server is running on http://localhost:3002
+2024-08-07 18:46:43 info: MongoDB connected
+2024-08-07 21:49:55 info: Server is running on http://localhost:3002
+2024-08-07 21:49:57 info: MongoDB connected
+2024-08-07 21:54:32 info: Server is running on http://localhost:3002
+2024-08-07 21:54:33 info: MongoDB connected
+2024-08-07 22:00:38 info: Server is running on http://localhost:3002
+2024-08-07 22:00:41 info: MongoDB connected
+2024-08-07 22:04:41 info: Server is running on http://localhost:3002
+2024-08-07 22:04:43 info: MongoDB connected
+2024-08-07 22:08:49 info: Server is running on http://localhost:3002
+2024-08-07 22:08:54 info: MongoDB connected
+2024-08-07 23:02:17 info: Server is running on http://localhost:3002
+2024-08-07 23:02:20 info: MongoDB connected
+2024-08-08 08:47:14 info: Server is running on http://localhost:3002
+2024-08-08 08:47:16 info: MongoDB connected
+2024-08-08 08:47:52 info: Server is running on http://localhost:3002
+2024-08-08 08:47:54 info: MongoDB connected
+2024-08-08 09:44:27 info: Server is running on http://localhost:3002
+2024-08-08 09:44:28 info: MongoDB connected
+2024-08-08 09:44:34 info: Server is running on http://localhost:3002
+2024-08-08 09:44:36 info: MongoDB connected
+2024-08-08 09:44:37 info: Server is running on http://localhost:3002
+2024-08-08 09:44:38 info: MongoDB connected
+2024-08-08 09:46:34 info: Server is running on http://localhost:3002
+2024-08-08 09:54:58 info: Server is running on http://localhost:3002
+2024-08-08 09:54:59 info: MongoDB connected
+2024-08-08 10:27:12 info: Server is running on http://localhost:3002
+2024-08-08 10:27:18 info: Server is running on http://localhost:3002
+2024-08-08 10:28:11 info: MongoDB connected
+2024-08-08 10:30:26 info: Server is running on http://localhost:3002
+2024-08-08 10:31:31 info: Server is running on http://localhost:3002
+2024-08-08 10:31:56 info: MongoDB connected
+2024-08-08 10:32:48 info: Server is running on http://localhost:3002
+2024-08-08 10:32:56 info: Server is running on http://localhost:3002
+2024-08-08 10:33:04 info: MongoDB connected
+2024-08-08 10:54:00 info: Server is running on http://localhost:3002
+2024-08-08 10:54:27 info: MongoDB connected
+2024-08-09 09:58:31 info: Server is running on http://localhost:3002
+2024-08-09 09:58:32 info: MongoDB connected
+2024-08-12 13:59:09 info: Server is running on http://localhost:3002
+2024-08-12 13:59:11 info: MongoDB connected
+2024-08-12 14:26:38 info: Server is running on http://localhost:3002
+2024-08-12 14:26:40 info: MongoDB connected
+2024-08-12 14:27:28 info: Server is running on http://localhost:3002
+2024-08-12 14:27:29 info: MongoDB connected
+2024-08-12 14:29:02 info: Server is running on http://localhost:3002
+2024-08-12 14:29:03 info: MongoDB connected
+2024-08-12 14:29:14 info: Server is running on http://localhost:3002
+2024-08-12 14:29:15 info: MongoDB connected
+2024-08-12 14:29:33 info: Server is running on http://localhost:3002
+2024-08-12 14:29:34 info: MongoDB connected
+2024-08-12 14:30:55 info: Server is running on http://localhost:3002
+2024-08-12 14:30:58 info: Server is running on http://localhost:3002
+2024-08-12 14:30:59 info: MongoDB connected
+2024-08-12 14:31:22 info: Server is running on http://localhost:3002
+2024-08-12 14:31:23 info: MongoDB connected
+2024-08-12 14:32:11 info: Server is running on http://localhost:3002
+2024-08-12 14:32:12 info: MongoDB connected
+2024-08-12 14:32:48 info: Server is running on http://localhost:3002
+2024-08-12 14:32:52 info: Server is running on http://localhost:3002
+2024-08-12 14:32:53 info: MongoDB connected
+2024-08-12 14:33:13 info: Server is running on http://localhost:3002
+2024-08-12 14:33:14 info: MongoDB connected
+2024-08-12 14:35:11 info: Server is running on http://localhost:3002
+2024-08-12 14:35:13 info: MongoDB connected
+2024-08-12 14:36:01 info: Server is running on http://localhost:3002
+2024-08-12 14:36:04 info: Server is running on http://localhost:3002
+2024-08-12 14:36:05 info: MongoDB connected
+2024-08-12 14:39:57 info: Server is running on http://localhost:3002
+2024-08-12 14:39:59 info: MongoDB connected
+2024-08-12 14:48:02 info: Server is running on http://localhost:3002
+2024-08-12 14:48:04 info: MongoDB connected
+2024-08-12 14:50:15 info: Server is running on http://localhost:3002
+2024-08-12 14:50:16 info: MongoDB connected
+2024-08-12 14:52:46 info: Server is running on http://localhost:3002
+2024-08-12 14:53:21 error: MongoNetworkTimeoutError: connection timed out
+    at connectionFailureError (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connect.ts:462:14)
+    at TLSSocket.<anonymous> (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connect.ts:363:37)
+    at Object.onceWrapper (node:events:634:28)
+    at TLSSocket.emit (node:events:520:28)
+    at TLSSocket.Socket._onTimeout (node:net:590:8)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)
+2024-08-12 14:53:48 info: Server is running on http://localhost:3002
+2024-08-12 14:53:54 info: MongoDB connected
+2024-08-12 14:54:13 info: Server is running on http://localhost:3002
+2024-08-12 14:54:27 info: MongoDB connected
+2024-08-12 14:54:43 info: Server is running on http://localhost:3002
+2024-08-12 14:55:14 info: Server is running on http://localhost:3002
+2024-08-12 14:55:20 info: MongoDB connected
+2024-08-12 14:56:54 info: Server is running on http://localhost:3002
+2024-08-12 14:57:05 info: MongoDB connected
+2024-08-12 18:00:14 info: Server is running on http://localhost:3002
+2024-08-12 18:00:16 info: MongoDB connected
+2024-08-12 18:09:05 info: Server is running on http://localhost:3002
+2024-08-12 18:09:08 info: MongoDB connected
+2024-08-12 20:05:52 info: Server is running on http://localhost:3002
+2024-08-12 20:05:53 info: MongoDB connected
+2024-08-12 20:07:18 info: Server is running on http://localhost:3002
+2024-08-12 20:07:19 info: MongoDB connected
+2024-08-12 20:07:29 info: Server is running on http://localhost:3002
+2024-08-12 20:07:30 info: MongoDB connected
+2024-08-12 20:07:46 info: Server is running on http://localhost:3002
+2024-08-12 20:07:47 info: MongoDB connected
+2024-08-12 20:08:39 info: Server is running on http://localhost:3002
+2024-08-12 20:08:40 info: Server is running on http://localhost:3002
+2024-08-12 20:08:41 info: MongoDB connected
+2024-08-12 20:09:43 info: Server is running on http://localhost:3002
+2024-08-12 20:09:44 info: MongoDB connected
+2024-08-12 20:10:08 info: Server is running on http://localhost:3002
+2024-08-12 20:10:09 info: MongoDB connected
+2024-08-12 20:10:11 info: Server is running on http://localhost:3002
+2024-08-12 20:10:12 info: MongoDB connected
+2024-08-12 20:10:19 info: Server is running on http://localhost:3002
+2024-08-12 20:10:20 info: MongoDB connected
+2024-08-12 20:10:29 info: Server is running on http://localhost:3002
+2024-08-12 20:10:30 info: MongoDB connected
+2024-08-12 21:11:34 info: Server is running on http://localhost:3002
+2024-08-12 21:11:36 info: MongoDB connected
+2024-08-12 21:11:44 info: Server is running on http://localhost:3002
+2024-08-12 21:11:45 info: MongoDB connected
+2024-08-12 21:11:49 info: Server is running on http://localhost:3002
+2024-08-12 21:11:51 info: MongoDB connected
+2024-08-12 21:12:00 info: Server is running on http://localhost:3002
+2024-08-12 21:12:01 info: MongoDB connected
+2024-08-12 21:15:00 info: Server is running on http://localhost:3002
+2024-08-12 21:15:02 info: MongoDB connected
+2024-08-12 21:19:55 info: Server is running on http://localhost:3002
+2024-08-12 21:19:57 info: MongoDB connected
+2024-08-12 21:22:33 info: Server is running on http://localhost:3002
+2024-08-12 21:22:35 info: MongoDB connected
+2024-08-12 21:26:43 info: Server is running on http://localhost:3002
+2024-08-12 21:26:44 info: MongoDB connected
+2024-08-12 21:26:51 info: Server is running on http://localhost:3002
+2024-08-12 21:26:52 info: MongoDB connected
+2024-08-12 21:27:26 info: Server is running on http://localhost:3002
+2024-08-12 21:27:27 info: MongoDB connected
+2024-08-12 21:27:30 info: Server is running on http://localhost:3002
+2024-08-12 21:27:31 info: MongoDB connected
+2024-08-12 21:28:19 info: Server is running on http://localhost:3002
+2024-08-12 21:28:22 info: MongoDB connected
+2024-08-12 21:31:48 info: Server is running on http://localhost:3002
+2024-08-12 21:31:50 info: MongoDB connected
+2024-08-12 21:34:59 info: Server is running on http://localhost:3002
+2024-08-12 21:35:03 info: Server is running on http://localhost:3002
+2024-08-12 21:35:06 info: Server is running on http://localhost:3002
+2024-08-12 21:35:10 info: Server is running on http://localhost:3002
+2024-08-12 21:35:18 info: Server is running on http://localhost:3002
+2024-08-12 21:35:21 info: Server is running on http://localhost:3002
+2024-08-12 21:35:25 info: Server is running on http://localhost:3002
+2024-08-12 21:35:26 info: MongoDB connected
+2024-08-12 21:36:00 info: Server is running on http://localhost:3002
+2024-08-12 21:36:02 info: MongoDB connected
+2024-08-12 21:36:09 info: Server is running on http://localhost:3002
+2024-08-12 21:36:14 info: Server is running on http://localhost:3002
+2024-08-12 21:36:18 info: Server is running on http://localhost:3002
+2024-08-12 21:36:22 info: Server is running on http://localhost:3002
+2024-08-12 21:36:26 info: Server is running on http://localhost:3002
+2024-08-12 21:36:29 info: Server is running on http://localhost:3002
+2024-08-12 21:36:30 info: MongoDB connected
+2024-08-12 21:36:33 info: Server is running on http://localhost:3002
+2024-08-12 21:36:43 info: MongoDB connected
+2024-08-12 21:41:31 info: Server is running on http://localhost:3002
+2024-08-12 21:41:32 info: MongoDB connected
+2024-08-12 21:43:24 info: Server is running on http://localhost:3002
+2024-08-12 21:43:33 info: MongoDB connected
+2024-08-12 21:49:34 info: Server is running on http://localhost:3002
+2024-08-12 21:49:41 info: Server is running on http://localhost:3002
+2024-08-12 21:49:42 info: MongoDB connected
+2024-08-13 08:53:59 info: Server is running on http://localhost:3002
+2024-08-13 08:54:02 info: MongoDB connected
+2024-08-13 10:07:53 info: Server is running on http://localhost:3002
+2024-08-13 10:07:55 info: MongoDB connected
+2024-08-13 10:07:59 info: Server is running on http://localhost:3002
+2024-08-13 10:08:00 info: MongoDB connected
+2024-08-13 10:08:01 info: Server is running on http://localhost:3002
+2024-08-13 10:08:02 info: MongoDB connected
+2024-08-13 10:08:22 info: Server is running on http://localhost:3002
+2024-08-13 10:08:23 info: MongoDB connected
+2024-08-13 10:08:26 info: Server is running on http://localhost:3002
+2024-08-13 10:08:27 info: MongoDB connected
+2024-08-13 10:08:29 info: Server is running on http://localhost:3002
+2024-08-13 10:08:30 info: MongoDB connected
+2024-08-13 10:08:33 info: Server is running on http://localhost:3002
+2024-08-13 10:08:34 info: MongoDB connected
+2024-08-13 10:08:36 info: Server is running on http://localhost:3002
+2024-08-13 10:08:38 info: MongoDB connected
+2024-08-13 10:08:39 info: Server is running on http://localhost:3002
+2024-08-13 10:08:40 info: MongoDB connected
+2024-08-13 10:08:43 info: Server is running on http://localhost:3002
+2024-08-13 10:08:43 info: MongoDB connected
+2024-08-13 10:08:46 info: Server is running on http://localhost:3002
+2024-08-13 10:08:47 info: MongoDB connected
+2024-08-13 11:22:51 info: Server is running on http://localhost:3002
+2024-08-13 11:22:54 info: MongoDB connected
+2024-08-13 12:11:02 info: Server is running on http://localhost:3002
+2024-08-13 12:11:15 info: MongoDB connected
+2024-08-13 13:41:42 info: Server is running on http://localhost:3002
+2024-08-13 13:41:43 info: MongoDB connected
+2024-08-13 13:41:47 info: Server is running on http://localhost:3002
+2024-08-13 13:41:48 info: MongoDB connected
+2024-08-13 13:42:00 info: Server is running on http://localhost:3002
+2024-08-13 13:42:02 info: MongoDB connected
+2024-08-13 13:43:40 info: Server is running on http://localhost:3002
+2024-08-13 13:43:43 info: MongoDB connected
+2024-08-13 13:44:20 info: Server is running on http://localhost:3002
+2024-08-13 13:44:21 info: MongoDB connected
+2024-08-13 13:44:36 info: Server is running on http://localhost:3002
+2024-08-13 13:44:37 info: MongoDB connected
+2024-08-13 13:44:43 info: Server is running on http://localhost:3002
+2024-08-13 13:44:44 info: MongoDB connected
+2024-08-13 13:44:49 info: Server is running on http://localhost:3002
+2024-08-13 13:44:50 info: MongoDB connected
+2024-08-13 14:02:43 info: Server is running on http://localhost:3002
+2024-08-13 14:02:44 info: MongoDB connected
+2024-08-13 14:02:47 info: Server is running on http://localhost:3002
+2024-08-13 14:02:50 info: MongoDB connected
+2024-08-13 21:14:26 info: Server is running on http://localhost:3002
+2024-08-13 21:14:27 info: MongoDB connected
+2024-08-13 21:27:43 info: Server is running on http://localhost:3002
+2024-08-13 21:27:45 info: MongoDB connected
+2024-08-13 21:35:14 info: Server is running on http://localhost:3002
+2024-08-13 21:35:16 info: MongoDB connected
+2024-08-13 21:41:59 info: Server is running on http://localhost:3002
+2024-08-13 21:42:01 info: MongoDB connected
+2024-08-13 21:45:30 info: Server is running on http://localhost:3002
+2024-08-13 21:45:33 info: MongoDB connected
+2024-08-13 21:45:45 info: Server is running on http://localhost:3002
+2024-08-13 21:45:46 info: MongoDB connected
+2024-08-13 21:50:00 info: Server is running on http://localhost:3002
+2024-08-13 21:50:02 info: MongoDB connected
+2024-08-13 21:55:06 info: Server is running on http://localhost:3002
+2024-08-13 21:55:08 info: MongoDB connected
+2024-08-13 21:55:27 info: Server is running on http://localhost:3002
+2024-08-13 21:55:29 info: MongoDB connected
+2024-08-13 21:55:31 info: Server is running on http://localhost:3002
+2024-08-13 21:55:34 info: Server is running on http://localhost:3002
+2024-08-13 21:55:36 info: MongoDB connected
+2024-08-13 21:55:40 info: Server is running on http://localhost:3002
+2024-08-13 21:55:42 info: MongoDB connected
+2024-08-13 21:56:58 info: Server is running on http://localhost:3002
+2024-08-13 21:57:00 info: MongoDB connected
+2024-08-13 22:09:47 info: Server is running on http://localhost:3002
+2024-08-13 22:09:49 info: MongoDB connected
+2024-08-13 22:11:29 info: Server is running on http://localhost:3002
+2024-08-13 22:11:31 info: MongoDB connected
+2024-08-13 22:13:44 info: Server is running on http://localhost:3002
+2024-08-13 22:13:46 info: MongoDB connected
+2024-08-13 22:13:48 info: Server is running on http://localhost:3002
+2024-08-13 22:13:49 info: MongoDB connected
+2024-08-13 22:19:28 info: Server is running on http://localhost:3002
+2024-08-13 22:19:30 info: MongoDB connected
+2024-08-13 22:22:30 info: Server is running on http://localhost:3002
+2024-08-13 22:22:32 info: MongoDB connected
+2024-08-13 22:59:30 info: Server is running on http://localhost:3002
+2024-08-13 22:59:32 info: MongoDB connected
+2024-08-13 23:00:55 info: Server is running on http://localhost:3002
+2024-08-13 23:00:57 info: MongoDB connected
+2024-08-13 23:01:01 info: Server is running on http://localhost:3002
+2024-08-13 23:01:03 info: MongoDB connected
+2024-08-13 23:01:10 info: Server is running on http://localhost:3002
+2024-08-13 23:01:12 info: MongoDB connected
+2024-08-14 01:11:06 info: Server is running on http://localhost:3002
+2024-08-14 01:11:14 info: MongoDB connected
+2024-08-14 01:18:47 info: Server is running on http://localhost:3002
+2024-08-14 01:18:53 info: MongoDB connected
+2024-08-14 01:21:44 info: Server is running on http://localhost:3002
+2024-08-14 01:22:06 info: MongoDB connected
+2024-08-14 01:22:35 info: Server is running on http://localhost:3002
+2024-08-14 01:22:51 info: MongoDB connected
+2024-08-14 01:23:47 info: Server is running on http://localhost:3002
+2024-08-14 01:23:51 info: MongoDB connected
+2024-08-14 01:26:24 info: Server is running on http://localhost:3002
+2024-08-14 01:26:51 info: MongoDB connected
+2024-08-14 09:07:25 info: Server is running on http://localhost:3002
+2024-08-14 09:07:56 error: Error: queryTxt ETIMEOUT cluster0.dbrhuj4.mongodb.net
+    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:293:17)
+2024-08-14 09:11:19 info: Server is running on http://localhost:3002
+2024-08-14 09:11:22 info: MongoDB connected
+2024-08-14 09:15:02 info: Server is running on http://localhost:3002
+2024-08-14 09:15:06 info: Server is running on http://localhost:3002
+2024-08-14 09:15:08 info: MongoDB connected
+2024-08-14 09:15:12 info: Server is running on http://localhost:3002
+2024-08-14 09:15:14 info: MongoDB connected
+2024-08-14 09:15:16 info: Server is running on http://localhost:3002
+2024-08-14 09:15:18 info: MongoDB connected
+2024-08-14 09:15:23 info: Server is running on http://localhost:3002
+2024-08-14 09:15:25 info: MongoDB connected
+2024-08-14 09:15:27 info: Server is running on http://localhost:3002
+2024-08-14 09:15:28 info: MongoDB connected
+2024-08-14 09:15:31 info: Server is running on http://localhost:3002
+2024-08-14 09:15:32 info: MongoDB connected
+2024-08-14 09:15:36 info: Server is running on http://localhost:3002
+2024-08-14 09:16:18 info: Server is running on http://localhost:3002
+2024-08-14 09:16:21 info: MongoDB connected
+2024-08-14 09:16:36 info: Server is running on http://localhost:3002
+2024-08-14 09:16:38 info: MongoDB connected
+2024-08-14 09:16:54 info: Server is running on http://localhost:3002
+2024-08-14 09:16:56 info: MongoDB connected
+2024-08-14 09:17:05 info: Server is running on http://localhost:3002
+2024-08-14 09:17:07 info: Server is running on http://localhost:3002
+2024-08-14 09:17:08 info: MongoDB connected
+2024-08-14 09:19:03 info: Server is running on http://localhost:3002
+2024-08-14 09:19:06 info: MongoDB connected
+2024-08-14 09:20:08 info: Server is running on http://localhost:3002
+2024-08-14 09:20:11 info: MongoDB connected
+2024-08-14 09:20:32 info: Server is running on http://localhost:3002
+2024-08-14 09:20:35 info: MongoDB connected
+2024-08-14 09:20:55 info: Server is running on http://localhost:3002
+2024-08-14 09:20:57 info: MongoDB connected
+2024-08-14 09:21:00 info: Server is running on http://localhost:3002
+2024-08-14 09:21:02 info: MongoDB connected
+2024-08-14 09:22:35 info: Server is running on http://localhost:3002
+2024-08-14 09:22:38 info: MongoDB connected
+2024-08-14 09:22:53 info: Server is running on http://localhost:3002
+2024-08-14 09:22:56 info: MongoDB connected
+2024-08-14 09:23:05 info: Server is running on http://localhost:3002
+2024-08-14 09:23:07 info: MongoDB connected
+2024-08-14 09:23:27 info: Server is running on http://localhost:3002
+2024-08-14 09:23:28 info: MongoDB connected
+2024-08-14 09:25:15 info: Server is running on http://localhost:3002
+2024-08-14 09:25:16 info: MongoDB connected
+2024-08-14 09:25:42 info: Server is running on http://localhost:3002
+2024-08-14 09:25:44 info: MongoDB connected
+2024-08-14 09:25:48 info: Server is running on http://localhost:3002
+2024-08-14 09:25:50 info: MongoDB connected
+2024-08-14 09:25:55 info: Server is running on http://localhost:3002
+2024-08-14 09:25:57 info: MongoDB connected
+2024-08-14 09:26:00 info: Server is running on http://localhost:3002
+2024-08-14 09:26:02 info: MongoDB connected
+2024-08-14 09:26:14 info: Server is running on http://localhost:3002
+2024-08-14 09:26:17 info: MongoDB connected
+2024-08-14 09:26:19 info: Server is running on http://localhost:3002
+2024-08-14 09:26:21 info: MongoDB connected
+2024-08-14 09:26:23 info: Server is running on http://localhost:3002
+2024-08-14 09:26:24 info: MongoDB connected
+2024-08-14 09:26:26 info: Server is running on http://localhost:3002
+2024-08-14 09:26:28 info: MongoDB connected
+2024-08-14 09:37:07 info: Server is running on http://localhost:3002
+2024-08-14 09:37:10 info: MongoDB connected
+2024-08-14 09:47:41 info: Server is running on http://localhost:3002
+2024-08-14 09:47:46 info: Server is running on http://localhost:3002
+2024-08-14 09:47:48 info: MongoDB connected
+2024-08-14 09:47:52 info: Server is running on http://localhost:3002
+2024-08-14 09:47:54 info: MongoDB connected
+2024-08-14 09:48:29 info: Server is running on http://localhost:3002
+2024-08-14 09:48:30 info: MongoDB connected
+2024-08-14 09:48:35 info: Server is running on http://localhost:3002
+2024-08-14 09:48:37 info: MongoDB connected
+2024-08-14 09:53:47 info: Server is running on http://localhost:3002
+2024-08-14 09:53:48 info: MongoDB connected
+2024-08-14 09:54:06 info: Server is running on http://localhost:3002
+2024-08-14 09:54:08 info: MongoDB connected
+2024-08-14 09:55:49 info: Server is running on http://localhost:3002
+2024-08-14 09:55:51 info: MongoDB connected
+2024-08-14 10:01:34 info: Server is running on http://localhost:3002
+2024-08-14 10:01:37 info: MongoDB connected
+2024-08-14 10:02:33 info: Server is running on http://localhost:3002
+2024-08-14 10:02:36 info: MongoDB connected
+2024-08-14 10:37:35 info: Server is running on http://localhost:3002
+2024-08-14 10:37:39 info: MongoDB connected
+2024-08-14 10:40:52 info: Server is running on http://localhost:3002
+2024-08-14 10:40:55 info: Server is running on http://localhost:3002
+2024-08-14 10:40:57 info: Server is running on http://localhost:3002
+2024-08-14 10:41:00 info: Server is running on http://localhost:3002
+2024-08-14 10:41:02 info: Server is running on http://localhost:3002
+2024-08-14 10:41:03 info: MongoDB connected
+2024-08-14 10:41:05 info: Server is running on http://localhost:3002
+2024-08-14 10:41:08 info: Server is running on http://localhost:3002
+2024-08-14 10:41:10 info: MongoDB connected
+2024-08-14 10:41:13 info: Server is running on http://localhost:3002
+2024-08-14 10:41:16 info: MongoDB connected
+2024-08-14 10:41:18 info: Server is running on http://localhost:3002
+2024-08-14 10:41:19 info: MongoDB connected
+2024-08-14 10:43:31 info: Server is running on http://localhost:3002
+2024-08-14 10:43:38 info: MongoDB connected
+2024-08-14 10:44:14 info: Server is running on http://localhost:3002
+2024-08-14 10:44:16 info: MongoDB connected
+2024-08-14 10:44:19 info: Server is running on http://localhost:3002
+2024-08-14 10:44:24 info: MongoDB connected
+2024-08-14 10:44:35 info: Server is running on http://localhost:3002
+2024-08-14 10:44:39 info: MongoDB connected
+2024-08-14 11:07:37 info: Server is running on http://localhost:3002
+2024-08-14 11:07:39 info: MongoDB connected
+2024-08-14 11:08:10 info: Server is running on http://localhost:3002
+2024-08-14 11:08:11 info: MongoDB connected
+2024-08-14 11:08:24 info: Server is running on http://localhost:3002
+2024-08-14 11:08:25 info: MongoDB connected
+2024-08-14 11:13:11 info: Server is running on http://localhost:3002
+2024-08-14 11:13:14 info: MongoDB connected
+2024-08-14 11:24:51 info: Server is running on http://localhost:3002
+2024-08-14 11:24:53 info: MongoDB connected
+2024-08-14 11:25:14 info: Server is running on http://localhost:3002
+2024-08-14 11:25:18 info: MongoDB connected
+2024-08-14 11:29:46 info: Server is running on http://localhost:3002
+2024-08-14 11:29:50 info: MongoDB connected
+2024-08-14 11:31:10 info: Server is running on http://localhost:3002
+2024-08-14 11:31:11 info: MongoDB connected
+2024-08-14 11:31:46 info: Server is running on http://localhost:3002
+2024-08-14 11:31:48 info: MongoDB connected
+2024-08-14 11:31:51 info: Server is running on http://localhost:3002
+2024-08-14 11:31:53 info: MongoDB connected
+2024-08-14 11:35:21 info: Server is running on http://localhost:3002
+2024-08-14 11:35:27 info: MongoDB connected
+2024-08-14 11:38:22 info: Server is running on http://localhost:3002
+2024-08-14 11:38:25 info: MongoDB connected
+2024-08-14 11:38:41 info: Server is running on http://localhost:3002
+2024-08-14 11:38:42 info: MongoDB connected
+2024-08-14 11:41:51 info: Server is running on http://localhost:3002
+2024-08-14 11:41:54 info: MongoDB connected
+2024-08-14 11:41:56 info: Server is running on http://localhost:3002
+2024-08-14 11:41:58 info: MongoDB connected
+2024-08-14 11:47:49 info: Server is running on http://localhost:3002
+2024-08-14 11:47:50 info: MongoDB connected
+2024-08-14 11:53:42 info: Server is running on http://localhost:3002
+2024-08-14 11:53:43 info: MongoDB connected
+2024-08-14 11:53:54 info: Server is running on http://localhost:3002
+2024-08-14 11:53:55 info: MongoDB connected
+2024-08-14 12:07:12 info: Server is running on http://localhost:3002
+2024-08-14 12:07:15 info: MongoDB connected
+2024-08-14 12:30:42 info: Server is running on http://localhost:3002
+2024-08-14 12:30:43 info: MongoDB connected
+2024-08-14 12:49:03 info: Server is running on http://localhost:3002
+2024-08-14 12:49:06 info: MongoDB connected
+2024-08-14 12:52:58 info: Server is running on http://localhost:3002
+2024-08-14 12:52:59 info: MongoDB connected
+2024-08-14 12:53:44 info: Server is running on http://localhost:3002
+2024-08-14 12:53:47 info: MongoDB connected
+2024-08-14 12:53:55 info: Server is running on http://localhost:3002
+2024-08-14 12:53:56 info: MongoDB connected
+2024-08-14 12:54:03 info: Server is running on http://localhost:3002
+2024-08-14 12:54:07 info: MongoDB connected
+2024-08-14 12:54:11 info: Server is running on http://localhost:3002
+2024-08-14 12:54:12 info: MongoDB connected
+2024-08-14 12:54:17 info: Server is running on http://localhost:3002
+2024-08-14 12:54:19 info: MongoDB connected
+2024-08-14 13:06:05 info: Server is running on http://localhost:3002
+2024-08-14 13:06:08 info: MongoDB connected
+2024-08-14 13:07:03 info: Server is running on http://localhost:3002
+2024-08-14 13:07:06 info: MongoDB connected
+2024-08-14 16:15:18 info: Server is running on http://localhost:3002
+2024-08-14 16:15:19 info: MongoDB connected
+2024-08-14 16:30:29 info: Server is running on http://localhost:3002
+2024-08-14 16:30:31 info: MongoDB connected
+2024-08-14 16:31:32 info: Server is running on http://localhost:3002
+2024-08-14 16:31:34 info: MongoDB connected
+2024-08-14 16:36:42 info: Server is running on http://localhost:3002
+2024-08-14 16:36:44 info: MongoDB connected
+2024-08-14 16:37:03 info: Server is running on http://localhost:3002
+2024-08-14 16:37:04 info: MongoDB connected
+2024-08-14 16:37:10 info: Server is running on http://localhost:3002
+2024-08-14 16:37:11 info: MongoDB connected
+2024-08-14 16:38:33 info: Server is running on http://localhost:3002
+2024-08-14 16:38:35 info: MongoDB connected
+2024-08-14 16:38:38 info: Server is running on http://localhost:3002
+2024-08-14 16:38:40 info: MongoDB connected
+2024-08-14 16:38:46 info: Server is running on http://localhost:3002
+2024-08-14 16:38:48 info: MongoDB connected
+2024-08-14 17:28:13 info: Server is running on http://localhost:3002
+2024-08-14 17:28:15 info: MongoDB connected
+2024-08-14 17:29:24 info: Server is running on http://localhost:3002
+2024-08-14 17:29:26 info: Server is running on http://localhost:3002
+2024-08-14 17:29:27 info: MongoDB connected
+2024-08-14 17:30:09 info: Server is running on http://localhost:3002
+2024-08-14 17:30:10 info: MongoDB connected
+2024-08-14 17:32:20 info: Server is running on http://localhost:3002
+2024-08-14 17:32:22 info: MongoDB connected
+2024-08-14 17:32:33 info: Server is running on http://localhost:3002
+2024-08-14 17:32:34 info: MongoDB connected
+2024-08-14 17:32:41 info: Server is running on http://localhost:3002
+2024-08-14 17:32:43 info: MongoDB connected
+2024-08-14 17:33:00 info: Server is running on http://localhost:3002
+2024-08-14 17:33:02 info: MongoDB connected
+2024-08-14 17:34:44 info: Server is running on http://localhost:3002
+2024-08-14 17:34:45 info: MongoDB connected
+2024-08-14 17:43:56 info: Server is running on http://localhost:3002
+2024-08-14 17:44:08 info: Server is running on http://localhost:3002
+2024-08-14 17:44:09 info: MongoDB connected
+2024-08-14 17:48:31 info: Server is running on http://localhost:3002
+2024-08-14 17:48:35 info: MongoDB connected
+2024-08-14 17:51:03 info: Server is running on http://localhost:3002
+2024-08-14 17:51:05 info: MongoDB connected
+2024-08-14 18:19:41 info: Server is running on http://localhost:3002
+2024-08-14 18:19:44 info: MongoDB connected
+2024-08-14 18:19:56 info: Server is running on http://localhost:3002
+2024-08-14 18:19:57 info: MongoDB connected
+2024-08-14 18:21:28 info: Server is running on http://localhost:3002
+2024-08-14 18:21:29 info: MongoDB connected
+2024-08-14 18:28:38 info: Server is running on http://localhost:3002
+2024-08-14 18:28:43 info: MongoDB connected
+2024-08-14 18:38:25 info: Server is running on http://localhost:3002
+2024-08-14 18:38:27 info: MongoDB connected
+2024-08-14 18:41:48 info: Server is running on http://localhost:3002
+2024-08-14 18:41:49 info: MongoDB connected
+2024-08-14 18:49:26 info: Server is running on http://localhost:3002
+2024-08-14 18:49:28 info: Server is running on http://localhost:3002
+2024-08-14 18:49:29 info: MongoDB connected
+2024-08-14 18:58:43 info: Server is running on http://localhost:3002
+2024-08-14 18:58:46 info: Server is running on http://localhost:3002
+2024-08-14 18:58:49 info: MongoDB connected
+2024-08-14 18:58:54 info: Server is running on http://localhost:3002
+2024-08-14 18:58:56 info: MongoDB connected
+2024-08-14 19:00:27 info: Server is running on http://localhost:3002
+2024-08-14 19:00:29 info: MongoDB connected
+2024-08-14 21:40:42 info: Server is running on http://localhost:3002
+2024-08-14 21:40:44 info: MongoDB connected
+2024-08-14 21:49:25 info: Server is running on http://localhost:3002
+2024-08-14 21:49:27 info: MongoDB connected
+2024-08-14 22:20:48 info: Server is running on http://localhost:3002
+2024-08-14 22:20:50 info: MongoDB connected
+2024-08-14 22:45:51 info: Server is running on http://localhost:3002
+2024-08-14 22:45:54 info: MongoDB connected
+2024-08-14 22:46:30 info: Server is running on http://localhost:3002
+2024-08-14 22:46:32 info: MongoDB connected
+2024-08-14 23:03:42 info: Server is running on http://localhost:3002
+2024-08-14 23:03:44 info: MongoDB connected
+2024-08-14 23:08:13 info: Server is running on http://localhost:3002
+2024-08-14 23:08:15 info: MongoDB connected
+2024-08-14 23:09:13 info: Server is running on http://localhost:3002
+2024-08-14 23:09:15 info: MongoDB connected
+2024-08-14 23:09:53 info: Server is running on http://localhost:3002
+2024-08-14 23:09:55 info: MongoDB connected
+2024-08-14 23:10:09 info: Server is running on http://localhost:3002
+2024-08-14 23:10:11 info: MongoDB connected
+2024-08-14 23:10:16 info: Server is running on http://localhost:3002
+2024-08-14 23:10:18 info: MongoDB connected
+2024-08-14 23:13:25 info: Server is running on http://localhost:3002
+2024-08-14 23:13:27 info: MongoDB connected
+2024-08-14 23:20:16 info: Server is running on http://localhost:3002
+2024-08-14 23:20:18 info: MongoDB connected
+2024-08-14 23:21:53 info: Server is running on http://localhost:3002
+2024-08-14 23:21:55 info: MongoDB connected
+2024-08-14 23:25:32 info: Server is running on http://localhost:3002
+2024-08-14 23:25:33 info: MongoDB connected
+2024-08-14 23:25:52 info: Server is running on http://localhost:3002
+2024-08-14 23:25:53 info: MongoDB connected
+2024-08-14 23:26:37 info: Server is running on http://localhost:3002
+2024-08-14 23:26:40 info: Server is running on http://localhost:3002
+2024-08-14 23:26:41 info: MongoDB connected
+2024-08-14 23:27:14 info: Server is running on http://localhost:3002
+2024-08-14 23:27:15 info: MongoDB connected
+2024-08-14 23:40:17 info: Server is running on http://localhost:3002
+2024-08-14 23:40:20 info: MongoDB connected
+2024-08-14 23:42:30 info: Server is running on http://localhost:3002
+2024-08-14 23:42:32 info: MongoDB connected
+2024-08-14 23:42:37 info: Server is running on http://localhost:3002
+2024-08-14 23:42:39 info: MongoDB connected
+2024-08-14 23:43:23 info: Server is running on http://localhost:3002
+2024-08-14 23:43:25 info: MongoDB connected
+2024-08-14 23:44:29 info: Server is running on http://localhost:3002
+2024-08-14 23:44:31 info: MongoDB connected
+2024-08-14 23:53:45 info: Server is running on http://localhost:3002
+2024-08-14 23:53:47 info: MongoDB connected
+2024-08-15 00:01:13 info: Server is running on http://localhost:3002
+2024-08-15 00:01:14 info: MongoDB connected
+2024-08-15 00:01:16 info: Server is running on http://localhost:3002
+2024-08-15 00:01:18 info: MongoDB connected
+2024-08-15 00:01:59 info: Server is running on http://localhost:3002
+2024-08-15 00:02:00 info: MongoDB connected
+2024-08-15 00:06:38 info: Server is running on http://localhost:3002
+2024-08-15 00:06:39 info: MongoDB connected
+2024-08-15 00:18:53 info: Server is running on http://localhost:3002
+2024-08-15 00:18:55 info: MongoDB connected
+2024-08-15 01:09:15 info: Server is running on http://localhost:3002
+2024-08-15 01:09:50 error: MongoNetworkTimeoutError: connection 1 to 3.109.196.137:27017 timed out
+    at Timeout._onTimeout (D:\solulab\10_E_Commerce_Platform\Admin MS\node_modules\mongodb\src\cmap\connection.ts:300:20)
+    at listOnTimeout (node:internal/timers:573:17)
+    at processTimers (node:internal/timers:514:7)
+2024-08-15 01:10:18 info: Server is running on http://localhost:3002
+2024-08-15 01:10:31 info: MongoDB connected
+2024-08-15 10:10:25 info: Server is running on http://localhost:3002
+2024-08-15 10:10:28 info: MongoDB connected
+2024-08-15 10:32:44 info: Server is running on http://localhost:3002
+2024-08-15 10:32:48 info: MongoDB connected
+2024-08-15 10:32:58 info: Server is running on http://localhost:3002
+2024-08-15 10:33:01 info: MongoDB connected
+2024-08-15 10:33:19 info: Server is running on http://localhost:3002
+2024-08-15 10:33:20 info: MongoDB connected
+2024-08-15 10:42:41 info: Server is running on http://localhost:3002
+2024-08-15 10:42:43 info: MongoDB connected
+2024-08-15 10:50:37 info: Server is running on http://localhost:3002
+2024-08-15 10:50:39 info: MongoDB connected
+2024-08-15 11:07:42 info: Server is running on http://localhost:3002
+2024-08-15 11:07:52 info: MongoDB connected
+2024-08-15 11:27:01 info: Server is running on http://localhost:3002
+2024-08-15 11:27:03 info: Server is running on http://localhost:3002
+2024-08-15 11:27:06 info: MongoDB connected
+2024-08-15 11:27:10 info: Server is running on http://localhost:3002
+2024-08-15 11:27:13 info: MongoDB connected
+2024-08-15 11:27:23 info: Server is running on http://localhost:3002
+2024-08-15 11:27:24 info: MongoDB connected
+2024-08-15 11:28:06 info: Server is running on http://localhost:3002
+2024-08-15 11:28:12 info: Server is running on http://localhost:3002
+2024-08-15 11:28:14 info: MongoDB connected
+2024-08-15 11:28:18 info: Server is running on http://localhost:3002
+2024-08-15 11:28:20 info: MongoDB connected
+2024-08-15 11:28:32 info: Server is running on http://localhost:3002
+2024-08-15 11:28:34 info: MongoDB connected
+2024-08-15 11:29:17 info: Server is running on http://localhost:3002
+2024-08-15 11:29:20 info: MongoDB connected
+2024-08-15 11:29:24 info: Server is running on http://localhost:3002
+2024-08-15 11:29:28 info: MongoDB connected
+2024-08-15 11:34:54 info: Server is running on http://localhost:3002
+2024-08-15 11:34:59 info: MongoDB connected
+2024-08-15 11:35:22 info: Server is running on http://localhost:3002
+2024-08-15 11:35:24 info: Server is running on http://localhost:3002
+2024-08-15 11:35:25 info: MongoDB connected
+2024-08-15 11:36:25 info: Server is running on http://localhost:3002
+2024-08-15 11:41:33 info: Server is running on http://localhost:3002
+2024-08-15 11:41:35 info: MongoDB connected
+2024-08-15 11:47:06 info: Server is running on http://localhost:3002
+2024-08-15 11:47:09 info: MongoDB connected
+2024-08-15 11:47:14 info: Server is running on http://localhost:3002
+2024-08-15 11:47:15 info: MongoDB connected
+2024-08-15 11:49:04 info: Server is running on http://localhost:3002
+2024-08-15 11:49:06 info: MongoDB connected
+2024-08-15 11:49:45 info: Server is running on http://localhost:3002
+2024-08-15 11:49:47 info: MongoDB connected
+2024-08-15 12:58:48 info: Server is running on http://localhost:3002
+2024-08-15 12:58:51 info: MongoDB connected
+2024-08-15 13:03:16 info: Server is running on http://localhost:3002
+2024-08-15 13:03:18 info: MongoDB connected
+2024-08-15 13:48:47 info: Server is running on http://localhost:3002
+2024-08-15 13:48:51 info: MongoDB connected
+2024-08-15 14:52:43 info: Server is running on http://localhost:3002
+2024-08-15 14:52:44 info: MongoDB connected
+2024-08-15 14:52:49 info: Server is running on http://localhost:3002
+2024-08-15 14:52:56 info: Server is running on http://localhost:3002
+2024-08-15 14:53:24 info: Server is running on http://localhost:3002
+2024-08-15 14:53:25 info: MongoDB connected
+2024-08-15 14:54:28 info: Server is running on http://localhost:3002
+2024-08-15 14:54:31 info: MongoDB connected
+2024-08-15 14:59:27 info: Server is running on http://localhost:3002
+2024-08-15 14:59:29 info: MongoDB connected
+2024-08-15 14:59:49 info: Server is running on http://localhost:3002
+2024-08-15 14:59:50 info: Server is running on http://localhost:3002
+2024-08-15 14:59:52 info: MongoDB connected
+2024-08-15 15:00:26 info: Server is running on http://localhost:3002
+2024-08-15 15:00:28 info: MongoDB connected
+2024-08-15 15:10:22 info: Server is running on http://localhost:3002
+2024-08-15 15:10:25 info: MongoDB connected
+2024-08-15 15:10:51 info: Server is running on http://localhost:3002
+2024-08-15 15:10:59 info: MongoDB connected
+2024-08-15 15:15:40 info: Server is running on http://localhost:3002
+2024-08-15 15:15:42 info: MongoDB connected
+2024-08-15 15:16:13 info: Server is running on http://localhost:3002
+2024-08-15 15:16:14 info: MongoDB connected
+2024-08-15 15:31:26 info: Server is running on http://localhost:3002
+2024-08-15 15:31:29 info: MongoDB connected
+2024-08-15 15:36:00 info: Server is running on http://localhost:3002
+2024-08-15 15:36:03 info: MongoDB connected
+2024-08-15 15:38:00 info: Server is running on http://localhost:3002
+2024-08-15 15:38:05 info: MongoDB connected
+2024-08-15 15:40:04 info: Server is running on http://localhost:3002
+2024-08-15 15:40:06 info: MongoDB connected
+2024-08-15 15:40:45 info: Server is running on http://localhost:3002
+2024-08-15 15:40:46 info: MongoDB connected
+2024-08-15 15:41:56 info: Server is running on http://localhost:3002
+2024-08-15 15:41:59 info: MongoDB connected
+2024-08-15 15:42:25 info: Server is running on http://localhost:3002
+2024-08-15 15:42:27 info: MongoDB connected
+2024-08-15 15:43:15 info: Server is running on http://localhost:3002
+2024-08-15 15:43:16 info: MongoDB connected
+2024-08-15 15:44:52 info: Server is running on http://localhost:3002
+2024-08-15 15:44:55 info: MongoDB connected
+2024-08-15 15:46:58 info: Server is running on http://localhost:3002
+2024-08-15 15:47:00 info: MongoDB connected
+2024-08-15 15:47:03 info: Server is running on http://localhost:3002
+2024-08-15 15:47:04 info: MongoDB connected
+2024-08-15 15:47:56 info: Server is running on http://localhost:3002
+2024-08-15 15:47:57 info: MongoDB connected
+2024-08-15 15:48:04 info: Server is running on http://localhost:3002
+2024-08-15 15:48:05 info: MongoDB connected
+2024-08-15 15:48:13 info: Server is running on http://localhost:3002
+2024-08-15 15:48:14 info: MongoDB connected
+2024-08-15 15:48:15 info: Server is running on http://localhost:3002
+2024-08-15 15:48:16 info: MongoDB connected
+2024-08-15 15:48:18 info: Server is running on http://localhost:3002
+2024-08-15 15:48:19 info: MongoDB connected
+2024-08-15 15:52:28 info: Server is running on http://localhost:3002
+2024-08-15 15:52:29 info: MongoDB connected
+2024-08-15 15:54:07 info: Server is running on http://localhost:3002
+2024-08-15 15:54:08 info: MongoDB connected
+2024-08-15 15:57:03 info: Server is running on http://localhost:3002
+2024-08-15 15:57:04 info: MongoDB connected
+2024-08-15 16:03:59 info: Server is running on http://localhost:3002
+2024-08-15 16:04:00 info: MongoDB connected
+2024-08-15 16:09:46 info: Server is running on http://localhost:3002
+2024-08-15 16:09:49 info: MongoDB connected
+2024-08-15 16:11:44 info: Server is running on http://localhost:3002
+2024-08-15 16:11:48 info: MongoDB connected
+2024-08-15 16:12:17 info: Server is running on http://localhost:3002
+2024-08-15 16:12:18 info: MongoDB connected
+2024-08-15 16:12:53 info: Server is running on http://localhost:3002
+2024-08-15 16:12:55 info: MongoDB connected
+2024-08-15 16:16:09 info: Server is running on http://localhost:3002
+2024-08-15 16:16:11 info: MongoDB connected
+2024-08-15 16:16:28 info: Server is running on http://localhost:3002
+2024-08-15 16:16:30 info: MongoDB connected
+2024-08-15 16:16:34 info: Server is running on http://localhost:3002
+2024-08-15 16:16:35 info: MongoDB connected
+2024-08-15 16:16:45 info: Server is running on http://localhost:3002
+2024-08-15 16:16:46 info: MongoDB connected
+2024-08-15 16:24:10 info: Server is running on http://localhost:3002
+2024-08-15 16:24:13 info: MongoDB connected
+2024-08-15 16:42:32 info: Server is running on http://localhost:3002
+2024-08-15 16:42:36 info: MongoDB connected
+2024-08-15 16:46:44 info: Server is running on http://localhost:3002
+2024-08-15 16:46:47 info: MongoDB connected
+2024-08-15 16:47:37 info: Server is running on http://localhost:3002
+2024-08-15 16:47:39 info: MongoDB connected
+2024-08-16 09:26:09 info: Server is running on http://localhost:3002
+2024-08-16 09:26:10 info: MongoDB connected
+2024-08-16 16:07:34 info: Server is running on http://localhost:3002
+2024-08-16 16:07:35 info: MongoDB connected
+2024-08-16 16:22:18 info: Server is running on http://localhost:3002
+2024-08-16 16:22:20 info: MongoDB connected
+2024-08-16 16:22:25 info: Server is running on http://localhost:3002
+2024-08-16 16:22:27 info: MongoDB connected
+2024-08-16 16:22:29 info: Server is running on http://localhost:3002
+2024-08-16 16:22:30 info: MongoDB connected
+2024-08-16 16:23:02 info: Server is running on http://localhost:3002
+2024-08-16 16:23:04 info: MongoDB connected
+2024-08-16 16:23:07 info: Server is running on http://localhost:3002
+2024-08-16 16:23:08 info: MongoDB connected
+2024-08-16 16:23:10 info: Server is running on http://localhost:3002
+2024-08-16 16:23:12 info: MongoDB connected
+2024-08-16 16:23:15 info: Server is running on http://localhost:3002
+2024-08-16 16:23:19 info: Server is running on http://localhost:3002
+2024-08-16 16:23:20 info: MongoDB connected
+2024-08-16 16:23:23 info: Server is running on http://localhost:3002
+2024-08-16 16:23:26 info: Server is running on http://localhost:3002
+2024-08-16 16:23:28 info: MongoDB connected
+2024-08-16 16:23:33 info: Server is running on http://localhost:3002
+2024-08-16 16:23:36 info: MongoDB connected
+2024-08-16 16:23:40 info: Server is running on http://localhost:3002
+2024-08-16 16:23:43 info: Server is running on http://localhost:3002
+2024-08-16 16:23:44 info: MongoDB connected
+2024-08-16 16:23:48 info: Server is running on http://localhost:3002
+2024-08-16 16:23:49 info: MongoDB connected
+2024-08-16 16:27:24 info: Server is running on http://localhost:3002
+2024-08-16 16:27:26 info: MongoDB connected
+2024-08-16 16:29:33 info: Server is running on http://localhost:3002
+2024-08-16 16:29:37 info: MongoDB connected
+2024-08-16 16:32:28 info: Server is running on http://localhost:3002
+2024-08-16 16:32:31 info: MongoDB connected
+2024-08-16 16:45:27 info: Server is running on http://localhost:3002
+2024-08-16 16:45:29 info: MongoDB connected
+2024-08-16 16:45:37 info: Server is running on http://localhost:3002
+2024-08-16 16:45:39 info: MongoDB connected
+2024-08-16 16:45:42 info: Server is running on http://localhost:3002
+2024-08-16 16:45:44 info: MongoDB connected
+2024-08-16 16:50:42 info: Server is running on http://localhost:3002
+2024-08-16 16:50:44 info: MongoDB connected
+2024-08-16 16:50:54 info: Server is running on http://localhost:3002
+2024-08-16 16:50:56 info: MongoDB connected
+2024-08-16 16:51:02 info: Server is running on http://localhost:3002
+2024-08-16 16:51:04 info: MongoDB connected
+2024-08-16 16:53:53 info: Server is running on http://localhost:3002
+2024-08-16 16:53:55 info: MongoDB connected
+2024-08-16 16:55:42 info: Server is running on http://localhost:3002
+2024-08-16 16:55:46 info: MongoDB connected
+2024-08-16 16:55:48 info: Server is running on http://localhost:3002
+2024-08-16 16:55:51 info: MongoDB connected
+2024-08-16 17:11:31 info: Server is running on http://localhost:3002
+2024-08-16 17:11:34 info: MongoDB connected
+2024-08-16 17:11:49 info: Server is running on http://localhost:3002
+2024-08-16 17:11:51 info: MongoDB connected
+2024-08-16 17:12:28 info: Server is running on http://localhost:3002
+2024-08-16 17:12:30 info: MongoDB connected
+2024-08-16 17:13:20 info: Server is running on http://localhost:3002
+2024-08-16 17:13:22 info: MongoDB connected
+2024-08-16 17:13:40 info: Server is running on http://localhost:3002
+2024-08-16 17:13:43 info: MongoDB connected
+2024-08-16 17:17:20 info: Server is running on http://localhost:3002
+2024-08-16 17:17:21 info: Server is running on http://localhost:3002
+2024-08-16 17:17:23 info: MongoDB connected
+2024-08-16 17:20:16 info: Server is running on http://localhost:3002
+2024-08-16 17:20:18 info: MongoDB connected
+2024-08-16 17:32:50 info: Server is running on http://localhost:3002
+2024-08-16 17:32:52 info: MongoDB connected
+2024-08-16 17:34:33 info: Server is running on http://localhost:3002
+2024-08-16 17:34:35 info: MongoDB connected
+2024-08-16 17:34:44 info: Server is running on http://localhost:3002
+2024-08-16 17:34:46 info: MongoDB connected
+2024-08-16 17:34:58 info: Server is running on http://localhost:3002
+2024-08-16 17:35:06 info: Server is running on http://localhost:3002
+2024-08-16 17:35:07 info: MongoDB connected
+2024-08-16 17:36:46 info: Server is running on http://localhost:3002
+2024-08-16 17:36:49 info: MongoDB connected
+2024-08-16 17:39:52 info: Server is running on http://localhost:3002
+2024-08-16 17:39:54 info: MongoDB connected
+2024-08-16 17:43:40 info: Server is running on http://localhost:3002
+2024-08-16 17:43:43 info: MongoDB connected
+2024-08-16 17:46:56 info: Server is running on http://localhost:3002
+2024-08-16 17:46:58 info: MongoDB connected
+2024-08-16 17:54:21 info: Server is running on http://localhost:3002
+2024-08-16 17:54:23 info: MongoDB connected
+2024-08-16 17:58:38 info: Server is running on http://localhost:3002
+2024-08-16 17:58:40 info: MongoDB connected
+2024-08-16 18:05:53 info: Server is running on http://localhost:3002
+2024-08-16 18:05:54 info: MongoDB connected
+2024-08-16 18:05:58 info: Server is running on http://localhost:3002
+2024-08-16 18:06:02 info: Server is running on http://localhost:3002
+2024-08-16 18:06:04 info: MongoDB connected
+2024-08-16 18:06:08 info: Server is running on http://localhost:3002
+2024-08-16 18:06:09 info: MongoDB connected
+2024-08-16 18:06:18 info: Server is running on http://localhost:3002
+2024-08-16 18:06:20 info: Server is running on http://localhost:3002
+2024-08-16 18:06:22 info: Server is running on http://localhost:3002
+2024-08-16 18:06:23 info: MongoDB connected
+2024-08-16 18:09:17 info: Server is running on http://localhost:3002
+2024-08-16 18:09:20 info: MongoDB connected
+2024-08-16 18:12:05 info: Server is running on http://localhost:3002
+2024-08-16 18:12:06 info: MongoDB connected
+2024-08-16 18:12:47 info: Server is running on http://localhost:3002
+2024-08-16 18:12:48 info: MongoDB connected
+2024-08-16 18:14:15 info: Server is running on http://localhost:3002
+2024-08-16 18:14:18 info: MongoDB connected
+2024-08-20 16:38:41 info: Server is running on http://localhost:3002
+2024-08-20 16:38:43 info: MongoDB connected
+2024-08-20 16:39:14 info: Server is running on http://localhost:3002
+2024-08-20 16:39:16 info: MongoDB connected
+2024-08-20 16:40:53 info: Server is running on http://localhost:3002
+2024-08-20 16:41:16 info: Server is running on http://localhost:3002
+2024-08-20 16:41:18 info: MongoDB connected
+2024-08-20 16:41:27 info: Server is running on http://localhost:3002
+2024-08-20 16:41:30 info: Server is running on http://localhost:3002
+2024-08-20 16:41:31 info: MongoDB connected
+2024-08-20 16:41:34 info: Server is running on http://localhost:3002
+2024-08-20 16:41:36 info: MongoDB connected
+2024-08-20 16:41:41 info: Server is running on http://localhost:3002
+2024-08-20 16:41:45 info: Server is running on http://localhost:3002
+2024-08-20 16:41:47 info: MongoDB connected
+2024-08-20 16:56:48 info: Server is running on http://localhost:3002
+2024-08-20 16:56:52 info: MongoDB connected
+2024-08-20 17:05:41 info: Server is running on http://localhost:3002
+2024-08-20 17:05:42 info: MongoDB connected
+2024-08-20 17:11:47 info: Server is running on http://localhost:3002
+2024-08-20 17:11:48 info: MongoDB connected
+2024-08-20 17:13:17 info: Server is running on http://localhost:3002
+2024-08-20 17:13:18 info: MongoDB connected
+2024-08-20 17:13:23 info: Server is running on http://localhost:3002
+2024-08-20 17:13:24 info: MongoDB connected
+2024-08-20 17:17:56 info: Server is running on http://localhost:3002
+2024-08-20 17:17:57 info: MongoDB connected
+2024-08-20 17:32:04 info: Server is running on http://localhost:3002
+2024-08-20 17:32:06 info: MongoDB connected
+2024-08-20 17:33:28 info: Server is running on http://localhost:3002
+2024-08-20 17:33:29 info: MongoDB connected
+2024-08-20 17:33:33 info: Server is running on http://localhost:3002
+2024-08-20 17:33:34 info: MongoDB connected
+2024-08-20 17:33:46 info: Server is running on http://localhost:3002
+2024-08-20 17:33:47 info: MongoDB connected
+2024-08-20 17:33:54 info: Server is running on http://localhost:3002
+2024-08-20 17:33:55 info: MongoDB connected
+2024-08-20 17:33:58 info: Server is running on http://localhost:3002
+2024-08-20 17:33:59 info: MongoDB connected
+2024-08-20 17:47:32 info: Server is running on http://localhost:3002
+2024-08-20 17:47:34 info: Server is running on http://localhost:3002
+2024-08-20 17:47:35 info: MongoDB connected
+2024-08-20 17:48:37 info: Server is running on http://localhost:3002
+2024-08-20 17:48:39 info: MongoDB connected
+2024-08-20 17:51:23 info: Server is running on http://localhost:3002
+2024-08-20 17:51:24 info: MongoDB connected
+2024-08-20 17:53:40 info: Server is running on http://localhost:3002
+2024-08-20 17:53:43 info: MongoDB connected
+2024-08-20 17:54:56 info: Server is running on http://localhost:3002
+2024-08-20 17:54:58 info: MongoDB connected
+2024-08-20 17:55:00 info: Server is running on http://localhost:3002
+2024-08-20 17:55:02 info: MongoDB connected
+2024-08-20 17:55:05 info: Server is running on http://localhost:3002
+2024-08-20 17:55:07 info: MongoDB connected
+2024-08-20 17:58:13 info: Server is running on http://localhost:3002
+2024-08-20 17:58:14 info: MongoDB connected
+2024-08-20 17:58:32 info: Server is running on http://localhost:3002
+2024-08-20 17:58:33 info: MongoDB connected
+2024-08-20 18:00:37 info: Server is running on http://localhost:3002
+2024-08-20 18:00:38 info: MongoDB connected
+2024-08-20 18:15:22 info: Server is running on http://localhost:3002
+2024-08-20 18:15:25 info: MongoDB connected
+2024-08-20 18:26:04 info: Server is running on http://localhost:3002
+2024-08-20 18:26:06 info: MongoDB connected
+2024-08-21 09:26:32 info: Server is running on http://localhost:3002
+2024-08-21 09:26:34 info: MongoDB connected
+2024-08-21 09:27:12 info: Server is running on http://localhost:3002
+2024-08-21 09:27:12 info: MongoDB connected
+2024-08-21 09:27:20 info: Server is running on http://localhost:3002
+2024-08-21 09:27:21 info: MongoDB connected
+2024-08-21 09:27:23 info: Server is running on http://localhost:3002
+2024-08-21 09:27:24 info: MongoDB connected
+2024-08-21 09:28:58 info: Server is running on http://localhost:3002
+2024-08-21 09:29:01 info: MongoDB connected
+2024-08-21 09:29:02 info: Server is running on http://localhost:3002
+2024-08-21 09:29:04 info: MongoDB connected
+2024-08-21 09:31:29 info: Server is running on http://localhost:3002
+2024-08-21 09:31:30 info: MongoDB connected
+2024-08-21 09:31:37 info: Server is running on http://localhost:3002
+2024-08-21 09:31:38 info: MongoDB connected
+2024-08-21 09:38:59 info: Server is running on http://localhost:3002
+2024-08-21 09:39:01 info: Server is running on http://localhost:3002
+2024-08-21 09:39:02 info: MongoDB connected
+2024-08-21 09:39:17 info: Server is running on http://localhost:3002
+2024-08-21 09:39:19 info: MongoDB connected
+2024-08-21 09:39:28 info: Server is running on http://localhost:3002
+2024-08-21 09:39:29 info: MongoDB connected
+2024-08-21 09:41:22 info: Server is running on http://localhost:3002
+2024-08-21 09:41:24 info: MongoDB connected
+2024-08-21 16:36:59 info: Server is running on http://localhost:3002
+2024-08-21 16:37:02 info: MongoDB connected
+2024-08-21 17:15:33 info: Server is running on http://localhost:3002
+2024-08-21 17:15:36 info: MongoDB connected
+2024-08-21 17:16:44 info: Server is running on http://localhost:3002
+2024-08-21 17:16:47 info: MongoDB connected
+2024-08-21 17:18:55 info: Server is running on http://localhost:3002
+2024-08-21 17:18:57 info: MongoDB connected
+2024-08-22 10:50:30 info: Server is running on http://localhost:3002
+2024-08-22 10:50:32 info: MongoDB connected
+2024-08-22 13:31:02 info: Server is running on http://localhost:3002
+2024-08-22 13:31:04 info: MongoDB connected
+2024-08-22 13:46:07 info: Server is running on http://localhost:3002
+2024-08-22 13:46:08 info: MongoDB connected
+2024-08-22 13:49:15 info: Server is running on http://localhost:3002
+2024-08-22 13:49:17 info: MongoDB connected
+2024-08-22 14:16:07 info: Server is running on http://localhost:3002
+2024-08-22 14:16:09 info: MongoDB connected
+2024-08-22 17:24:16 info: Server is running on http://localhost:3002
+2024-08-22 17:24:20 info: MongoDB connected
+2024-08-22 17:35:10 info: Server is running on http://localhost:3002
+2024-08-22 17:35:12 info: MongoDB connected
+2024-08-22 17:37:39 info: Server is running on http://localhost:3002
+2024-08-22 17:37:41 info: MongoDB connected
+2024-08-22 17:41:16 info: Server is running on http://localhost:3002
+2024-08-22 17:41:18 info: MongoDB connected
+2024-08-22 17:47:10 info: Server is running on http://localhost:3002
+2024-08-22 17:47:12 info: MongoDB connected
+2024-08-22 17:50:02 info: Server is running on http://localhost:3002
+2024-08-22 17:50:03 info: MongoDB connected
+2024-08-22 17:51:31 info: Server is running on http://localhost:3002
+2024-08-22 17:51:32 info: MongoDB connected
+2024-08-22 17:58:19 info: Server is running on http://localhost:3002
+2024-08-22 17:58:21 info: MongoDB connected
+2024-08-22 18:24:31 info: Server is running on http://localhost:3002
+2024-08-22 18:24:34 info: MongoDB connected
+2024-08-22 18:35:19 info: Server is running on http://localhost:3002
+2024-08-22 18:35:23 info: MongoDB connected
+2024-08-22 18:42:10 info: Server is running on http://localhost:3002
+2024-08-22 18:42:14 info: MongoDB connected
+2024-08-22 18:50:17 info: Server is running on http://localhost:3002
+2024-08-22 18:50:19 info: MongoDB connected
+2024-08-22 19:07:00 info: Server is running on http://localhost:3002
+2024-08-22 19:07:03 info: MongoDB connected
+2024-08-22 22:44:47 info: Server is running on http://localhost:3002
+2024-08-22 22:44:48 info: MongoDB connected
+2024-08-23 08:47:17 info: Server is running on http://localhost:3002
+2024-08-23 08:47:18 info: MongoDB connected
+2024-08-23 10:09:00 info: Server is running on http://localhost:3002
+2024-08-23 10:09:02 info: MongoDB connected
+2024-08-23 10:39:19 info: Server is running on http://localhost:3002
+2024-08-23 10:39:20 info: MongoDB connected
+2024-08-23 11:11:10 info: Server is running on http://localhost:3002
+2024-08-23 11:11:13 info: MongoDB connected
+2024-08-23 11:43:55 info: Server is running on http://localhost:3002
+2024-08-23 11:43:59 info: MongoDB connected
+2024-08-23 11:44:34 info: Server is running on http://localhost:3002
+2024-08-23 11:44:35 info: MongoDB connected
+2024-08-23 12:00:41 info: Server is running on http://localhost:3002
+2024-08-23 12:00:42 info: MongoDB connected
+2024-08-23 12:04:19 info: Server is running on http://localhost:3002
+2024-08-23 12:04:20 info: MongoDB connected
+2024-08-23 12:10:06 info: Server is running on http://localhost:3002
+2024-08-23 12:10:09 info: MongoDB connected
+2024-08-23 12:21:19 info: Server is running on http://localhost:3002
+2024-08-23 12:21:21 info: MongoDB connected
+2024-08-23 13:13:59 info: Server is running on http://localhost:3002
+2024-08-23 13:14:01 info: MongoDB connected
+2024-08-23 13:14:14 info: Server is running on http://localhost:3002
+2024-08-23 13:14:15 info: MongoDB connected
+2024-08-23 13:14:18 info: Server is running on http://localhost:3002
+2024-08-23 13:14:19 info: MongoDB connected
+2024-08-23 13:15:43 info: Server is running on http://localhost:3002
+2024-08-23 13:15:44 info: MongoDB connected
+2024-08-23 18:00:06 info: Server is running on http://localhost:3002
+2024-08-23 18:00:07 info: MongoDB connected
+2024-08-23 18:05:05 info: Server is running on http://localhost:3002
+2024-08-23 18:05:09 info: MongoDB connected
+2024-08-23 18:10:22 info: Server is running on http://localhost:3002
+2024-08-23 18:10:24 info: MongoDB connected
+2024-08-23 18:16:48 info: Server is running on http://localhost:3002
+2024-08-23 18:16:50 info: MongoDB connected
+2024-08-23 18:18:45 info: Server is running on http://localhost:3002
+2024-08-23 18:18:46 info: MongoDB connected
+2024-08-23 18:18:50 info: Server is running on http://localhost:3002
+2024-08-23 18:18:51 info: MongoDB connected
+2024-08-23 18:35:01 info: Server is running on http://localhost:3002
+2024-08-23 18:35:04 info: MongoDB connected
+2024-08-23 18:37:12 info: Server is running on http://localhost:3002
+2024-08-23 18:37:14 info: MongoDB connected
+2024-08-25 13:41:30 info: Server is running on http://localhost:3002
+2024-08-25 13:41:31 info: MongoDB connected
+2024-08-25 13:59:11 info: Server is running on http://localhost:3002
+2024-08-25 13:59:14 info: MongoDB connected
+2024-08-25 13:59:37 info: Server is running on http://localhost:3002
+2024-08-25 13:59:38 info: MongoDB connected
+2024-09-03 18:51:42 info: Server is running on http://localhost:3002
+2024-09-03 18:51:44 info: MongoDB connected
+2024-09-03 18:54:09 info: Server is running on http://localhost:3002
+2024-09-03 18:54:11 info: MongoDB connected
+2024-09-03 19:01:10 info: Server is running on http://localhost:3002
+2024-09-03 19:01:26 info: Server is running on http://localhost:3002
+2024-09-03 19:01:29 info: MongoDB connected
+2024-09-04 15:20:17 info: Server is running on http://localhost:3002
+2024-09-04 15:20:20 info: MongoDB connected
+2024-09-04 15:27:31 info: Server is running on http://localhost:3002
+2024-09-04 15:27:33 info: MongoDB connected
+2024-09-04 15:33:38 info: Server is running on http://localhost:3002
+2024-09-04 15:33:40 info: MongoDB connected
+2024-09-04 16:12:08 info: Server is running on http://localhost:3002
+2024-09-04 16:12:10 info: MongoDB connected
+2024-09-04 16:25:30 info: Server is running on http://localhost:3002
+2024-09-04 16:25:32 info: MongoDB connected
+2024-09-04 16:28:10 info: Server is running on http://localhost:3002
+2024-09-04 16:28:14 info: MongoDB connected
+2024-09-04 16:28:38 info: Server is running on http://localhost:3002
+2024-09-04 16:28:39 info: MongoDB connected
+2024-09-04 16:28:56 info: Server is running on http://localhost:3002
+2024-09-04 16:28:58 info: MongoDB connected
+2024-09-04 16:29:00 info: Server is running on http://localhost:3002
+2024-09-04 16:29:01 info: MongoDB connected
+2024-09-04 16:29:08 info: Server is running on http://localhost:3002
+2024-09-04 16:29:09 info: MongoDB connected
+2024-09-04 16:29:36 info: Server is running on http://localhost:3002
+2024-09-04 16:29:38 info: MongoDB connected
+2024-09-04 16:47:16 info: Server is running on http://localhost:3002
+2024-09-04 16:47:18 info: MongoDB connected
+2024-09-04 17:57:00 info: Server is running on http://localhost:3002
+2024-09-04 17:57:02 info: MongoDB connected
+2024-09-06 15:33:27 info: Server is running on http://localhost:3002
+2024-09-06 15:33:28 info: MongoDB connected
+2024-09-06 17:10:40 info: Server is running on http://localhost:3002
+2024-09-06 17:10:42 info: MongoDB connected
+2024-09-06 17:16:46 info: Server is running on http://localhost:3002
+2024-09-06 17:16:50 info: MongoDB connected
+2024-09-09 09:31:04 info: Server is running on http://localhost:3002
+2024-09-09 09:31:06 info: MongoDB connected
+2024-09-11 11:20:14 info: Server is running on http://localhost:3002
+2024-09-11 11:20:16 info: MongoDB connected
+2024-09-11 11:29:52 info: Server is running on http://localhost:3002
+2024-09-11 11:29:53 info: MongoDB connected
+2024-09-11 14:31:29 info: Server is running on http://localhost:3002
+2024-09-11 14:31:30 info: MongoDB connected
+2024-09-11 14:31:37 info: Server is running on http://localhost:3002
+2024-09-11 14:31:39 info: Server is running on http://localhost:3002
+2024-09-11 14:31:41 info: MongoDB connected
+2024-09-11 14:31:49 info: Server is running on http://localhost:3002
+2024-09-11 14:31:50 info: MongoDB connected
+2024-09-11 14:31:52 info: Server is running on http://localhost:3002
+2024-09-11 14:31:55 info: Server is running on http://localhost:3002
+2024-09-11 14:31:56 info: MongoDB connected
+2024-09-11 14:32:03 info: Server is running on http://localhost:3002
+2024-09-11 14:32:05 info: MongoDB connected
+2024-09-11 15:08:14 info: Server is running on http://localhost:3002
+2024-09-11 15:08:16 info: MongoDB connected
+2024-09-11 16:26:25 info: Server is running on http://localhost:3002
+2024-09-11 16:26:28 info: MongoDB connected
+2024-09-13 15:06:42 info: Server is running on http://localhost:3002
+2024-09-13 15:06:45 info: MongoDB connected
+2024-09-13 15:07:12 info: Server is running on http://localhost:3002
+2024-09-13 15:07:15 info: MongoDB connected
+2024-09-13 15:37:53 info: Server is running on http://localhost:3002
+2024-09-13 15:37:55 info: MongoDB connected
+2024-09-13 18:31:25 info: Server is running on http://localhost:3002
+2024-09-13 18:31:28 info: MongoDB connected
+2024-09-13 19:12:17 info: Server is running on http://localhost:3002
+2024-09-13 19:12:20 info: MongoDB connected
+2024-09-13 19:12:23 info: Server is running on http://localhost:3002
+2024-09-13 19:12:24 info: MongoDB connected
+2024-09-13 19:12:30 info: Server is running on http://localhost:3002
+2024-09-13 19:12:31 info: MongoDB connected
+2024-09-13 19:12:34 info: Server is running on http://localhost:3002
+2024-09-13 19:12:35 info: MongoDB connected
+2024-09-16 16:15:24 info: Server is running on http://localhost:3002
+2024-09-16 16:15:26 info: MongoDB connected
+2024-09-16 16:15:32 info: Server is running on http://localhost:3002
+2024-09-16 16:15:35 info: MongoDB connected
+2024-09-16 16:24:41 info: Server is running on http://localhost:3002
+2024-09-16 16:24:44 info: MongoDB connected
+2024-09-16 16:28:11 info: Server is running on http://localhost:3002
+2024-09-16 16:28:13 info: MongoDB connected
+2024-09-16 16:28:25 info: Server is running on http://localhost:3002
+2024-09-16 16:28:29 info: Server is running on http://localhost:3002
+2024-09-16 16:28:31 info: MongoDB connected
+2024-09-16 16:36:42 info: Server is running on http://localhost:3002
+2024-09-16 16:36:43 info: MongoDB connected
+2024-09-16 16:38:20 info: Server is running on http://localhost:3002
+2024-09-16 16:38:23 info: Server is running on http://localhost:3002
+2024-09-16 16:38:25 info: MongoDB connected
+2024-09-16 16:38:47 info: Server is running on http://localhost:3002
+2024-09-16 16:38:48 info: MongoDB connected
+2024-09-16 16:38:51 info: Server is running on http://localhost:3002
+2024-09-16 16:38:52 info: MongoDB connected
+2024-09-16 16:55:01 info: Server is running on http://localhost:3002
+2024-09-16 16:55:04 info: MongoDB connected
+2024-09-16 16:55:13 info: Server is running on http://localhost:3002
+2024-09-16 16:55:14 info: MongoDB connected
+2024-09-16 16:55:32 info: Server is running on http://localhost:3002
+2024-09-16 16:55:34 info: MongoDB connected
+2024-09-16 16:57:05 info: Server is running on http://localhost:3002
+2024-09-16 16:57:07 info: MongoDB connected
+2024-09-16 16:57:27 info: Server is running on http://localhost:3002
+2024-09-16 16:57:28 info: MongoDB connected
+2024-09-16 17:02:27 info: Server is running on http://localhost:3002
+2024-09-16 17:02:29 info: MongoDB connected
+2024-09-16 17:02:47 info: Server is running on http://localhost:3002
+2024-09-16 17:02:49 info: MongoDB connected
+2024-09-16 17:03:22 info: Server is running on http://localhost:3002
+2024-09-16 17:03:23 info: MongoDB connected
+2024-09-16 17:06:15 info: Server is running on http://localhost:3002
+2024-09-16 17:06:17 info: MongoDB connected
+2024-09-16 17:10:21 info: Server is running on http://localhost:3002
+2024-09-16 17:10:23 info: MongoDB connected

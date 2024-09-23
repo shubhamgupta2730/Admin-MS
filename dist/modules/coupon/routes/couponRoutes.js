@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const router = (0, express_1.Router)();
+const authMiddleware_1 = require("../../../middlewares/authMiddleware");
+const createCoupon_1 = require("../controllers/createCoupon");
+const getAllCoupon_1 = require("../controllers/getAllCoupon");
+const getCoupons_1 = require("../controllers/getCoupons");
+const deleteCoupon_1 = require("../controllers/deleteCoupon");
+const updateCoupon_1 = require("../controllers/updateCoupon");
+router.post('/create-coupon', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, createCoupon_1.createCoupon);
+router.get('/get-all-coupons', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, getAllCoupon_1.getAllCoupons);
+router.get('/get-coupon', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, getCoupons_1.getCouponById);
+router.delete('/delete-coupon', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, deleteCoupon_1.deleteCoupon);
+router.patch('/update-coupon', authMiddleware_1.authenticateAdmin, authMiddleware_1.authorizeAdmin, updateCoupon_1.updateCoupon);
+exports.default = router;

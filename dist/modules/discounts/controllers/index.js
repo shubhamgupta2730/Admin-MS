@@ -1,0 +1,17 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.removeDiscountFromProductsBundles = exports.getAllDiscounts = exports.getDiscountById = exports.applyDiscount = exports.removeDiscount = exports.updateDiscount = exports.addDiscount = void 0;
+const addDiscount_1 = require("./addDiscount");
+Object.defineProperty(exports, "addDiscount", { enumerable: true, get: function () { return addDiscount_1.addDiscount; } });
+const removeDiscount_1 = require("./removeDiscount");
+Object.defineProperty(exports, "removeDiscount", { enumerable: true, get: function () { return removeDiscount_1.removeDiscount; } });
+const updateDiscount_1 = require("./updateDiscount");
+Object.defineProperty(exports, "updateDiscount", { enumerable: true, get: function () { return updateDiscount_1.updateDiscount; } });
+const applyDiscount_1 = require("./applyDiscount");
+Object.defineProperty(exports, "applyDiscount", { enumerable: true, get: function () { return applyDiscount_1.applyDiscount; } });
+const getDiscount_1 = require("./getDiscount");
+Object.defineProperty(exports, "getDiscountById", { enumerable: true, get: function () { return getDiscount_1.getDiscountById; } });
+const getAllDiscounts_1 = require("./getAllDiscounts");
+Object.defineProperty(exports, "getAllDiscounts", { enumerable: true, get: function () { return getAllDiscounts_1.getAllDiscounts; } });
+const removeDiscountFromProduct_1 = require("./removeDiscountFromProduct");
+Object.defineProperty(exports, "removeDiscountFromProductsBundles", { enumerable: true, get: function () { return removeDiscountFromProduct_1.removeDiscountFromProductsBundles; } });
