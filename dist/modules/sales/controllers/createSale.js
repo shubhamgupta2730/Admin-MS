@@ -149,7 +149,7 @@ const createSale = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             categories: validCategories,
         };
         // Send the data to the scheduler microservice
-        yield axios_1.default.post('http://localhost:3005/schedule-tasks', schedulerData);
+        yield axios_1.default.post('https://scheduler-ms.onrender.com/schedule-tasks', schedulerData);
         return res.status(201).json({
             message: 'Sale created successfully',
             sale,
