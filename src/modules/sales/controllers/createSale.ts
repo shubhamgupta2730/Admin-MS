@@ -169,7 +169,10 @@ export const createSale = async (req: CustomRequest, res: Response) => {
     };
 
     // Send the data to the scheduler microservice
-    await axios.post('http://localhost:3005/schedule-tasks', schedulerData);
+    await axios.post(
+      'https://scheduler-ms.onrender.com/schedule-tasks',
+      schedulerData
+    );
 
     return res.status(201).json({
       message: 'Sale created successfully',
